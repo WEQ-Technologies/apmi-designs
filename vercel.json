@@ -6,7 +6,7 @@
     },
     {
       "source": "/design2",
-      "destination": "/design2.html"
+      "destination": "design2/design2.html"
     }
   ]
 }
