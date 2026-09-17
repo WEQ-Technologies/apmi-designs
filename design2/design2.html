@@ -14,8 +14,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Source+Sans+3:wght@400;600;700&family=Noto+Sans+Devanagari:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
   body { margin: 0; background: #FFFFFF; -webkit-font-smoothing: antialiased; font-family: 'Source Sans 3', system-ui, sans-serif; }
-  [lang="mr"] { font-family: 'Noto Sans Devanagari', 'Source Sans 3', system-ui, sans-serif; line-height: 1.7; letter-spacing: 0; }
-  [lang="mr"] h1, [lang="mr"] h2 { line-height: 1.35; letter-spacing: 0; }
+  [lang="hi"] { font-family: 'Noto Sans Devanagari', 'Source Sans 3', system-ui, sans-serif; line-height: 1.7; letter-spacing: 0; }
+  [lang="hi"] h1, [lang="hi"] h2 { line-height: 1.35; letter-spacing: 0; }
   a { color: #3075BB; text-decoration: none; }
   a:hover { color: #00708E; }
   input::placeholder { color: #8FA6BA; }
@@ -47,6 +47,7 @@
       <div style="display: {{ mobileBarDisplay }}; alignItems: center; gap: 10px; marginLeft: auto;">
         <div style="display: flex; border: 1px solid #C5D6E8; borderRadius: 8px; overflow: hidden; height: 44px;">
           <button type="button" onClick="{{ setEn }}" onMouseEnter="{{ enEnter }}" onMouseLeave="{{ langLeave }}" style="{{ enStyleM }}">ENG</button>
+          <button type="button" onClick="{{ setHi }}" onMouseEnter="{{ hiEnter }}" onMouseLeave="{{ langLeave }}" style="{{ hiStyleM }}">HIN</button>
         </div>
         <button type="button" onClick="{{ toggleMobile }}" aria-label="Menu" style="appearance: none; cursor: pointer; font: inherit; width: 44px; height: 44px; borderRadius: 8px; border: 1px solid #C5D6E8; backgroundColor: #FFFFFF; color: #132B48; backgroundImage: linear-gradient(#132B48, #132B48); backgroundRepeat: no-repeat; backgroundSize: 100% 0%; backgroundPosition: center bottom; transition: background-size 400ms cubic-bezier(.22,.7,.3,1), color 300ms ease; fontSize: 18px; display: flex; alignItems: center; justifyContent: center;" style-hover="background: linear-gradient(#132B48, #132B48) center bottom / 100% 100% no-repeat #FFFFFF; color: #FFFFFF;">{{ burgerIcon }}</button>
       </div>
@@ -54,7 +55,7 @@
       <div style="display: {{ navDisplay }}; alignItems: center; gap: 16px; flexWrap: wrap; padding: 12px 0;">
         <div style="display: flex; border: 1px solid #C5D6E8; borderRadius: 8px; overflow: hidden; height: 36px;">
           <button type="button" onClick="{{ setEn }}" onMouseEnter="{{ enEnter }}" onMouseLeave="{{ langLeave }}" style="{{ enStyle }}">ENG</button>
-          <button type="button" onClick="{{ setMr }}" onMouseEnter="{{ mrEnter }}" onMouseLeave="{{ langLeave }}" style="{{ mrStyle }}">MR</button>
+          <button type="button" onClick="{{ setHi }}" onMouseEnter="{{ hiEnter }}" onMouseLeave="{{ langLeave }}" style="{{ hiStyle }}">HIN</button>
         </div>
         <a href="#member" style="display: inline-flex; alignItems: center; minHeight: 44px; padding: 0 18px; borderRadius: 8px; backgroundColor: #3075BB; color: #FFFFFF; fontSize: 15px; fontWeight: 600; backgroundImage: linear-gradient(#132B48, #132B48); backgroundRepeat: no-repeat; backgroundSize: 100% 0%; backgroundPosition: center bottom; transition: background-size 400ms cubic-bezier(.22,.7,.3,1), color 300ms ease;" style-hover="background: linear-gradient(#132B48, #132B48) center bottom / 100% 100% no-repeat #3075BB;">{{ t.memberLogin }}</a>
         <a href="#distributor" style="fontSize: 15px; fontWeight: 600; color: #3075BB;" style-hover="color: #00708E;">{{ t.distributorLogin }}</a>
@@ -62,7 +63,7 @@
     </div>
 
     <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
-      <div onMouseLeave="{{ closeMenu }}" style="borderTop: 1px solid #C5D6E8; background: #F3F7FB; boxShadow: 0 18px 32px rgba(19,43,72,0.10);">
+      <div onMouseEnter="{{ keepMenu }}" onMouseLeave="{{ closeMenu }}" style="borderTop: 1px solid #C5D6E8; background: #F3F7FB; boxShadow: 0 18px 32px rgba(19,43,72,0.10);">
         <div style="max-width: 1200px; margin: 0 auto; padding: 28px 40px 32px; display: flex; gap: 48px; flexWrap: wrap;">
           <div style="minWidth: 220px;">
             <div style="fontSize: 11px; letterSpacing: '0.12em'; textTransform: uppercase; color: #00708E; fontWeight: 600;">{{ t.section }}</div>
@@ -196,23 +197,23 @@
     </div>
   </section>
 
-  <section ref="{{ setStatsEl }}" style="background: #0B0F19; fontFamily: 'Plus Jakarta Sans', 'Source Sans 3', system-ui, sans-serif;">
+  <section ref="{{ setStatsEl }}" style="background: #0F2A4A; fontFamily: 'Plus Jakarta Sans', 'Source Sans 3', system-ui, sans-serif;">
     <div style="max-width: 1200px; margin: 0 auto; padding: 88px 40px 0;">
       <div style="display: flex; alignItems: center; gap: 14px;">
-        <span style="width: 34px; height: 3px; background: #0066FF; borderRadius: 2px;"></span>
-        <span style="fontSize: 12px; letterSpacing: '0.16em'; textTransform: uppercase; color: #8C9BB5; fontWeight: 700;">{{ t.statsEyebrow }}</span>
+        <span style="width: 34px; height: 3px; background: #3075BB; borderRadius: 2px;"></span>
+        <span style="fontSize: 12px; letterSpacing: '0.16em'; textTransform: uppercase; color: #C3CDDE; fontWeight: 700;">{{ t.statsEyebrow }}</span>
       </div>
       <h2 style="margin: 16px 0 0; fontSize: clamp(30px, 3.6vw, 44px); lineHeight: 1.12; fontWeight: 800; letterSpacing: '-0.02em'; color: #FFFFFF;">{{ t.statsTitle }}</h2>
       <p style="margin: 14px 0 0; fontSize: 17.5px; lineHeight: 1.6; color: #C3CDDE; maxWidth: 600px; textWrap: pretty;">{{ t.statsBody }}</p>
     </div>
     <div style="max-width: 1200px; margin: 0 auto; padding: 44px 40px 88px; display: flex; gap: 20px; flexWrap: wrap; alignItems: stretch;">
 
-      <div style="flex: 3 1 520px; minWidth: 300px; position: relative; overflow: hidden; borderRadius: 16px; border: 1px solid rgba(0,102,255,0.28); background: linear-gradient(150deg, rgba(0,102,255,0.10) 0%, rgba(22,28,42,0.92) 46%), #161C2A; backdropFilter: blur(14px); padding: 48px; display: flex; flexDirection: column; justifyContent: space-between; gap: 48px; minHeight: 340px; boxShadow: 0 0 0 1px rgba(255,255,255,0.03) inset, 0 24px 60px rgba(0,0,0,0.45);">
+      <div style="flex: 3 1 520px; minWidth: 300px; position: relative; overflow: hidden; borderRadius: 16px; border: 1px solid rgba(48,117,187,0.30); background: linear-gradient(150deg, rgba(48,117,187,0.20) 0%, rgba(15,42,74,0) 55%), rgba(255,255,255,0.05); backdropFilter: blur(14px); padding: 48px; display: flex; flexDirection: column; justifyContent: space-between; gap: 48px; minHeight: 340px; boxShadow: 0 24px 60px rgba(0,0,0,0.28);">
         <svg viewBox="0 0 600 220" preserveAspectRatio="none" aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; width: 100%; height: 62%; opacity: 0.55; pointerEvents: none;">
           <defs>
             <linearGradient id="apmiFill" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#0066FF" stop-opacity="0.28"></stop>
-              <stop offset="100%" stop-color="#0066FF" stop-opacity="0"></stop>
+              <stop offset="0%" stop-color="#3075BB" stop-opacity="0.28"></stop>
+              <stop offset="100%" stop-color="#3075BB" stop-opacity="0"></stop>
             </linearGradient>
             <linearGradient id="apmiGrowFill" x1="0" y1="0" x2="0" y2="1">
               <stop offset="0%" stop-color="#22C55E" stop-opacity="0.26"></stop>
@@ -220,39 +221,39 @@
             </linearGradient>
           </defs>
           <path d="M0 200 C 90 190, 150 168, 220 140 C 300 108, 360 96, 430 62 C 490 34, 540 22, 600 8 L 600 220 L 0 220 Z" fill="url(#apmiFill)"></path>
-          <path d="M0 200 C 90 190, 150 168, 220 140 C 300 108, 360 96, 430 62 C 490 34, 540 22, 600 8" fill="none" stroke="#0066FF" stroke-width="2"></path>
-          <path d="M0 208 C 90 196, 150 172, 220 146 C 300 112, 360 100, 430 68 C 490 40, 540 28, 600 14 L 600 220 L 0 220 Z" style="{{ growFillStyle }}"></path>
-          <path pathLength="1000" d="M0 208 C 90 196, 150 172, 220 146 C 300 112, 360 100, 430 68 C 490 40, 540 28, 600 14" style="{{ growStyle }}"></path>
+          <path d="M0 200 C 90 190, 150 168, 220 140 C 300 108, 360 96, 430 62 C 490 34, 540 22, 600 8" fill="none" stroke="#3075BB" stroke-width="2"></path>
+          <path d="M0 200 C 90 190, 150 168, 220 140 C 300 108, 360 96, 430 62 C 490 34, 540 22, 600 8 L 600 220 L 0 220 Z" style="{{ growFillStyle }}"></path>
+          <path pathLength="1000" d="M0 200 C 90 190, 150 168, 220 140 C 300 108, 360 96, 430 62 C 490 34, 540 22, 600 8" style="{{ growStyle }}"></path>
         </svg>
         <div style="position: relative; display: flex; alignItems: center; gap: 12px;">
-          <span style="width: 7px; height: 7px; borderRadius: 50%; background: #0066FF; boxShadow: 0 0 12px 2px rgba(0,102,255,0.8);"></span>
-          <span style="fontSize: 12px; fontWeight: 600; letterSpacing: '0.16em'; textTransform: uppercase; color: #8C9BB5;">{{ t.aumTag }}</span>
+          <span style="width: 7px; height: 7px; borderRadius: 50%; background: #3075BB; boxShadow: 0 0 12px 2px rgba(0,102,255,0.8);"></span>
+          <span style="fontSize: 12px; fontWeight: 600; letterSpacing: '0.16em'; textTransform: uppercase; color: #C3CDDE;">{{ t.aumTag }}</span>
         </div>
         <div style="position: relative;">
-          <div style="fontSize: clamp(46px, 7vw, 92px); lineHeight: 1; fontWeight: 800; letterSpacing: '-0.03em'; color: #0066FF; fontVariantNumeric: tabular-nums; textShadow: 0 0 40px rgba(0,102,255,0.35);">{{ aumDisplay }}</div>
+          <div style="fontSize: clamp(46px, 7vw, 92px); lineHeight: 1; fontWeight: 800; letterSpacing: '-0.03em'; color: #A7D4EC; fontVariantNumeric: tabular-nums; textShadow: 0 0 40px rgba(0,102,255,0.35);">{{ aumDisplay }}</div>
           <div style="marginTop: 20px; fontSize: 18px; lineHeight: 1.5; color: #C3CDDE; maxWidth: 420px;">{{ aumLabel }}</div>
         </div>
       </div>
 
       <div style="flex: 2 1 320px; minWidth: 280px; display: flex; flexDirection: column; gap: 20px;">
 
-        <div style="position: relative; overflow: hidden; flex: 1 1 auto; borderRadius: 16px; border: 1px solid rgba(255,255,255,0.08); background: #161C2A; backdropFilter: blur(14px); padding: 28px; display: flex; alignItems: center; justifyContent: space-between; gap: 20px; minHeight: 128px;">
+        <div style="position: relative; overflow: hidden; flex: 1 1 auto; borderRadius: 16px; border: 1px solid rgba(167,212,236,0.22); background: rgba(255,255,255,0.05); backdropFilter: blur(14px); padding: 28px; display: flex; alignItems: center; justifyContent: space-between; gap: 20px; minHeight: 128px;">
           <svg viewBox="0 0 120 80" aria-hidden="true" style="position: absolute; right: 0; top: 0; height: 100%; width: 42%; opacity: 0.5; pointerEvents: none;">
-            <g fill="#0066FF">
+            <g fill="#3075BB">
               <circle cx="12" cy="12" r="2"></circle><circle cx="36" cy="12" r="2"></circle><circle cx="60" cy="12" r="2"></circle><circle cx="84" cy="12" r="2"></circle><circle cx="108" cy="12" r="2"></circle>
               <circle cx="12" cy="30" r="2"></circle><circle cx="36" cy="30" r="2"></circle><circle cx="60" cy="30" r="2"></circle><circle cx="84" cy="30" r="2"></circle><circle cx="108" cy="30" r="2"></circle>
               <circle cx="12" cy="48" r="2"></circle><circle cx="36" cy="48" r="2"></circle><circle cx="60" cy="48" r="2"></circle><circle cx="84" cy="48" r="2"></circle><circle cx="108" cy="48" r="2"></circle>
               <circle cx="12" cy="66" r="2"></circle><circle cx="36" cy="66" r="2"></circle><circle cx="60" cy="66" r="2"></circle><circle cx="84" cy="66" r="2"></circle><circle cx="108" cy="66" r="2"></circle>
             </g>
           </svg>
-          <div style="position: relative; fontSize: clamp(36px, 4vw, 48px); lineHeight: 1; fontWeight: 800; letterSpacing: '-0.02em'; color: #0066FF; fontVariantNumeric: tabular-nums;">{{ pmDisplay }}</div>
-          <div style="position: relative; fontSize: 15px; lineHeight: 1.45; color: #8C9BB5; maxWidth: 150px; textAlign: right;">{{ pmLabel }}</div>
+          <div style="position: relative; fontSize: clamp(36px, 4vw, 48px); lineHeight: 1; fontWeight: 800; letterSpacing: '-0.02em'; color: #A7D4EC; fontVariantNumeric: tabular-nums;">{{ pmDisplay }}</div>
+          <div style="position: relative; fontSize: 15px; lineHeight: 1.45; color: #C3CDDE; maxWidth: 150px; textAlign: right;">{{ pmLabel }}</div>
         </div>
 
-        <div style="position: relative; overflow: hidden; flex: 1 1 auto; borderRadius: 16px; border: 1px solid rgba(255,255,255,0.08); background: #161C2A; backdropFilter: blur(14px); padding: 28px; display: flex; flexDirection: column; justifyContent: center; gap: 14px; minHeight: 128px;">
+        <div style="position: relative; overflow: hidden; flex: 1 1 auto; borderRadius: 16px; border: 1px solid rgba(167,212,236,0.22); background: rgba(255,255,255,0.05); backdropFilter: blur(14px); padding: 28px; display: flex; flexDirection: column; justifyContent: center; gap: 14px; minHeight: 128px;">
           <div style="display: flex; alignItems: baseline; gap: 14px;">
-            <span style="fontSize: clamp(36px, 4vw, 48px); lineHeight: 1; fontWeight: 800; letterSpacing: '-0.02em'; color: #0066FF; fontVariantNumeric: tabular-nums;">{{ msDisplay }}</span>
-            <span style="fontSize: 15px; lineHeight: 1.45; color: #8C9BB5;">{{ msLabel }}</span>
+            <span style="fontSize: clamp(36px, 4vw, 48px); lineHeight: 1; fontWeight: 800; letterSpacing: '-0.02em'; color: #A7D4EC; fontVariantNumeric: tabular-nums;">{{ msDisplay }}</span>
+            <span style="fontSize: 15px; lineHeight: 1.45; color: #C3CDDE;">{{ msLabel }}</span>
           </div>
           <div style="display: flex; gap: 3px; alignItems: flex-end; height: 26px;">
             <sc-for list="{{ ticks }}" as="tk" hint-placeholder-count="24">
@@ -261,13 +262,13 @@
           </div>
         </div>
 
-        <div style="position: relative; overflow: hidden; flex: 1 1 auto; borderRadius: 16px; border: 1px solid rgba(255,255,255,0.08); background: #161C2A; backdropFilter: blur(14px); padding: 28px; display: flex; flexDirection: column; justifyContent: center; gap: 12px; minHeight: 128px;">
+        <div style="position: relative; overflow: hidden; flex: 1 1 auto; borderRadius: 16px; border: 1px solid rgba(167,212,236,0.22); background: rgba(255,255,255,0.05); backdropFilter: blur(14px); padding: 28px; display: flex; flexDirection: column; justifyContent: center; gap: 12px; minHeight: 128px;">
           <div style="display: flex; alignItems: center; gap: 16px;">
-            <span style="fontSize: 11px; fontWeight: 600; letterSpacing: '0.18em'; textTransform: uppercase; color: #5C6B85;">EST.</span>
+            <span style="fontSize: 11px; fontWeight: 600; letterSpacing: '0.18em'; textTransform: uppercase; color: #A7D4EC;">EST.</span>
             <span style="flex: 1; height: 1px; background: linear-gradient(90deg, rgba(0,102,255,0.6), rgba(0,102,255,0));"></span>
           </div>
-          <div style="fontSize: clamp(36px, 4vw, 48px); lineHeight: 1; fontWeight: 800; letterSpacing: '0.01em'; color: #0066FF; fontVariantNumeric: tabular-nums;">{{ estDisplay }}</div>
-          <div style="fontSize: 15px; lineHeight: 1.45; color: #8C9BB5;">{{ estLabel }}</div>
+          <div style="fontSize: clamp(36px, 4vw, 48px); lineHeight: 1; fontWeight: 800; letterSpacing: '0.01em'; color: #A7D4EC; fontVariantNumeric: tabular-nums;">{{ estDisplay }}</div>
+          <div style="fontSize: 15px; lineHeight: 1.45; color: #C3CDDE;">{{ estLabel }}</div>
         </div>
 
       </div>
@@ -593,10 +594,7 @@
         </span>
       </div>
     </div>
-  </footer>
-</div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;language&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;English&quot;,&quot;Marathi&quot;],&quot;default&quot;:&quot;English&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Language&quot;},&quot;openDropdown&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;None&quot;,&quot;About us&quot;,&quot;Circulars&quot;,&quot;Membership&quot;,&quot;Reports &amp; data&quot;,&quot;Industry&quot;],&quot;default&quot;:&quot;None&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Navigation&quot;},&quot;showHeroMedia&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;}}">
+  <script type="text/x-dc" data-dc-script data-props="{&quot;language&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;English&quot;,&quot;Hindi&quot;],&quot;default&quot;:&quot;English&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Language&quot;},&quot;openDropdown&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;None&quot;,&quot;About us&quot;,&quot;Circulars&quot;,&quot;Membership&quot;,&quot;Reports &amp; data&quot;,&quot;Industry&quot;],&quot;default&quot;:&quot;None&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Navigation&quot;},&quot;showHeroMedia&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Hero&quot;}}">
 const EN = {
   memberLogin: "Member login", distributorLogin: "Distributor login", contact: "Contact", section: "Section",
   heroEyebrow: "India's portfolio management industry association",
@@ -643,50 +641,50 @@ const EN = {
   aumTag: "Assets under management"
 };
 
-const MR = {
-  memberLogin: "सदस्य लॉगिन", distributorLogin: "वितरक लॉगिन", contact: "संपर्क", section: "विभाग",
-  heroEyebrow: "भारताची पोर्टफोलिओ व्यवस्थापन उद्योग संघटना",
-  heroTitle: "पोर्टफोलिओ व्यवस्थापनातील विश्वास वृद्धिंगत करत आहोत.",
-  heroBody: "सेबी-नोंदणीकृत पोर्टफोलिओ व्यवस्थापकांचा एकत्रित आवाज म्हणून APMI उच्च दर्जा, माहितीपूर्ण सहभाग आणि जबाबदार उद्योगवाढ यांना चालना देते.",
-  heroCta1: "ताज्या अद्यतनांचा आढावा घ्या", heroCta2: "APMI सदस्य व्हा",
-  statsEyebrow: "उद्योग आढावा", statsTitle: "आकड्यांतील उद्योग", statsBody: "भारतातील पोर्टफोलिओ व्यवस्थापन उद्योगाचा आकार, सहभाग आणि अहवाल कालावधी.",
-  quickEyebrow: "जलद प्रवेश", quickTitle: "आमची पोर्टल व संसाधने पहा",
-  quickBody: "सदस्य, वितरक आणि गुंतवणूकदार यांच्यासाठी आवश्यक साधने, माहिती व सेवा एकाच ठिकाणी.",
-  bentoEyebrow: "एका दृष्टिक्षेपात", bentoTitle: "सदस्य व गुंतवणूकदारांसाठी जलद प्रवेश",
-  bentoBody: "पोर्टफोलिओ व्यवस्थापक, वितरक आणि गुंतवणूकदार यांच्याकडून सर्वाधिक मागणी असलेली संसाधने. तपशीलासाठी कार्डवर कर्सर न्या.",
-  updatesEyebrow: "नियामक कक्ष", updatesTitle: "ताजी अद्यतने व परिपत्रके",
-  updatesBody: "पोर्टफोलिओ व्यवस्थापन क्षेत्रासाठी वेळेवर नियामक अद्यतने, औपचारिक पत्रव्यवहार आणि मार्गदर्शन.",
-  viewPdf: "PDF पहा", browseArchive: "संपूर्ण संग्रह पहा",
-  mandateEyebrow: "आमचे कार्यक्षेत्र", mandateTitle: "APMI काय करते",
-  mandateBody: "सदस्य, गुंतवणूकदार आणि व्यापक बाजारपेठेसाठी पोर्टफोलिओ व्यवस्थापन परिसंस्था बळकट करणारा केंद्रित कार्यभार.",
-  releaseDate: "जुलै २०२६",
-  compendiumBlurb: "पोर्टफोलिओ व्यवस्थापन उद्योग, प्रमुख कल आणि कामगिरी मापदंड यांचा सर्वसमावेशक आढावा.",
-  dataEyebrow: "माहिती कक्ष", dataTitle: "अहवाल व उद्योग माहिती",
-  dataBody: "महत्त्वाचे अहवाल, कामगिरीची आकडेवारी आणि उद्योग माहिती यांचा जलद प्रवेश.",
-  latestRelease: "नवीनतम प्रकाशन", viewReport: "अहवाल पहा", downloadPdf: "PDF डाउनलोड करा",
-  archive: "संग्रह", performanceLink: "कामगिरीची आकडेवारी पहा", allReportsLink: "सर्व अहवाल पहा",
-  insightsEyebrow: "विश्लेषण", insightsTitle: "दृष्टिकोन व विश्लेषण",
-  insightsBody: "भारतातील पोर्टफोलिओ व्यवस्थापनाचे भवितव्य घडवणारे विचार आणि अभ्यासपूर्ण दृष्टिकोन.",
-  allInsights: "सर्व विश्लेषणे पहा", featuredInsightMeta: "बाजार दृष्टिकोन · ऑगस्ट २०२६",
-  featuredInsightTitle: "भारतातील पोर्टफोलिओ व्यवस्थापन: पुढील दशकाची उभारणी",
-  featuredInsightBody: "संरचनात्मक वाढ, गुंतवणूकदारांच्या अपेक्षा आणि व्यावसायिक पोर्टफोलिओ व्यवस्थापनाची बदलती भूमिका यांचा विचारपूर्वक आढावा.",
-  readInsight: "विश्लेषण वाचा",
-  speaksEyebrow: "संवाद", speaksTitle: "उद्योग बोलतो",
-  speaksBody: "भारतातील गुंतवणूक क्षेत्रातील नेत्यांशी निवडक संवाद आणि त्यांचे दृष्टिकोन.",
-  featuredConversation: "विशेष संवाद · १८ मिनिटे",
-  conversationTitle: "बदलत्या बाजारात सक्षम पोर्टफोलिओची उभारणी",
-  conversationSub: "संधी, जोखीम आणि गुंतवणूकदारांच्या परिणामांचा संतुलित आढावा",
-  forumName: "APMI नेतृत्व मंच", forumPlace: "मुंबई · ऑगस्ट २०२६", viewEpisode: "भाग पहा",
-  eventsTitle: "आगामी कार्यक्रम", allEvents: "सर्व कार्यक्रम पहा",
-  eventsBody: "APMI समुदायासाठी मंच, वेबिनार आणि संवाद सत्रे.",
-  stayInformed: "माहिती मिळवत रहा", newsletterTitle: "APMI ची अद्यतने, स्पष्टतेने आपल्यापर्यंत.",
-  newsletterBody: "परिपत्रके, उद्योग विश्लेषण आणि कार्यक्रमांच्या घोषणा थेट आपल्या इनबॉक्समध्ये मिळवा.",
-  subscribe: "सदस्यता घ्या", subscribeThanks: "धन्यवाद. आपली सदस्यता विनंती प्राप्त झाली आहे.",
-  subscribeNote: "सदस्यता घेऊन आपण APMI ची अद्यतने प्राप्त करण्यास आणि आमच्या गोपनीयता धोरणास संमती देता.",
-  address: "३०४, माधव, सी-४, ई-ब्लॉक, वांद्रे कुर्ला संकुल, वांद्रे पूर्व, मुंबई ४०००५१",
-  footerBlurb: "भारतीय प्रतिभूती व विनिमय मंडळाकडे नोंदणीकृत पोर्टफोलिओ व्यवस्थापकांची एकत्रित उद्योग संस्था.",
-  copyright: "© २०२६ असोसिएशन ऑफ पोर्टफोलिओ मॅनेजर्स इन इंडिया. सर्व हक्क राखीव.",
-  aumTag: "व्यवस्थापनाखालील मालमत्ता"
+const HI = {
+  memberLogin: "सदस्य लॉगिन", distributorLogin: "वितरक लॉगिन", contact: "संपर्क", section: "अनुभाग",
+  heroEyebrow: "भारत का पोर्टफोलियो प्रबंधन उद्योग संघ",
+  heroTitle: "पोर्टफोलियो प्रबंधन में विश्वास को बढ़ावा देना।",
+  heroBody: "APMI सेबी-पंजीकृत पोर्टफोलियो प्रबंधकों की एकीकृत आवाज है—जो उच्च मानकों, सूचित भागीदारी और जिम्मेदार उद्योग विकास को बढ़ावा देती है।",
+  heroCta1: "नवीनतम अपडेट देखें", heroCta2: "APMI सदस्य बनें",
+  statsEyebrow: "उद्योग का संक्षिप्त विवरण", statsTitle: "आंकड़ों में उद्योग", statsBody: "भारत के पोर्टफोलियो प्रबंधन उद्योग में पैमाना, भागीदारी और रिपोर्टिंग गति।",
+  quickEyebrow: "त्वरित पहुँच", quickTitle: "हमारे पोर्टल और संसाधन देखें",
+  quickBody: "हमारे सदस्यों, वितरकों और निवेशकों के लिए तैयार किए गए आवश्यक उपकरण, जानकारी और सेवाएं प्राप्त करें।",
+  bentoEyebrow: "एक नज़र में", bentoTitle: "सदस्यों और निवेशकों के लिए त्वरित पहुँच",
+  bentoBody: "पोर्टफोलियो प्रबंधकों, वितरकों और निवेशकों द्वारा सबसे अधिक अनुरोधित संसाधन। विवरण के लिए कार्ड पर होवर करें।",
+  updatesEyebrow: "नियामक डेस्क", updatesTitle: "नवीनतम अपडेट और परिपत्र",
+  updatesBody: "पोर्टफोलियो प्रबंधन समुदाय के लिए समय पर नियामक अपडेट, औपचारिक संचार और मार्गदर्शन।",
+  viewPdf: "PDF देखें", browseArchive: "पूरा संग्रह देखें",
+  mandateEyebrow: "हमारा अधिदेश", mandateTitle: "APMI क्या करता है",
+  mandateBody: "एक केंद्रित अधिदेश जो सदस्यों, निवेशकों और व्यापक बाजार के लिए पोर्टफोलियो प्रबंधन पारिस्थितिकी तंत्र को मजबूत करता है।",
+  releaseDate: "जुलाई २०२६",
+  compendiumBlurb: "पोर्टफोलियो प्रबंधन उद्योग, प्रमुख रुझानों और प्रदर्शन मेट्रिक्स की व्यापक जानकारी।",
+  dataEyebrow: "डेटा रूम", dataTitle: "रिपोर्ट और उद्योग डेटा",
+  dataBody: "महत्वपूर्ण रिपोर्टों, प्रदर्शन डेटा और उद्योग की जानकारी तक त्वरित पहुँच।",
+  latestRelease: "नवीनतम रिलीज", viewReport: "रिपोर्ट देखें", downloadPdf: "PDF डाउनलोड करें",
+  archive: "अभिलेखागार", performanceLink: "प्रदर्शन डेटा ब्राउज़ करें", allReportsLink: "सभी रिपोर्ट देखें",
+  insightsEyebrow: "इनसाइट्स", insightsTitle: "दृष्टिकोण और इनसाइट्स",
+  insightsBody: "भारत में पोर्टफोलियो प्रबंधन के भविष्य को आकार देने वाले विचार और सूचित दृष्टिकोण।",
+  allInsights: "सभी इनसाइट्स देखें", featuredInsightMeta: "बाजार परिप्रेक्ष्य · अगस्त २०२६",
+  featuredInsightTitle: "भारत का पोर्टफोलियो प्रबंधन परिदृश्य: अगले दशक के लिए निर्माण",
+  featuredInsightBody: "संरचनात्मक विकास, निवेशकों की अपेक्षाओं और पेशेवर पोर्टफोलियो प्रबंधन की बदलती भूमिका पर एक विचारशील दृष्टिकोण।",
+  readInsight: "इनसाइट पढ़ें",
+  speaksEyebrow: "संवाद", speaksTitle: "उद्योग की आवाज",
+  speaksBody: "भारत के निवेश समुदाय के दिग्गजों के चुनिंदा संवाद और दृष्टिकोण।",
+  featuredConversation: "विशेष संवाद · १८ मिनट",
+  conversationTitle: "बदलते बाजार में लचीले पोर्टफोलियो का निर्माण",
+  conversationSub: "अवसर, जोखिम और निवेशक परिणामों पर एक संतुलित दृष्टिकोण",
+  forumName: "APMI लीडरशिप फोरम", forumPlace: "मुंबई · अगस्त २०२६", viewEpisode: "एपिसोड देखें",
+  eventsTitle: "आगामी कार्यक्रम", allEvents: "सभी कार्यक्रम देखें",
+  eventsBody: "APMI समुदाय के लिए मंच, वेबिनार और संवाद।",
+  stayInformed: "अपडेट रहें", newsletterTitle: "APMI के अपडेट, स्पष्टता के साथ।",
+  newsletterBody: "परिपत्र, उद्योग इनसाइट्स और कार्यक्रमों की घोषणाएं सीधे अपने इनबॉक्स में प्राप्त करें।",
+  subscribe: "सदस्यता लें", subscribeThanks: "धन्यवाद। आपका सदस्यता अनुरोध प्राप्त हो गया है।",
+  subscribeNote: "सदस्यता लेकर, आप APMI अपडेट प्राप्त करने के लिए सहमत होते हैं और हमारी गोपनीयता नीति को स्वीकार करते हैं।",
+  address: "३०४, माधव, सी-४, ई-ब्लॉक, बांद्रा कुर्ला कॉम्प्लेक्स, बांद्रा पूर्व, मुंबई ४०००५१",
+  footerBlurb: "भारतीय प्रतिभूति और विनिमय बोर्ड (SEBI) के साथ पंजीकृत पोर्टफोलियो प्रबंधकों के लिए एकीकृत उद्योग निकाय।",
+  copyright: "© २०२६ एसोसिएशन ऑफ पोर्टफोलियो मैनेजर्स इन इंडिया। सर्वाधिकार सुरक्षित।",
+  aumTag: "प्रबंधन के तहत संपत्ति"
 };
 
 const MENUS = {
@@ -697,12 +695,12 @@ const MENUS = {
     "Reports & data": ["PMS Industry Compendium", "APMI Insights", "IA performance report", "IA turnover report", "Consolidated performance", "APRN holder details"],
     "Industry": ["Industry Speaks", "The APMI journey", "45 steps in 45 months", "Upcoming events", "Investor awareness"]
   },
-  mr: {
-    "आमच्याविषयी": ["APMI विषयी", "आमची सनद", "संचालक मंडळ", "कार्यकारी समित्या", "APMI ची वाटचाल", "संपर्क साधा"],
-    "परिपत्रके": ["सेबी परिपत्रके", "सेबीकडून पत्रव्यवहार", "सल्लामसलत मसुदे", "अनौपचारिक मार्गदर्शन", "APMI परिपत्रके व मार्गदर्शक तत्त्वे", "सेबी मंडळ बैठका", "PMS पुस्तिका व प्रश्नोत्तरे"],
-    "सदस्यत्व": ["लाभ व पात्रता", "सदस्यत्व आ.व. २०२६–२७", "परतावा धोरण", "बँक खाते तपशील", "APMI सदस्य व्हा"],
-    "अहवाल व माहिती": ["PMS उद्योग संग्रह", "APMI विश्लेषण", "IA कामगिरी अहवाल", "IA उलाढाल अहवाल", "एकत्रित कामगिरी", "APRN धारक तपशील"],
-    "उद्योग": ["उद्योग बोलतो", "APMI ची वाटचाल", "४५ महिन्यांत ४५ पावले", "आगामी कार्यक्रम", "गुंतवणूकदार जागरूकता"]
+  hi: {
+    "हमारे बारे में": ["APMI के बारे में", "हमारा चार्टर", "निदेशक मंडल", "कार्यकारी समितियां", "APMI का विकास", "हमसे संपर्क करें"],
+    "परिपत्र": ["सेबी परिपत्र", "सेबी से संचार", "परामर्श पत्र", "अनौपचारिक मार्गदर्शन", "APMI परिपत्र और दिशानिर्देश", "सेबी बोर्ड बैठकें", "PMS मैनुअल और अक्सर पूछे जाने वाले प्रश्न"],
+    "सदस्यता": ["लाभ और पात्रता", "सदस्यता वित्त वर्ष २०२६–२७", "रिफंड नीति", "बैंक खाता विवरण", "APMI सदस्य बनें"],
+    "रिपोर्ट और डेटा": ["PMS उद्योग संग्रह", "APMI इनसाइट्स", "IA प्रदर्शन रिपोर्ट", "IA टर्नओवर रिपोर्ट", "समेकित प्रदर्शन", "APRN धारक विवरण"],
+    "उद्योग": ["उद्योग की आवाज", "APMI की यात्रा", "४५ महीनों में ४५ कदम", "आगामी कार्यक्रम", "निवेशक जागरूकता"]
   }
 };
 
@@ -763,66 +761,66 @@ const DATA = {
     legal: ["Privacy policy", "Terms of use", "Disclaimer", "Grievance redressal"],
     rail: ["Overview", "Quick access", "Circulars", "Reports", "Insights", "Events", "Contact"]
   },
-  mr: {
+  hi: {
     portals: [
-      { title: "सदस्य पोर्टल", sub: "सदस्य सेवा, अद्यतने आणि महत्त्वाचा पत्रव्यवहार यांचा प्रवेश.", dark: true },
-      { title: "वितरक पोर्टल", sub: "नोंदणीकृत वितरकांसाठी अर्ज, संसाधने आणि अद्यतने.", dark: false },
-      { title: "गुंतवणूकदार संसाधने", sub: "माहितीपूर्ण निर्णयासाठी अहवाल, आकडेवारी व मार्गदर्शन.", dark: true }
+      { title: "सदस्य पोर्टल", sub: "सदस्य सेवाओं, अपडेट और महत्वपूर्ण संचार तक पहुँचें।", dark: true },
+      { title: "वितरक पोर्टल", sub: "पंजीकृत वितरकों के लिए फॉर्म, संसाधन और अपडेट सहित उपकरण।", dark: false },
+      { title: "निवेशक संसाधन", sub: "सूचित निर्णय लेने में आपकी मदद के लिए रिपोर्ट, डेटा और मार्गदर्शन।", dark: true }
     ],
     bento: [
-      { tag: "अनुपालन", title: "कंप्लायन्स सूत्र", detail: "सेबीच्या आवश्यकता दैनंदिन कार्यपद्धतीत रूपांतरित करणारी नोंदवलेली सत्रे आणि व्यावहारिक टिपणे.", span: "span 2", dark: true },
-      { tag: "संदर्भ", title: "PMS पुस्तिका व प्रश्नोत्तरे", detail: "नोंदणीकृत पोर्टफोलिओ व्यवस्थापकांसाठी एकत्रित कार्यपुस्तिका आणि वारंवार विचारले जाणारे प्रश्न." },
-      { tag: "नोंदवही", title: "APRN धारक तपशील", detail: "वितरकांना दिलेल्या APMI नोंदणी क्रमांकांची नोंदवही आणि त्यांची स्थिती शोधा." },
-      { tag: "गुंतवणूकदार", title: "गुंतवणूकदार जागरूकता", detail: "पोर्टफोलिओ व्यवस्थापन सेवा, शुल्क, जोखीम व प्रकटीकरण यांविषयी सोप्या भाषेतील माहिती." },
-      { tag: "कामगिरी", title: "एकत्रित कामगिरी आकडेवारी", detail: "उद्योगभरातील मासिक व त्रैमासिक कामगिरी, उलाढाल आणि तुलनात्मक अहवाल.", span: "span 2", accent: true },
-      { tag: "सदस्यत्व", title: "APMI मध्ये सामील व्हा", detail: "पात्रता, लाभ, आ.व. २०२६–२७ चे शुल्क आणि पोर्टफोलिओ व्यवस्थापकांसाठी अर्ज प्रक्रिया." }
+      { tag: "अनुपालन", title: "कंप्लायंस सूत्र", detail: "सेबी की आवश्यकताओं को दैनिक परिचालन पद्धति में बदलने वाले रिकॉर्ड किए गए सत्र और व्यावहारिक नोट्स।", span: "span 2", dark: true },
+      { tag: "संदर्भ", title: "PMS मैनुअल और अक्सर पूछे जाने वाले प्रश्न", detail: "पंजीकृत पोर्टफोलियो प्रबंधकों के लिए अक्सर पूछे जाने वाले प्रश्नों के साथ समेकित ऑपरेटिंग मैनुअल।" },
+      { tag: "पंजी", title: "APRN धारक विवरण", detail: "वितरकों को जारी किए गए APMI पंजीकृत नंबरों (APRN) के रजिस्टर और उनकी स्थिति खोजें।" },
+      { tag: "निवेशक", title: "निवेशक जागरूकता", detail: "पोर्टफोलियो प्रबंधन सेवाएं कैसे काम करती हैं, शुल्क, जोखिम और प्रकटीकरण पर सरल भाषा में सामग्री।" },
+      { tag: "प्रदर्शन", title: "समेकित प्रदर्शन डेटा", detail: "पूरे उद्योग में मासिक और त्रैमासिक प्रदर्शन, टर्नओवर और तुलनात्मक रिपोर्टिंग।", span: "span 2", accent: true },
+      { tag: "सदस्यता", title: "APMI से जुड़ें", detail: "पात्रता, लाभ, वित्त वर्ष २०२६–२७ के लिए शुल्क और पोर्टफोलियो प्रबंधकों के लिए आवेदन प्रक्रिया।" }
     ],
     stats: [
-      { prefix: "₹", num: 38.4, dec: 1, suffix: " लाख कोटी", label: "व्यवस्थापनाखालील मालमत्ता" },
-      { num: 480, dec: 0, suffix: "+", label: "नोंदणीकृत पोर्टफोलिओ व्यवस्थापक" },
-      { num: 45, dec: 0, suffix: "", label: "४५ महिन्यांतील उद्योग टप्पे" },
-      { num: 2022, dec: 0, suffix: "", raw: true, label: "उद्योग संस्था म्हणून स्थापना" }
+      { prefix: "₹", num: 38.4, dec: 1, suffix: " लाख करोड़", label: "प्रबंधन के तहत संपत्ति" },
+      { num: 480, dec: 0, suffix: "+", label: "पंजीकृत पोर्टफोलियो प्रबंधक" },
+      { num: 45, dec: 0, suffix: "", label: "४५ महीनों में उद्योग मील के पत्थर" },
+      { num: 2022, dec: 0, suffix: "", raw: true, label: "उद्योग निकाय के रूप में स्थापित" }
     ],
     mandate: [
-      { no: "०१", title: "प्रतिनिधित्व", text: "सेबीसमोर सदस्यांचे हित मांडणे आणि PMS उद्योगाला आकार देणाऱ्या नियामक सल्लामसलतींमध्ये योगदान देणे." },
-      { no: "०२", title: "अनुपालन सहाय्य", text: "परिपत्रके, पुस्तिका आणि कंप्लायन्स सूत्र सत्रे यांचे स्पष्ट, व्यावहारिक कार्यमार्गदर्शनात रूपांतर." },
-      { no: "०३", title: "गुंतवणूकदार संरक्षण", text: "गुंतवणूकदार अहवाल पारदर्शक ठेवणारे मानदंड, मूल्यांकन व प्रकटीकरण दर्जा पुढे नेणे." },
-      { no: "०४", title: "उद्योग मानके", text: "कामगिरी पडताळणी, सायबर सुरक्षा आणि जबाबदार उद्योगवाढीसाठी समान चौकट उभारणे." }
+      { no: "०१", title: "प्रतिनिधित्व", text: "सेबी के समक्ष सदस्यों के हितों का प्रतिनिधित्व करना और PMS उद्योग को आकार देने वाले नियामक परामर्शों में योगदान देना।" },
+      { no: "०२", title: "अनुपालन सहायता", text: "परिपत्रों, मैनुअल और कंप्लायंस सूत्र सत्रों को स्पष्ट, व्यावहारिक परिचालन मार्गदर्शन में बदलना।" },
+      { no: "०३", title: "निवेशक सुरक्षा", text: "बेंचमार्किंग, मूल्यांकन और प्रकटीकरण मानकों को आगे बढ़ाना जो निवेशक रिपोर्टिंग को पारदर्शी बनाए रखते हैं।" },
+      { no: "०४", title: "उद्योग मानक", text: "प्रदर्शन सत्यापन, साइबर लचीलापन और जिम्मेदार उद्योग विकास के लिए साझा ढांचे का निर्माण।" }
     ],
-    filters: ["सेबी परिपत्रके", "APMI परिपत्रके", "सल्लामसलत मसुदे", "पत्रव्यवहार"],
+    filters: ["सेबी परिपत्र", "APMI परिपत्र", "परामर्श पत्र", "संचार"],
     circulars: [
-      { date: "२४ ऑग २०२६", title: "सेबी सायबर घटना अहवाल पोर्टलचे FIRE स्वरूपाशी संरेखन", f: 0 },
-      { date: "३१ जुलै २०२६", title: "डिजिटल सुलभता परिपत्रकांच्या अनुपालन मुदतीत वाढ", f: 0 },
-      { date: "०४ मार्च २०२६", title: "कस्टोडियनसाठी मार्गदर्शक तत्त्वे", f: 1 },
-      { date: "२६ फेब्रु २०२६", title: "गुंतवणूक सुलभता (EoDI)", f: 2 },
-      { date: "१२ जाने २०२६", title: "कामगिरी अहवाल स्वरूपाबाबत पत्रव्यवहार", f: 3 }
+      { date: "२४ अग २०२६", title: "FIRE प्रारूप के साथ सेबी साइबर घटना रिपोर्टिंग पोर्टल का संरेखन", f: 0 },
+      { date: "३१ जुला २०२६", title: "डिजिटल पहुंच परिपत्रों के अनुपालन की समय सीमा का विस्तार", f: 0 },
+      { date: "०४ मार्च २०२६", title: "कस्टोडियन के लिए दिशानिर्देश", f: 1 },
+      { date: "२६ फर २०२६", title: "निवेश में सुगमता (EoDI)", f: 2 },
+      { date: "१२ जन २०२६", title: "प्रदर्शन रिपोर्टिंग प्रारूपों पर संचार", f: 3 }
     ],
     reports: [
-      { year: "२०२६", title: "एकत्रित IA कामगिरी अहवाल", sub: "जून २०२६ अखेर तिमाही" },
-      { year: "२०२५", title: "भारतीय पोर्टफोलिओ व्यवस्थापन आढावा", sub: "वार्षिक संशोधन अहवाल" }
+      { year: "२०२६", title: "समेकित IA प्रदर्शन रिपोर्ट", sub: "जून २०२६ को समाप्त तिमाही" },
+      { year: "२०२५", title: "भारतीय पोर्टफोलियो प्रबंधन समीक्षा", sub: "वार्षिक शोध रिपोर्ट" }
     ],
     insights: [
-      { meta: "गुंतवणूकदार शिक्षण · जुलै २०२६", title: "विवेकाधीन पोर्टफोलिओ व्यवस्थापनातील जोखीम समजून घेणे", text: "कार्यभार, जोखीम क्षमता आणि गुंतवणूक कालावधी यांच्या मूल्यमापनाची व्यावहारिक चौकट." },
-      { meta: "प्रशासन · जून २०२६", title: "विश्वस्तत्व, पारदर्शकता आणि टिकाऊ गुंतवणूकदार विश्वास", text: "उद्योग मानके गुंतवणूक साखळीतील उत्तरदायित्व कसे बळकट करू शकतात." }
+      { meta: "निवेशक शिक्षा · जुलाई २०२६", title: "विवेकाधीन पोर्टफोलियो प्रबंधन में जोखिम को समझना", text: "जनादेश, जोखिम क्षमता और निवेश समय सीमा के मूल्यांकन के लिए एक व्यावहारिक ढांचा।" },
+      { meta: "सुशासन · जून २०२६", title: "स्टीवर्डशिप, पारदर्शिता और स्थायी निवेशक विश्वास", text: "उद्योग मानक निवेश मूल्य श्रृंखला में जवाबदेही को कैसे मजबूत कर सकते हैं।" }
     ],
     events: [
-      { day: "१८", month: "सप्टें २०२६", title: "APMI वार्षिक सदस्य मंच २०२६", type: "सदस्य मंच", place: "मुंबई", desc: "नियमन, जबाबदार वाढ आणि उद्योगाच्या प्राधान्यक्रमांवर केंद्रित चर्चा." },
-      { day: "०८", month: "ऑक्टो २०२६", title: "गुंतवणूकदार जागरूकता व शिक्षण मालिका", type: "वेबिनार", place: "ऑनलाइन", desc: "पोर्टफोलिओ व्यवस्थापन सेवा व प्रकटीकरण यांच्या मूल्यमापनावर तज्ज्ञांचे सत्र." },
-      { day: "२१", month: "नोव्हें २०२६", title: "PMS उद्योग नेतृत्व गोलमेज", type: "गोलमेज", place: "नवी दिल्ली", desc: "बाजार विकास, प्रशासन आणि गुंतवणूकदार परिणामांवर वरिष्ठ नेत्यांची चर्चा." }
+      { day: "१८", month: "सितं २०२६", title: "APMI वार्षिक सदस्य फोरम २०२६", type: "सदस्य फोरम", place: "मुंबई", desc: "विनियमन, जिम्मेदार विकास और उद्योग की प्राथमिकताओं पर केंद्रित संवाद।" },
+      { day: "०८", month: "अक्टू २०२६", title: "निवेशक जागरूकता एवं शिक्षा श्रृंखला", type: "वेबिनार", place: "ऑनलाइन", desc: "पोर्टफोलियो प्रबंधन सेवाओं और प्रकटीकरणों के मूल्यांकन पर विशेषज्ञ सत्र।" },
+      { day: "२१", month: "नवं २०२६", title: "PMS उद्योग नेतृत्व गोलमेज सम्मेलन", type: "गोलमेज सम्मेलन", place: "नई दिल्ली", desc: "वरिष्ठ नेता बाजार विकास, सुशासन और निवेशक परिणामों पर चर्चा करते हैं।" }
     ],
     footerCols: [
-      { title: "संस्था", links: ["APMI विषयी", "सनद", "संचालक मंडळ", "सदस्यत्व"] },
-      { title: "संसाधने", links: ["परिपत्रके", "APMI विश्लेषण", "अहवाल व माहिती", "उद्योग संग्रह"] },
-      { title: "पोर्टल", links: ["सदस्य लॉगिन", "वितरक लॉगिन", "सदस्य नोंदणी", "APRN धारक तपशील"] },
-      { title: "सहभाग", links: ["उद्योग बोलतो", "कार्यक्रम व मंच", "गुंतवणूकदार जागरूकता", "संपर्क साधा"] }
+      { title: "संगठन", links: ["APMI के बारे में", "चार्टर", "निदेशक मंडल", "सदस्यता"] },
+      { title: "संसाधन", links: ["परिपत्र", "APMI इनसाइट्स", "रिपोर्ट और डेटा", "उद्योग संग्रह"] },
+      { title: "पोर्टल", links: ["सदस्य लॉगिन", "वितरक लॉगिन", "सदस्य पंजीकरण", "APRN धारक विवरण"] },
+      { title: "जुड़ें", links: ["उद्योग की आवाज", "कार्यक्रम और मंच", "निवेशक जागरूकता", "हमसे संपर्क करें"] }
     ],
-    legal: ["गोपनीयता धोरण", "वापर अटी", "अस्वीकरण", "तक्रार निवारण"],
-    rail: ["आढावा", "जलद प्रवेश", "परिपत्रके", "अहवाल", "विश्लेषण", "कार्यक्रम", "संपर्क"]
+    legal: ["गोपनीयता नीति", "उपयोग की शर्तें", "अस्वीकरण", "शिकायत निवारण"],
+    rail: ["अवलोकन", "त्वरित पहुँच", "परिपत्र", "रिपोर्ट", "इनसाइट्स", "कार्यक्रम", "संपर्क"]
   }
 };
 
 const RAIL_IDS = ["top", "bento", "updates", "data", "insights", "events", "contact"];
-const MR_DIGITS = ["०", "१", "२", "३", "४", "५", "६", "७", "८", "९"];
+const HI_DIGITS = ["०", "१", "२", "३", "४", "५", "६", "७", "८", "९"];
 
 class Component extends DCLogic {
   state = { lang: "en", menu: null, filter: 0, open: 0, hover: null, phover: null, email: "", subscribed: false,
@@ -898,7 +896,7 @@ class Component extends DCLogic {
     this.onScroll();
     this.tick = setInterval(this.onScroll, 100);
     const next = {};
-    if (this.props.language === "Marathi") next.lang = "mr";
+    if (this.props.language === "Hindi") next.lang = "hi";
     if (this.props.openDropdown && this.props.openDropdown !== "None") next.menu = this.props.openDropdown;
     if (Object.keys(next).length) this.setState(next);
   }
@@ -914,8 +912,8 @@ class Component extends DCLogic {
 
   fmt(n, dec) {
     const s = dec ? n.toFixed(dec) : String(Math.round(n));
-    if (this.state.lang !== "mr") return s;
-    return s.replace(/[0-9]/g, d => MR_DIGITS[+d]);
+    if (this.state.lang !== "hi") return s;
+    return s.replace(/[0-9]/g, d => HI_DIGITS[+d]);
   }
 
   langBtn(which, lang, mobile) {
@@ -937,7 +935,7 @@ class Component extends DCLogic {
 
   renderVals() {
     const lang = this.state.lang;
-    const t = lang === "mr" ? MR : EN;
+    const t = lang === "hi" ? HI : EN;
     const d = DATA[lang];
     const menus = MENUS[lang];
     const keys = Object.keys(menus);
@@ -953,12 +951,11 @@ class Component extends DCLogic {
       heroMedia: this.props.showHeroMedia !== false,
 
       setEn: () => this.setState({ lang: "en", menu: null, mobileSection: null }),
-      setMr: () => this.setState({ lang: "mr", menu: null, mobileSection: null }),
-      enStyle: this.langBtn("en", lang, false), mrStyle: this.langBtn("mr", lang, false),
-      enStyleM: this.langBtn("en", lang, true), mrStyleM: this.langBtn("mr", lang, true),
-      enEnter: () => this.setState({ lhover: "en" }), mrEnter: () => this.setState({ lhover: "mr" }),
+      setHi: () => this.setState({ lang: "hi", menu: null, mobileSection: null }),
+      enStyle: this.langBtn("en", lang, false), hiStyle: this.langBtn("hi", lang, false),
+      enStyleM: this.langBtn("en", lang, true), hiStyleM: this.langBtn("hi", lang, true),
+      enEnter: () => this.setState({ lhover: "en" }), hiEnter: () => this.setState({ lhover: "hi" }),
       langLeave: () => this.setState({ lhover: null }),
-
       insightCards: d.insights.map((it, i) => {
         const hot = this.state.ihover === i;
         return {
@@ -1041,7 +1038,7 @@ class Component extends DCLogic {
           opacity: this.state.menu === label ? 1 : 0,
           transition: "transform 300ms ease, opacity 300ms ease", pointerEvents: "none", zIndex: -1
         },
-        open: () => this.setState({ menu: label }),
+        open: () => { clearTimeout(this.menuTimer); this.setState({ menu: label }); },
         toggle: () => this.setState(s => ({ menu: s.menu === label ? null : label }))
       })),
       navDisplay: this.state.narrow ? "none" : "flex",
@@ -1058,7 +1055,11 @@ class Component extends DCLogic {
       menuOpen: !!menu && !this.state.narrow && !!menus[menu],
       menuTitle: menu || "",
       menuLinks: menu && menus[menu] ? menus[menu] : [],
-      closeMenu: () => this.setState({ menu: null }),
+      closeMenu: () => {
+        clearTimeout(this.menuTimer);
+        this.menuTimer = setTimeout(() => this.setState({ menu: null }), 180);
+      },
+      keepMenu: () => clearTimeout(this.menuTimer),
 
       railDisplay: this.state.wide ? "flex" : "none",
       rail: d.rail.map((label, i) => {
@@ -1149,22 +1150,22 @@ class Component extends DCLogic {
       }),
 
       growStyle: {
-        fill: "none", stroke: "#22C55E", strokeWidth: 2.6, strokeLinecap: "round",
-        filter: "drop-shadow(0 0 6px rgba(34,197,94,0.65))",
+        fill: "none", stroke: "#16A34A", strokeWidth: 3, strokeLinecap: "round",
+        filter: "drop-shadow(0 0 5px rgba(22,163,74,0.5))",
         strokeDasharray: "1000px", strokeDashoffset: this.state.grow ? "0px" : "1000px",
-        transition: "stroke-dashoffset 2000ms cubic-bezier(.33,.1,.25,1)"
+        transition: "stroke-dashoffset 2500ms cubic-bezier(.33,.1,.25,1)"
       },
       growFillStyle: {
         fill: "url(#apmiGrowFill)",
         opacity: this.state.grow ? 0.9 : 0,
-        transition: "opacity 2000ms ease"
+        transition: "opacity 2500ms ease"
       },
-      aumDisplay: "₹" + this.fmt(38.4 * p, 1) + (lang === "mr" ? " लाख कोटी" : " lakh crore"),
+      aumDisplay: "₹" + this.fmt(38.4 * p, 1) + (lang === "hi" ? " लाख करोड़" : " lakh crore"),
       aumLabel: d.stats[0].label,
       pmDisplay: this.fmt(480 * p, 0) + "+",
       pmLabel: d.stats[1].label,
       msDisplay: this.fmt(45 * p, 0),
-      msLabel: lang === "mr" ? "४५ महिन्यांतील उद्योग टप्पे" : "industry milestones in 45 months",
+      msLabel: lang === "hi" ? "४५ महीनों में उद्योग मील के पत्थर" : "industry milestones in 45 months",
       estDisplay: this.fmt(2022, 0),
       estLabel: d.stats[3].label,
       ticks: Array.from({ length: 24 }, (_, i) => ({
@@ -1279,7 +1280,7 @@ class Component extends DCLogic {
           }
         };
       }),
-      years: (lang === "mr" ? ["२०२६", "२०२५", "२०२४", "२०२३", "२०२२"] : ["2026", "2025", "2024", "2023", "2022"]).map((label, i) => {
+      years: (lang === "hi" ? ["२०२६", "२०२५", "२०२४", "२०२३", "२०२२"] : ["2026", "2025", "2024", "2023", "2022"]).map((label, i) => {
         const on = (this.state.year || 0) === i;
         return {
           label,
