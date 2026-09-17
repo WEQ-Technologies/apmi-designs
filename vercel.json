@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/design_1.html",
+      "destination": "/design_1/",
+      "permanent": true
+    }
+  ]
+}
