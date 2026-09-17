@@ -3,6 +3,10 @@
     {
       "source": "/design1",
       "destination": "/design1.html"
-    }
+    },
+    {
+      "source": "/design2",
+      "destination": "/design2.html"
+    },
   ]
 }
