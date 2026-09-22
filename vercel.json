@@ -5,6 +5,14 @@
       "destination": "/design1.html"
     },
     {
+      "source": "/about",
+      "destination": "/about.html"
+    },
+    {
+      "source": "/design1/about",
+      "destination": "/about.html"
+    },
+    {
       "source": "/design2",
       "destination": "/design2/design2.html"
     }
