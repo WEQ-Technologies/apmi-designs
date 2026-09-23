@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/src/assets/images/apmi-fav-icon.png">
 <title>APMI — Redesign Mockup</title>
 <!-- Typeface system: Times New Roman (display) + Helvetica (content) — system fonts, no web-font load -->
 
@@ -40,8 +41,8 @@
   /* ---------- utility bar ---------- */
   .utility{background:var(--ink); color:#D9DCE4; font-size:13px;}
   .utility .wrap{display:flex; justify-content:space-between; align-items:center; height:38px;}
-  .utility-links{display:flex; gap:24px;}
-  .utility-links a{opacity:.82; transition:opacity .15s;}
+  .utility-links{display:flex; gap:18px;}
+  .utility-links a{opacity:.82; font-size:12.5px; white-space:nowrap; transition:opacity .15s;}
   .utility-links a:hover{opacity:1;}
   .utility-tag{font-family:var(--font-mono); font-size:11px; letter-spacing:.02em; opacity:.65;}
 
@@ -55,6 +56,16 @@
   nav.primary{display:flex; gap:34px;}
   nav.primary a{font-size:14.5px; color:var(--ink); position:relative; padding:6px 0;}
   nav.primary a:hover{color:var(--brass-deep);}
+  .nav-dropdown{position:relative;}
+  .nav-dropdown > a{display:inline-flex; align-items:center; gap:4px;}
+  .nav-dropdown .caret{display:inline-block; transition:transform .18s ease;}
+  .nav-dropdown:hover .caret{transform:rotate(180deg);}
+  .dropdown-menu{position:absolute; top:100%; left:-18px; padding-top:16px; opacity:0; visibility:hidden; transform:translateY(4px); transition:opacity .18s ease, transform .18s ease, visibility .18s;}
+  .dropdown-menu-inner{min-width:280px; background:var(--paper-raised); border:1px solid var(--rule); box-shadow:0 16px 40px -20px rgba(15,42,77,.32); border-radius:3px; padding:8px 0;}
+  .nav-dropdown:hover .dropdown-menu{opacity:1; visibility:visible; transform:translateY(0);}
+  nav.primary .dropdown-menu a{position:static; display:block; padding:10px 20px; font-size:13.5px; color:var(--ink); white-space:nowrap;}
+  nav.primary .dropdown-menu a::after{content:none;}
+  nav.primary .dropdown-menu a:hover{color:var(--brand-deep); background:var(--brand-tint);}
   .header-actions{display:flex; align-items:center; gap:18px;}
   .icon-btn{width:34px; height:34px; display:flex; align-items:center; justify-content:center; border:1px solid var(--rule-strong); border-radius:3px; cursor:pointer; color:var(--ink);}
   .btn-primary{background:var(--ink); color:var(--white); font-size:13.5px; padding:10px 20px; border-radius:3px; font-weight:500;}
@@ -114,10 +125,11 @@
   .mandate-card p{font-size:13.5px; color:var(--ink-soft); line-height:1.55;}
 
   /* ---------- circulars / register ---------- */
-  .register-tabs{display:flex; gap:2px; margin-bottom:0;}
-  .register-tab{font-size:13.5px; padding:11px 18px; color:var(--ink-soft); border:1px solid var(--rule); border-bottom:none; background:var(--paper);}
+  .register-tabs{display:flex; gap:2px; margin-bottom:0; overflow-x:auto;}
+  .register-tab{font-size:13px; padding:11px 16px; color:var(--ink-soft); border:1px solid var(--rule); border-bottom:none; background:var(--paper); white-space:nowrap; flex:0 0 auto;}
   .register-tab.active{background:var(--paper-raised); color:var(--ink); font-weight:500;}
-  .register-panel{border:1px solid var(--rule); background:var(--paper-raised);}
+  .register-panel{border:1px solid var(--rule); background:var(--paper-raised); display:none;}
+  .register-panel.active{display:block;}
   .register-row{display:grid; grid-template-columns:100px 1fr 140px 28px; align-items:center; gap:20px; padding:19px 26px; border-bottom:1px solid var(--rule); transition:background .12s;}
   .register-row:last-child{border-bottom:none;}
   .register-row:hover{background:var(--paper);}
@@ -128,15 +140,21 @@
   .register-row:hover .register-arrow{color:var(--brass-deep);}
 
   /* ---------- reports ---------- */
-  .reports-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:28px;}
-  .report-card{border:1px solid var(--rule); background:var(--paper-raised);}
-  .report-thumb{height:150px; background:var(--ink); position:relative; overflow:hidden;}
-  .report-thumb::after{content:''; position:absolute; inset:0; background:repeating-linear-gradient(115deg, transparent, transparent 26px, rgba(198,149,47,0.18) 26px, rgba(198,149,47,0.18) 27px);}
+  .reports-controls{display:flex; align-items:center; gap:10px;}
+  .slider-arrow-btn{width:38px; height:38px; border-radius:50%; background:var(--paper-raised); border:1px solid var(--rule-strong); color:var(--ink); display:inline-flex; align-items:center; justify-content:center; cursor:pointer; transition:all .2s ease; padding:0;}
+  .slider-arrow-btn:hover{background:var(--ink); color:#fff; border-color:var(--ink); transform:scale(1.06);}
+  .slider-arrow-btn:active{transform:scale(.94);}
+  .reports-slider-viewport{position:relative; width:100%; overflow:hidden;}
+  .reports-slider-track{display:flex; gap:28px; overflow-x:auto; scroll-behavior:smooth; scrollbar-width:none; -ms-overflow-style:none; scroll-snap-type:x mandatory; padding:4px 2px 10px;}
+  .reports-slider-track::-webkit-scrollbar{display:none;}
+  .report-card{flex:0 0 calc((100% - 56px)/3); scroll-snap-align:start; display:flex; flex-direction:column; border:1px solid var(--rule); background:var(--paper-raised);}
+  .report-thumb{height:150px; background:var(--ink) center/cover no-repeat; position:relative; overflow:hidden;}
+  .report-thumb::after{content:''; position:absolute; inset:0; background:linear-gradient(180deg, rgba(15,42,77,.1) 40%, rgba(15,42,77,.82) 100%);}
   .report-thumb-label{position:absolute; bottom:16px; left:18px; color:var(--paper); font-family:var(--font-mono); font-size:11.5px; z-index:1;}
-  .report-body{padding:22px 24px 26px;}
+  .report-body{display:flex; flex-direction:column; flex:1; padding:22px 24px 26px;}
   .report-body h4{font-family:var(--font-display); font-size:18px; font-weight:500; margin-bottom:8px;}
   .report-body p{font-size:13px; color:var(--ink-soft); margin-bottom:16px;}
-  .report-cta{font-size:13px; color:var(--brass-deep); font-weight:500;}
+  .report-cta{font-size:13px; color:var(--brass-deep); font-weight:500; margin-top:auto;}
 
   /* ---------- membership CTA ---------- */
   .membership{background:var(--green); color:var(--paper);}
@@ -164,10 +182,11 @@
 
   /* ---------- news ---------- */
   .news-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:36px;}
-  .news-item{border-top:2px solid var(--ink); padding-top:18px;}
+  .news-item{border-top:2px solid var(--ink); padding-top:18px; display:flex; flex-direction:column;}
   .news-meta{font-size:12px; color:var(--ink-soft); font-family:var(--font-mono); margin-bottom:10px;}
   .news-item h4{font-family:var(--font-display); font-size:19px; font-weight:500; line-height:1.32; margin-bottom:10px;}
-  .news-item p{font-size:13.5px; color:var(--ink-soft); line-height:1.55;}
+  .news-item p{font-size:13.5px; color:var(--ink-soft); line-height:1.55; margin-bottom:18px; display:-webkit-box; -webkit-box-orient:vertical; -webkit-line-clamp:2; overflow:hidden;}
+  .news-cta{font-size:13px; color:var(--brass-deep); font-weight:500; margin-top:auto; align-self:flex-start;}
 
   /* ---------- newsletter ---------- */
   .newsletter{background:var(--ink); color:var(--paper); border-top:1px solid #26315233;}
@@ -192,16 +211,21 @@
 
   @media (max-width:980px){
     .hero .wrap, .membership .wrap{grid-template-columns:1fr;}
-    .mandate-grid, .reports-grid, .news-grid{grid-template-columns:repeat(2,1fr);}
+    .mandate-grid, .news-grid{grid-template-columns:repeat(2,1fr);}
     .statband .wrap{grid-template-columns:repeat(2,1fr);}
     .footer-grid{grid-template-columns:repeat(2,1fr);}
+    .report-card{flex-basis:calc((100% - 28px)/2);}
     nav.primary{display:none;}
+  }
+  @media (max-width:640px){
+    .report-card{flex-basis:88%;}
   }
 
   /* ============================================================
      POLISH LAYER — motion, depth, imagery
      ============================================================ */
   html{scroll-behavior:smooth;}
+  #regulatory{scroll-margin-top:90px;}
 
   /* --- sticky header that reacts to scroll --- */
   header{position:sticky; top:0; z-index:60; transition:box-shadow .35s ease;}
@@ -231,8 +255,8 @@
   .icon-btn:hover{background:var(--ink); color:#fff; border-color:var(--ink);}
 
   /* --- section links & inline arrows --- */
-  .section-link,.event-link,.report-cta{transition:color .2s ease, letter-spacing .2s ease;}
-  .section-link:hover,.event-link:hover,.report-cta:hover{color:var(--brass-deep); letter-spacing:.01em;}
+  .section-link,.event-link,.report-cta,.news-cta{transition:color .2s ease, letter-spacing .2s ease;}
+  .section-link:hover,.event-link:hover,.report-cta:hover,.news-cta:hover{color:var(--brass-deep); letter-spacing:.01em;}
   .register-row{transition:background .15s ease, box-shadow .15s ease;}
   .register-arrow{transition:transform .22s ease, color .2s ease;}
   .register-row:hover{box-shadow:inset 3px 0 0 var(--brass);}
@@ -328,17 +352,8 @@
   .mandate-card:hover .mandate-icon{background:var(--brand); color:#fff; border-color:var(--brand);}
   .mandate-num{margin-bottom:12px;}
 
-  /* --- report cover art --- */
+  /* --- report thumb --- */
   .report-thumb{display:flex; align-items:flex-end;}
-  .report-thumb::after{opacity:.5;}
-  .report-art{position:absolute; inset:0; width:100%; height:100%; z-index:0;}
-  .report-art .g{opacity:0; transform:translateY(8px); transition:opacity .6s ease, transform .6s ease;}
-  .reports-grid.in .report-art .g{opacity:1; transform:none;}
-  .reports-grid.in .report-art .g:nth-child(2){transition-delay:.10s}
-  .reports-grid.in .report-art .g:nth-child(3){transition-delay:.18s}
-  .reports-grid.in .report-art .g:nth-child(4){transition-delay:.26s}
-  .reports-grid.in .report-art .g:nth-child(5){transition-delay:.34s}
-  .reports-grid.in .report-art .g:nth-child(6){transition-delay:.42s}
 
   /* --- event photo strip --- */
   .event-card{overflow:hidden;}
@@ -399,10 +414,10 @@
   <div class="utility">
     <div class="wrap">
       <div class="utility-links">
-        <a href="#">Portfolio manager</a>
-        <a href="#">Distributor</a>
-        <a href="#">Investor</a>
-        <a href="#">Media</a>
+        <!-- <a href="https://www.apmiindia.org/apmi/login.htm" target="_blank" rel="noopener">Member Login</a> -->
+        <a href="https://www.apmiindia.org/apmi/DistributorLogin.htm" target="_blank" rel="noopener">Distributor Login</a>
+        <a href="https://www.apmiindia.org/apmi/Registration.htm?action=registration" target="_blank" rel="noopener">Member Registration</a>
+        <a href="https://www.apmiindia.org/apmi/DistributorOnBoarding.htm?action=nismconsentregister" target="_blank" rel="noopener">Distributor Registration</a>
       </div>
       <div class="utility-tag">SEBI recognised supervisory body — Reg. under IPMS Regulations, 2020</div>
     </div>
@@ -418,14 +433,26 @@
         <a href="#">Regulatory &amp; circulars</a>
         <a href="#">Membership</a>
         <a href="#">Compliance &amp; NISM</a>
-        <a href="#">Reports &amp; insights</a>
+        <div class="nav-dropdown">
+          <a href="#">Reports &amp; insights <svg class="caret" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <div class="dropdown-menu">
+            <div class="dropdown-menu-inner">
+              <a href="/src/assets/pdf/APMI_Insights.pdf" target="_blank" rel="noopener">APMI Insights</a>
+              <a href="https://www.apmiindia.org/apmi/welcomeiaperformance.htm?action=PMSmenu" target="_blank" rel="noopener">IA Performance Report</a>
+              <a href="https://www.apmiindia.org/apmi/IATurnoverReportUtility.htm?action=loadIATurnoverPage" target="_blank" rel="noopener">IA Turnover Report</a>
+              <a href="https://www.apmiindia.org/apmi/IACompare.htm?action=iacomaprepage" target="_blank" rel="noopener">IA Comparison Report</a>
+              <a href="https://www.apmiindia.org/apmi/WSIAConsolidateReport.htm?action=showReportMenu" target="_blank" rel="noopener">Consolidated IA Performance Report</a>
+              <a href="https://www.apmiindia.org/apmi/pmsdistributordetailsweb.htm" target="_blank" rel="noopener">APRN Holder Details</a>
+            </div>
+          </div>
+        </div>
         <a href="#">Events</a>
       </nav>
       <div class="header-actions">
         <div class="icon-btn" title="Search">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         </div>
-        <a class="btn-primary" href="#">Member login</a>
+        <a class="btn-primary" target="_blank" href="https://www.apmiindia.org/apmi/login.htm">Member login</a>
       </div>
     </div>
   </header>
@@ -440,8 +467,8 @@
         <h1>The <span class="accent">collective voice</span> of India's portfolio management industry.</h1>
         <p>APMI represents SEBI-registered portfolio managers and distributors, shaping industry standards, driving compliance, and protecting investor interests across India's growing PMS ecosystem.</p>
         <div class="hero-ctas">
-          <a class="btn-hero-primary" href="#">Become a member</a>
-          <a class="btn-hero-ghost" href="#">View latest circulars</a>
+          <a class="btn-hero-primary" href="https://www.apmiindia.org/apmi/login.htm" target="_blank" rel="noopener">Become a member</a>
+          <a class="btn-hero-ghost" href="#regulatory">View latest circulars</a>
         </div>
       </div>
       <div class="hero-panel" data-reveal>
@@ -549,7 +576,7 @@
     </div>
   </section>
 
-  <section style="padding-top:0;">
+  <section id="regulatory" style="padding-top:0;">
     <div class="wrap">
       <div class="section-head" data-reveal>
         <div>
@@ -559,42 +586,238 @@
         <a class="section-link" href="#">Browse the full archive →</a>
       </div>
       <div class="register-tabs" data-reveal>
-        <div class="register-tab active">SEBI circulars</div>
-        <div class="register-tab">APMI circulars</div>
-        <div class="register-tab">Consultation papers</div>
-        <div class="register-tab">Communications</div>
+        <div class="register-tab active" data-tab="sebi-circulars">SEBI Circulars</div>
+        <div class="register-tab" data-tab="sebi-communication">SEBI Communication</div>
+        <div class="register-tab" data-tab="consultation-papers">Consultation Papers</div>
+        <div class="register-tab" data-tab="informal-guidance">Informal Guidance</div>
+        <div class="register-tab" data-tab="board-meetings">Board Meetings</div>
+        <div class="register-tab" data-tab="apmi-circulars">APMI Circulars</div>
+        <div class="register-tab" data-tab="apmi-communication">APMI Communication</div>
       </div>
-      <div class="register-panel" data-reveal data-stagger>
-        <div class="register-row">
-          <div class="register-date">10 Jun'25</div>
-          <div class="register-title">Portfolio managers using exaggerated advertisements on their website</div>
-          <div class="register-tag">Advertising code</div>
+
+      <div class="register-panel active" data-tab="sebi-circulars" data-reveal data-stagger>
+        <a class="register-row" href="/src/assets/pdf/SEBI-Circulars/Dealing-Team-30th-Sept'22.pdf" target="_blank" rel="noopener">
+          <div class="register-date">30 Sept'22</div>
+          <div class="register-title">Dealing Team</div>
+          <div class="register-tag">Dealing Team</div>
           <div class="register-arrow">→</div>
-        </div>
-        <div class="register-row">
-          <div class="register-date">20 Aug'24</div>
-          <div class="register-title">Cybersecurity and Cyber Resilience Framework for SEBI regulated entities</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/SEBI-Circulars/Related-Party-Circular-26thAug'22.pdf" target="_blank" rel="noopener">
+          <div class="register-date">26 Aug'22</div>
+          <div class="register-title">Related Party Circular</div>
+          <div class="register-tag">Related Party</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/SEBI-Circulars/SEBI PMS Regulation Amendment- 22nd Aug'22.pdf" target="_blank" rel="noopener">
+          <div class="register-date">22 Aug'22</div>
+          <div class="register-title">SEBI PMS Regulation Amendment</div>
+          <div class="register-tag">Amendment</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/SEBI-Circulars/SAAS - 3rd November'20.pdf" target="_blank" rel="noopener">
+          <div class="register-date">03 Nov'20</div>
+          <div class="register-title">SAAS</div>
+          <div class="register-tag">SAAS</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/SEBI-Circulars/Guidelines for PMS Regulations - 13th Feb'20.pdf" target="_blank" rel="noopener">
+          <div class="register-date">13 Feb'20</div>
+          <div class="register-title">Guidelines for PMS Regulations</div>
+          <div class="register-tag">PMS Regulations</div>
+          <div class="register-arrow">→</div>
+        </a>
+      </div>
+
+      <div class="register-panel" data-tab="sebi-communication" data-reveal data-stagger>
+        <a class="register-row" href="/src/assets/pdf/Communication-SEBI/Generic Mail IDs of SEBI-8th Dec'23.pdf" target="_blank" rel="noopener">
+          <div class="register-date">08 Dec'23</div>
+          <div class="register-title">Generic Mail IDs of SEBI</div>
+          <div class="register-tag">Contact</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Communication-SEBI/Escalation Matrix for Issues on SI Portal-28th Nov'23.pdf" target="_blank" rel="noopener">
+          <div class="register-date">28 Nov'23</div>
+          <div class="register-title">Escalation Matrix for Issues on SI Portal</div>
+          <div class="register-tag">SI Portal</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Communication-SEBI/Reply from SEBI on queries of APMI on Benchmarking Circular-29th March'23.pdf" target="_blank" rel="noopener">
+          <div class="register-date">29 Mar'23</div>
+          <div class="register-title">Reply from SEBI on APMI Queries — Benchmarking Circular</div>
+          <div class="register-tag">Benchmarking</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Communication-SEBI/Indicative Infra Requirements of a PMS.pdf" target="_blank" rel="noopener">
+          <div class="register-date">—</div>
+          <div class="register-title">Indicative Infra Requirements of a PMS</div>
+          <div class="register-tag">Infrastructure</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Communication-SEBI/Manual for uploading Repots on SI Portal.pdf" target="_blank" rel="noopener">
+          <div class="register-date">—</div>
+          <div class="register-title">Manual for Uploading Reports on SI Portal</div>
+          <div class="register-tag">SI Portal</div>
+          <div class="register-arrow">→</div>
+        </a>
+      </div>
+
+      <div class="register-panel" data-tab="consultation-papers" data-reveal data-stagger>
+        <a class="register-row" href="/src/assets/pdf/Consultation-Papers/Ease of Doing Business-15th Feb'24.pdf" target="_blank" rel="noopener">
+          <div class="register-date">15 Feb'24</div>
+          <div class="register-title">Ease of Doing Business</div>
+          <div class="register-tag">EoDB</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Consultation-Papers/Performance Validation Agency.pdf" target="_blank" rel="noopener">
+          <div class="register-date">—</div>
+          <div class="register-title">Performance Validation Agency</div>
+          <div class="register-tag">PVA</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Consultation-Papers/Consultation Paper on Consolidated Cybersecurity and Cyber Resilience Framework (CSCRF).pdf" target="_blank" rel="noopener">
+          <div class="register-date">—</div>
+          <div class="register-title">Consultation Paper on Consolidated Cybersecurity and Cyber Resilience Framework (CSCRF)</div>
           <div class="register-tag">Cybersecurity</div>
           <div class="register-arrow">→</div>
-        </div>
-        <div class="register-row">
-          <div class="register-date">07 Jun'24</div>
-          <div class="register-title">Master Circular for Portfolio Managers</div>
-          <div class="register-tag">Master circular</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Consultation-Papers/Consultation Paper on proposed amendments to the SEBI (Prohibition of Insider Trading) Regulations,.pdf" target="_blank" rel="noopener">
+          <div class="register-date">—</div>
+          <div class="register-title">Consultation Paper on Proposed Amendments to SEBI (Prohibition of Insider Trading) Regulations</div>
+          <div class="register-tag">Insider Trading</div>
           <div class="register-arrow">→</div>
-        </div>
-        <div class="register-row">
-          <div class="register-date">02 May'24</div>
-          <div class="register-title">Facilitating ease in digital on-boarding and enhancing transparency</div>
-          <div class="register-tag">Onboarding</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Consultation-Papers/CONSULTATION PAPER ON INTRODUCTION OF NEW ASSET CLASSPRODUCT CATEGORY.pdf" target="_blank" rel="noopener">
+          <div class="register-date">—</div>
+          <div class="register-title">Consultation Paper on Introduction of New Asset Class / Product Category</div>
+          <div class="register-tag">New Asset Class</div>
           <div class="register-arrow">→</div>
-        </div>
-        <div class="register-row">
-          <div class="register-date">12 Oct'23</div>
-          <div class="register-title">Master Circular on KYC norms for the securities market</div>
-          <div class="register-tag">KYC</div>
+        </a>
+      </div>
+
+      <div class="register-panel" data-tab="informal-guidance" data-reveal data-stagger>
+        <a class="register-row" href="/src/assets/pdf/Informal-Guidance/Permitting pledging of securities purchased under DPMS- 17th August'26.pdf" target="_blank" rel="noopener">
+          <div class="register-date">17 Aug'26</div>
+          <div class="register-title">Permitting Pledging of Securities Purchased under DPMS</div>
+          <div class="register-tag">DPMS</div>
           <div class="register-arrow">→</div>
-        </div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Informal-Guidance/Regulation 24(3A) of PMS Regulations, 2020- 17th July'26.pdf" target="_blank" rel="noopener">
+          <div class="register-date">17 Jul'26</div>
+          <div class="register-title">Regulation 24(3A) of PMS Regulations, 2020</div>
+          <div class="register-tag">Regulation 24(3A)</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Informal-Guidance/Permitting pledging of securities purchased under NDPMS- 18th May'26.pdf" target="_blank" rel="noopener">
+          <div class="register-date">18 May'26</div>
+          <div class="register-title">Permitting Pledging of Securities Purchased under NDPMS</div>
+          <div class="register-tag">NDPMS</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Informal-Guidance/Fit and proper person criteria- 8th November'24.pdf" target="_blank" rel="noopener">
+          <div class="register-date">08 Nov'24</div>
+          <div class="register-title">Fit and Proper Person Criteria</div>
+          <div class="register-tag">Fit &amp; Proper</div>
+          <div class="register-arrow">→</div>
+        </a>
+      </div>
+
+      <div class="register-panel" data-tab="board-meetings" data-reveal data-stagger>
+        <a class="register-row" href="/src/assets/pdf/Board-Meetings/19th June'26.pdf" target="_blank" rel="noopener">
+          <div class="register-date">19 Jun'26</div>
+          <div class="register-title">Board Meeting</div>
+          <div class="register-tag">Board Meeting</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Board-Meetings/23rd Mar'26.pdf" target="_blank" rel="noopener">
+          <div class="register-date">23 Mar'26</div>
+          <div class="register-title">Board Meeting</div>
+          <div class="register-tag">Board Meeting</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Board-Meetings/17th Dec'25.pdf" target="_blank" rel="noopener">
+          <div class="register-date">17 Dec'25</div>
+          <div class="register-title">Board Meeting</div>
+          <div class="register-tag">Board Meeting</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Board-Meetings/12th Sept'25.pdf" target="_blank" rel="noopener">
+          <div class="register-date">12 Sept'25</div>
+          <div class="register-title">Board Meeting</div>
+          <div class="register-tag">Board Meeting</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Board-Meetings/18th June'25.pdf" target="_blank" rel="noopener">
+          <div class="register-date">18 Jun'25</div>
+          <div class="register-title">Board Meeting</div>
+          <div class="register-tag">Board Meeting</div>
+          <div class="register-arrow">→</div>
+        </a>
+      </div>
+
+      <div class="register-panel" data-tab="apmi-circulars" data-reveal data-stagger>
+        <a class="register-row" href="/src/assets/pdf/Circulars-and-Guidelines/APMI Circular 7- APMI- Time Period -04th May'23_1.pdf" target="_blank" rel="noopener">
+          <div class="register-date">04 May'23</div>
+          <div class="register-title">APMI Circular 7 — Time Period</div>
+          <div class="register-tag">Circular 7</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Circulars-and-Guidelines/APMI Circular 6- Reporting of Performance (BSE 500 TRI) -28th Apr'23_1.pdf" target="_blank" rel="noopener">
+          <div class="register-date">28 Apr'23</div>
+          <div class="register-title">APMI Circular 6 — Reporting of Performance (BSE 500 TRI)</div>
+          <div class="register-tag">Circular 6</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Circulars-and-Guidelines/APMI Circular 5 - APMI - Distributor Brokerage -26th Apr'23_1.pdf" target="_blank" rel="noopener">
+          <div class="register-date">26 Apr'23</div>
+          <div class="register-title">APMI Circular 5 — Distributor Brokerage</div>
+          <div class="register-tag">Circular 5</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Circulars-and-Guidelines/APMI Circular 4 - APMI - NISM Applicability -24th Apr'23_1.pdf" target="_blank" rel="noopener">
+          <div class="register-date">24 Apr'23</div>
+          <div class="register-title">APMI Circular 4 — NISM Applicability</div>
+          <div class="register-tag">Circular 4</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Circulars-and-Guidelines/APMI Circular 3 - FAQ's  on SEBI Circular dated 30th Sept'22.pdf" target="_blank" rel="noopener">
+          <div class="register-date">30 Sept'22</div>
+          <div class="register-title">APMI Circular 3 — FAQs on SEBI Circular</div>
+          <div class="register-tag">Circular 3</div>
+          <div class="register-arrow">→</div>
+        </a>
+      </div>
+
+      <div class="register-panel" data-tab="apmi-communication" data-reveal data-stagger>
+        <a class="register-row" href="/src/assets/pdf/Communication-APMI/Submission of Compliance Reports trough SEBI Intermediary Portal-23rd Oct'23.pdf" target="_blank" rel="noopener">
+          <div class="register-date">23 Oct'23</div>
+          <div class="register-title">Submission of Compliance Reports through SEBI Intermediary Portal</div>
+          <div class="register-tag">SI Portal</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Communication-APMI/Update on Index under Hybrid Startegy-11th Aug'23.pdf" target="_blank" rel="noopener">
+          <div class="register-date">11 Aug'23</div>
+          <div class="register-title">Update on Index under Hybrid Strategy</div>
+          <div class="register-tag">Hybrid Strategy</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Communication-APMI/APMI-Flagging of Demat Accounts-30th May'23.pdf" target="_blank" rel="noopener">
+          <div class="register-date">30 May'23</div>
+          <div class="register-title">Flagging of Demat Accounts</div>
+          <div class="register-tag">Demat Accounts</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Communication-APMI/APMI-Important Communication-15th May'23.pdf" target="_blank" rel="noopener">
+          <div class="register-date">15 May'23</div>
+          <div class="register-title">Important Communication</div>
+          <div class="register-tag">Important</div>
+          <div class="register-arrow">→</div>
+        </a>
+        <a class="register-row" href="/src/assets/pdf/Communication-APMI/Index under Hybrid and Multi Asset Strategy - 5th May'23.pdf" target="_blank" rel="noopener">
+          <div class="register-date">05 May'23</div>
+          <div class="register-title">Index under Hybrid and Multi Asset Strategy</div>
+          <div class="register-tag">Hybrid Strategy</div>
+          <div class="register-arrow">→</div>
+        </a>
       </div>
     </div>
   </section>
@@ -606,57 +829,77 @@
           <div class="section-kicker">Reports &amp; insights</div>
           <h2>Industry data, curated</h2>
         </div>
-        <a class="section-link" href="#">All reports →</a>
+        <div class="reports-controls">
+          <button type="button" class="slider-arrow-btn reports-nav-btn" data-dir="prev" aria-label="Previous reports">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button type="button" class="slider-arrow-btn reports-nav-btn" data-dir="next" aria-label="Next reports">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
       </div>
-      <div class="reports-grid" data-reveal data-stagger>
-        <div class="report-card">
-          <div class="report-thumb">
-            <svg class="report-art" viewBox="0 0 300 150" preserveAspectRatio="none" aria-hidden="true">
-              <g class="g"><rect x="24"  y="96" width="26" height="40" fill="rgba(255,255,255,.16)"/></g>
-              <g class="g"><rect x="66"  y="74" width="26" height="62" fill="rgba(255,255,255,.22)"/></g>
-              <g class="g"><rect x="108" y="58" width="26" height="78" fill="rgba(198,149,47,.55)"/></g>
-              <g class="g"><rect x="150" y="42" width="26" height="94" fill="rgba(255,255,255,.22)"/></g>
-              <g class="g"><rect x="192" y="30" width="26" height="106" fill="rgba(198,149,47,.7)"/></g>
-              <g class="g"><rect x="234" y="20" width="26" height="116" fill="rgba(255,255,255,.16)"/></g>
-            </svg>
-            <div class="report-thumb-label">APMI Insights — Q1 FY26</div>
-          </div>
-          <div class="report-body">
-            <h4>PMS Industry AUM Report</h4>
-            <p>Quarterly breakdown of assets under management across the member base, EPFO and non-EPFO.</p>
-            <div class="report-cta">Download PDF →</div>
-          </div>
-        </div>
-        <div class="report-card">
-          <div class="report-thumb">
-            <svg class="report-art" viewBox="0 0 300 150" preserveAspectRatio="none" aria-hidden="true">
-              <g class="g"><path d="M8,120 L60,96 L112,104 L164,64 L216,72 L292,26" fill="none" stroke="rgba(198,149,47,.8)" stroke-width="2.5"/></g>
-              <g class="g"><path d="M8,132 L60,120 L112,124 L164,104 L216,110 L292,86" fill="none" stroke="rgba(255,255,255,.28)" stroke-width="2"/></g>
-              <g class="g"><circle cx="164" cy="64" r="3.5" fill="#E7C889"/></g>
-              <g class="g"><circle cx="292" cy="26" r="3.5" fill="#E7C889"/></g>
-            </svg>
-            <div class="report-thumb-label">IA Performance — FY25</div>
-          </div>
-          <div class="report-body">
-            <h4>IA Performance Report</h4>
-            <p>Consolidated investment approach performance and benchmarking across strategies.</p>
-            <div class="report-cta">Download PDF →</div>
-          </div>
-        </div>
-        <div class="report-card">
-          <div class="report-thumb">
-            <svg class="report-art" viewBox="0 0 300 150" preserveAspectRatio="none" aria-hidden="true">
-              <g class="g"><circle cx="150" cy="75" r="46" fill="none" stroke="rgba(255,255,255,.16)" stroke-width="16"/></g>
-              <g class="g"><circle cx="150" cy="75" r="46" fill="none" stroke="rgba(198,149,47,.75)" stroke-width="16" stroke-dasharray="150 289" transform="rotate(-90 150 75)"/></g>
-              <g class="g"><circle cx="150" cy="75" r="46" fill="none" stroke="rgba(255,255,255,.32)" stroke-width="16" stroke-dasharray="70 289" stroke-dashoffset="-150" transform="rotate(-90 150 75)"/></g>
-            </svg>
-            <div class="report-thumb-label">Turnover Report — FY25</div>
-          </div>
-          <div class="report-body">
-            <h4>IA Turnover Report</h4>
-            <p>Portfolio turnover ratios by investment approach, submitted across the member base.</p>
-            <div class="report-cta">Download PDF →</div>
-          </div>
+      <div class="reports-slider-viewport">
+        <div class="reports-slider-track" id="reports-track" data-reveal data-stagger>
+          <a class="report-card" href="/src/assets/pdf/APMI_Insights.pdf" target="_blank" rel="noopener">
+            <div class="report-thumb" style="background-image:url('https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&amp;fit=crop&amp;w=800&amp;q=70')">
+              <div class="report-thumb-label">APMI Insights — Q1 FY26</div>
+            </div>
+            <div class="report-body">
+              <h4>PMS Industry AUM Report</h4>
+              <p>Quarterly breakdown of assets under management across the member base, EPFO and non-EPFO.</p>
+              <div class="report-cta">Download PDF →</div>
+            </div>
+          </a>
+          <a class="report-card" href="https://www.apmiindia.org/apmi/welcomeiaperformance.htm?action=PMSmenu" target="_blank" rel="noopener">
+            <div class="report-thumb" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&amp;fit=crop&amp;w=800&amp;q=70')">
+              <div class="report-thumb-label">IA Performance — FY25</div>
+            </div>
+            <div class="report-body">
+              <h4>IA Performance Report</h4>
+              <p>Consolidated investment approach performance and benchmarking across strategies.</p>
+              <div class="report-cta">View Report ↗</div>
+            </div>
+          </a>
+          <a class="report-card" href="https://www.apmiindia.org/apmi/IATurnoverReportUtility.htm?action=loadIATurnoverPage" target="_blank" rel="noopener">
+            <div class="report-thumb" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=800&amp;q=70')">
+              <div class="report-thumb-label">Turnover Report — FY25</div>
+            </div>
+            <div class="report-body">
+              <h4>IA Turnover Report</h4>
+              <p>Portfolio turnover ratios by investment approach, submitted across the member base.</p>
+              <div class="report-cta">View Report ↗</div>
+            </div>
+          </a>
+          <a class="report-card" href="https://www.apmiindia.org/apmi/IACompare.htm?action=iacomaprepage" target="_blank" rel="noopener">
+            <div class="report-thumb" style="background-image:url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&amp;fit=crop&amp;w=800&amp;q=70')">
+              <div class="report-thumb-label">IA Comparison Report</div>
+            </div>
+            <div class="report-body">
+              <h4>IA Comparison Report</h4>
+              <p>Compare investment approach performance side-by-side across portfolio managers.</p>
+              <div class="report-cta">View Report ↗</div>
+            </div>
+          </a>
+          <a class="report-card" href="https://www.apmiindia.org/apmi/WSIAConsolidateReport.htm?action=showReportMenu" target="_blank" rel="noopener">
+            <div class="report-thumb" style="background-image:url('https://images.unsplash.com/photo-1518186285589-2f7649de83e0?auto=format&amp;fit=crop&amp;w=800&amp;q=70')">
+              <div class="report-thumb-label">Consolidated IA Performance</div>
+            </div>
+            <div class="report-body">
+              <h4>Consolidated IA Performance Report</h4>
+              <p>A consolidated, web-based view of investment approach performance across the industry.</p>
+              <div class="report-cta">View Report ↗</div>
+            </div>
+          </a>
+          <a class="report-card" href="https://www.apmiindia.org/apmi/pmsdistributordetailsweb.htm" target="_blank" rel="noopener">
+            <div class="report-thumb" style="background-image:url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&amp;fit=crop&amp;w=800&amp;q=70')">
+              <div class="report-thumb-label">APRN Holder Details</div>
+            </div>
+            <div class="report-body">
+              <h4>APRN Holder Details</h4>
+              <p>Look up registered APRN holders and PMS distributor details maintained by APMI.</p>
+              <div class="report-cta">View Details ↗</div>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -738,19 +981,22 @@
       </div>
       <div class="news-grid" data-reveal data-stagger>
         <div class="news-item">
-          <div class="news-meta">Perspective — Aug 2025</div>
-          <h4>Why benchmarking discipline matters more as PMS AUM scales</h4>
-          <p>A member's view on standardised reporting as the industry crosses new AUM milestones.</p>
+          <div class="news-meta">Series — Launched 28 Mar 2025</div>
+          <h4>IndustrySpeaks</h4>
+          <p>Short clips from APMI's events and key engagements — launched 28th March 2025 at our OPCO and B&amp;V Committee felicitation.</p>
+          <a class="news-cta" href="/src/assets/pdf/Industry-speaks/IndustrySpeaks.pdf" target="_blank" rel="noopener">Download PDF →</a>
         </div>
         <div class="news-item">
-          <div class="news-meta">Perspective — Jul 2025</div>
-          <h4>Reading the new cyber resilience framework right</h4>
-          <p>A practical walkthrough of what CSCRF actually changes for mid-sized portfolio managers.</p>
+          <div class="news-meta">Video</div>
+          <h4>APMI Journey</h4>
+          <p>A short film tracing APMI's journey to becoming the collective voice of India's PMS industry.</p>
+          <a class="news-cta" href="https://www.youtube.com/watch?v=7JI2SAcl-xw&amp;feature=youtu.be" target="_blank" rel="noopener">Watch on YouTube ↗</a>
         </div>
         <div class="news-item">
-          <div class="news-meta">Perspective — Jul 2025</div>
-          <h4>Distributor oversight, three years in</h4>
-          <p>What collective supervision through APMI has meant for distributor accountability.</p>
+          <div class="news-meta">June 2022 – February 2026</div>
+          <h4>APMI Initiatives — 45 Steps in 45 Months</h4>
+          <p>Working committees, a compliance calendar and member surveys — building a more inclusive industry.</p>
+          <a class="news-cta" href="/src/assets/pdf/Industry-speaks/APMI_Initiatives_45_Steps_in_45_Months.pdf" target="_blank" rel="noopener">Download PDF →</a>
         </div>
       </div>
     </div>
@@ -773,7 +1019,7 @@
     <div class="wrap">
       <div class="footer-grid" data-reveal data-stagger>
         <div class="footer-brand">
-          <img class="logo-img" src="/logo.png" alt="APMI - Association of Portfolio Managers in India">
+          <img class="logo-img" src="/src/assets/images/apmi-logo.png" alt="APMI - Association of Portfolio Managers in India">
           <p>Association of Portfolio Managers in India — the SEBI-recognised supervisory body for the portfolio management industry.</p>
         </div>
         <div class="footer-col">
@@ -807,11 +1053,10 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <div>© 2025 APMI. All rights reserved.</div>
+        <div>© 2026 APMI. All rights reserved.</div>
         <div>
-          <a href="#">Privacy notice</a>
-          <a href="#">Terms of use</a>
-          <a href="#">Refund policy</a>
+          <a href="/src/assets/pdf/Terms-and-conditions/Privacy_policy_apmi.pdf" target="_blank" rel="noopener">Privacy notice</a>
+          <a href="/src/assets/pdf/Terms-and-conditions/Terms_of_use_apmi.pdf" target="_blank" rel="noopener">Terms of use</a>
         </div>
       </div>
     </div>
@@ -895,12 +1140,23 @@
     tab.addEventListener('click', function(){
       document.querySelectorAll('.register-tab').forEach(function(t){ t.classList.remove('active'); });
       tab.classList.add('active');
-      var panel = document.querySelector('.register-panel');
-      if(panel){
-        panel.style.opacity = '0';
-        panel.style.transition = 'opacity .25s ease';
-        setTimeout(function(){ panel.style.opacity = '1'; }, 120);
-      }
+      var target = tab.getAttribute('data-tab');
+      document.querySelectorAll('.register-panel').forEach(function(p){
+        p.classList.toggle('active', p.getAttribute('data-tab') === target);
+      });
+    });
+  });
+
+  /* ---- reports slider ---- */
+  document.querySelectorAll('.reports-nav-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var track = document.getElementById('reports-track');
+      if(!track) return;
+      var card = track.querySelector('.report-card');
+      var gap = 28;
+      var amount = card ? (card.offsetWidth + gap) : 340;
+      var dir = btn.getAttribute('data-dir') === 'prev' ? -1 : 1;
+      track.scrollBy({ left: dir * amount, behavior: 'smooth' });
     });
   });
 })();

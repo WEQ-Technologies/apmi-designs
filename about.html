@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="/src/assets/images/apmi-fav-icon.png">
 <title>About APMI — Association of Portfolio Managers in India</title>
 <meta name="description" content="Association of Portfolio Managers in India (APMI) — the industry body and SEBI-recognised supervisory entity for portfolio managers in India.">
 <style>
@@ -39,8 +40,8 @@
   /* Utility Bar */
   .utility{background:var(--ink); color:#D9DCE4; font-size:13px; border-bottom:1px solid rgba(255,255,255,0.08);}
   .utility .wrap{display:flex; justify-content:space-between; align-items:center; height:38px;}
-  .utility-links{display:flex; gap:24px;}
-  .utility-links a{opacity:.82; font-size:13px; transition:opacity .15s;}
+  .utility-links{display:flex; gap:18px;}
+  .utility-links a{opacity:.82; font-size:12.5px; white-space:nowrap; transition:opacity .15s;}
   .utility-links a:hover{opacity:1;}
   .utility-tag{font-family:var(--font-mono); font-size:11px; letter-spacing:.02em; opacity:.65;}
 
@@ -55,6 +56,16 @@
   nav.primary{display:flex; gap:34px;}
   nav.primary a{font-size:14.5px; color:var(--ink); position:relative; padding:6px 0; transition:color .2s ease;}
   nav.primary a:hover{color:var(--brass-deep);}
+  .nav-dropdown{position:relative;}
+  .nav-dropdown > a{display:inline-flex; align-items:center; gap:4px;}
+  .nav-dropdown .caret{display:inline-block; transition:transform .18s ease;}
+  .nav-dropdown:hover .caret{transform:rotate(180deg);}
+  .dropdown-menu{position:absolute; top:100%; left:-18px; padding-top:16px; opacity:0; visibility:hidden; transform:translateY(4px); transition:opacity .18s ease, transform .18s ease, visibility .18s;}
+  .dropdown-menu-inner{min-width:280px; background:var(--paper-raised); border:1px solid var(--rule); box-shadow:0 16px 40px -20px rgba(15,42,77,.32); border-radius:3px; padding:8px 0;}
+  .nav-dropdown:hover .dropdown-menu{opacity:1; visibility:visible; transform:translateY(0);}
+  nav.primary .dropdown-menu a{position:static; display:block; padding:10px 20px; font-size:13.5px; color:var(--ink); white-space:nowrap;}
+  nav.primary .dropdown-menu a::after{content:none;}
+  nav.primary .dropdown-menu a:hover{color:var(--brand-deep); background:var(--brand-tint);}
   nav.primary a.active{color:var(--brass-deep); font-weight:500;}
   nav.primary a::after{
     content:''; position:absolute; left:0; right:0; bottom:0; height:2px;
@@ -1589,10 +1600,10 @@
   <div class="utility">
     <div class="wrap">
       <div class="utility-links">
-        <a href="#">Portfolio manager</a>
-        <a href="#">Distributor</a>
-        <a href="#">Investor</a>
-        <a href="#">Media</a>
+        <!-- <a href="https://www.apmiindia.org/apmi/login.htm" target="_blank" rel="noopener">Member Login</a> -->
+        <a href="https://www.apmiindia.org/apmi/DistributorLogin.htm" target="_blank" rel="noopener">Distributor Login</a>
+        <a href="https://www.apmiindia.org/apmi/Registration.htm?action=registration" target="_blank" rel="noopener">Member Registration</a>
+        <a href="https://www.apmiindia.org/apmi/DistributorOnBoarding.htm?action=nismconsentregister" target="_blank" rel="noopener">Distributor Registration</a>
       </div>
       <div class="utility-tag">SEBI recognised supervisory body — Reg. under IPMS Regulations, 2020</div>
     </div>
@@ -1609,14 +1620,26 @@
         <a href="/design1#regulatory">Regulatory &amp; circulars</a>
         <a href="/design1#membership">Membership</a>
         <a href="/design1#compliance">Compliance &amp; NISM</a>
-        <a href="/design1#reports">Reports &amp; insights</a>
+        <div class="nav-dropdown">
+          <a href="/design1#reports">Reports &amp; insights <svg class="caret" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <div class="dropdown-menu">
+            <div class="dropdown-menu-inner">
+              <a href="/src/assets/pdf/APMI_Insights.pdf" target="_blank" rel="noopener">APMI Insights</a>
+              <a href="https://www.apmiindia.org/apmi/welcomeiaperformance.htm?action=PMSmenu" target="_blank" rel="noopener">IA Performance Report</a>
+              <a href="https://www.apmiindia.org/apmi/IATurnoverReportUtility.htm?action=loadIATurnoverPage" target="_blank" rel="noopener">IA Turnover Report</a>
+              <a href="https://www.apmiindia.org/apmi/IACompare.htm?action=iacomaprepage" target="_blank" rel="noopener">IA Comparison Report</a>
+              <a href="https://www.apmiindia.org/apmi/WSIAConsolidateReport.htm?action=showReportMenu" target="_blank" rel="noopener">Consolidated IA Performance Report</a>
+              <a href="https://www.apmiindia.org/apmi/pmsdistributordetailsweb.htm" target="_blank" rel="noopener">APRN Holder Details</a>
+            </div>
+          </div>
+        </div>
         <a href="/design1#events">Events</a>
       </nav>
       <div class="header-actions">
         <div class="icon-btn" title="Search">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         </div>
-        <a class="btn-primary" href="https://www.apmiindia.org/apmi/boardMembers.htm" target="_blank" rel="noopener">Member login</a>
+        <a class="btn-primary" href="https://www.apmiindia.org/apmi/login.htm" target="_blank" rel="noopener">Member login</a>
       </div>
     </div>
   </header>
@@ -2877,7 +2900,7 @@
     <div class="wrap">
       <div class="footer-grid">
         <div class="footer-brand">
-          <img class="logo-img" src="/logo.png" alt="APMI">
+          <img class="logo-img" src="/src/assets/images/apmi-logo.png" alt="APMI">
           <p>
             Association of Portfolio Managers in India (APMI) is a Section 8 non-profit supervisory body recognized by the Securities and Exchange Board of India (SEBI).
           </p>
@@ -2908,7 +2931,7 @@
       </div>
 
       <div class="footer-bottom">
-        <div>&copy; 2025 Association of Portfolio Managers in India (APMI). All rights reserved.</div>
+        <div>&copy; 2026 Association of Portfolio Managers in India (APMI). All rights reserved.</div>
         <div>Incorporated under Section 8 of the Companies Act, 2013 | SEBI Recognised Body</div>
       </div>
     </div>
