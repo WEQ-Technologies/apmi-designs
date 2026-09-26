@@ -25,7 +25,7 @@
         '</div>' +
         '<div class="lang-toggle" role="group" aria-label="Language">' +
           '<button type="button" class="lang-btn active" data-lang="en">EN</button>' +
-          '<button type="button" class="lang-btn" data-lang="hi">हिं</button>' +
+          '<button type="button" class="lang-btn" data-lang="hi">HIN</button>' +
         '</div>' +
       '</div>' +
     '</div>' +
