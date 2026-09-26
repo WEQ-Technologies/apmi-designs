@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="/src/assets/images/apmi-fav-icon.png">
+<link rel="stylesheet" href="/src/partials/layout.css">
 <title>About APMI — Association of Portfolio Managers in India</title>
 <meta name="description" content="Association of Portfolio Managers in India (APMI) — the industry body and SEBI-recognised supervisory entity for portfolio managers in India.">
 <style>
@@ -37,49 +38,6 @@
   .wrap{max-width:1180px; margin:0 auto; padding:0 40px;}
   img{display:block; max-width:100%;}
 
-  /* Utility Bar */
-  .utility{background:var(--ink); color:#D9DCE4; font-size:13px; border-bottom:1px solid rgba(255,255,255,0.08);}
-  .utility .wrap{display:flex; justify-content:space-between; align-items:center; height:38px;}
-  .utility-links{display:flex; gap:18px;}
-  .utility-links a{opacity:.82; font-size:12.5px; white-space:nowrap; transition:opacity .15s;}
-  .utility-links a:hover{opacity:1;}
-  .utility-tag{font-family:var(--font-mono); font-size:11px; letter-spacing:.02em; opacity:.65;}
-
-  /* Header */
-  header{background:var(--paper-raised); border-bottom:1px solid var(--rule); position:sticky; top:0; z-index:70; transition:box-shadow .35s ease;}
-  header.scrolled{box-shadow:0 1px 0 rgba(15,42,77,.06), 0 16px 40px -20px rgba(15,42,77,.32);}
-  .header-row{display:flex; align-items:center; justify-content:space-between; height:84px; transition:height .35s ease;}
-  header.scrolled .header-row{height:64px;}
-  .logo{display:flex; align-items:center; gap:12px;}
-  .logo-img{height:40px; width:auto; display:block; transition:height .35s ease;}
-  header.scrolled .logo-img{height:32px;}
-  nav.primary{display:flex; gap:34px;}
-  nav.primary a{font-size:14.5px; color:var(--ink); position:relative; padding:6px 0; transition:color .2s ease;}
-  nav.primary a:hover{color:var(--brass-deep);}
-  .nav-dropdown{position:relative;}
-  .nav-dropdown > a{display:inline-flex; align-items:center; gap:4px;}
-  .nav-dropdown .caret{display:inline-block; transition:transform .18s ease;}
-  .nav-dropdown:hover .caret{transform:rotate(180deg);}
-  .dropdown-menu{position:absolute; top:100%; left:-18px; padding-top:16px; opacity:0; visibility:hidden; transform:translateY(4px); transition:opacity .18s ease, transform .18s ease, visibility .18s;}
-  .dropdown-menu-inner{min-width:280px; background:var(--paper-raised); border:1px solid var(--rule); box-shadow:0 16px 40px -20px rgba(15,42,77,.32); border-radius:3px; padding:8px 0;}
-  .nav-dropdown:hover .dropdown-menu{opacity:1; visibility:visible; transform:translateY(0);}
-  nav.primary .dropdown-menu a{position:static; display:block; padding:10px 20px; font-size:13.5px; color:var(--ink); white-space:nowrap;}
-  nav.primary .dropdown-menu a::after{content:none;}
-  nav.primary .dropdown-menu a:hover{color:var(--brand-deep); background:var(--brand-tint);}
-  nav.primary a.active{color:var(--brass-deep); font-weight:500;}
-  nav.primary a::after{
-    content:''; position:absolute; left:0; right:0; bottom:0; height:2px;
-    background:var(--brass-deep); border-radius:2px;
-    transform:scaleX(0); transform-origin:right center;
-    transition:transform .32s cubic-bezier(.16,.84,.44,1);
-  }
-  nav.primary a:hover::after, nav.primary a.active::after{transform:scaleX(1); transform-origin:left center;}
-  nav.primary a.active::after{transform:scaleX(1);}
-  .header-actions{display:flex; align-items:center; gap:18px;}
-  .icon-btn{width:34px; height:34px; display:flex; align-items:center; justify-content:center; border:1px solid var(--rule-strong); border-radius:3px; cursor:pointer; color:var(--ink); transition:transform .2s ease, background .2s ease, box-shadow .2s ease, border-color .2s ease, color .2s ease;}
-  .icon-btn:hover{color:var(--brand); border-color:var(--brand); transform:translateY(-1px);}
-  .btn-primary{background:var(--ink); color:var(--white); font-size:13.5px; padding:10px 20px; border-radius:3px; font-weight:500; transition:transform .2s ease, background .2s ease, box-shadow .2s ease;}
-  .btn-primary:hover{background:var(--brass-deep); transform:translateY(-2px); box-shadow:0 12px 26px -12px rgba(198,149,47,.6);}
   .btn-header-cta{background:var(--ink); color:var(--white); font-size:13.5px; padding:10px 18px; border-radius:3px; font-weight:500;}
   .btn-header-cta:hover{background:var(--brass-deep);}
 
@@ -157,6 +115,28 @@
     position:relative;
     border-bottom:1px solid var(--rule);
   }
+
+  /* Simple, text-first layout shared by Overview & Vision */
+  .simple-two-col{display:grid; grid-template-columns:1.05fr .95fr; gap:48px; align-items:end;}
+  .simple-media{border-radius:14px; overflow:hidden; border:1px solid var(--rule); box-shadow:0 20px 44px -24px rgba(15,42,77,.35);}
+  .simple-media img{width:100%; height:100%; display:block; object-fit:cover; aspect-ratio:16/11;}
+  .simple-lead{font-size:17px; line-height:1.75; color:var(--ink-soft);}
+  .simple-lead strong{color:var(--ink);}
+  .simple-lead + .simple-lead{margin-top:16px;}
+  .simple-stat-row{
+    display:flex; flex-wrap:wrap; gap:40px;
+    margin-top:32px; padding-top:28px; border-top:1px solid var(--rule);
+  }
+  .simple-stat{display:flex; flex-direction:column; gap:4px;}
+  .simple-stat .stat-num{font-family:var(--font-display); font-size:30px; font-weight:600; color:var(--brand-deep);}
+  .simple-stat .stat-lbl{font-size:12px; color:var(--ink-soft); font-family:var(--font-mono); text-transform:uppercase; letter-spacing:.04em;}
+  .simple-vision-points{
+    display:flex; flex-direction:column; gap:16px;
+    margin-top:28px; padding-top:24px; border-top:1px solid var(--rule);
+  }
+  .simple-vision-point{display:flex; align-items:flex-start; gap:12px; font-size:15px; color:var(--ink); line-height:1.6;}
+  .simple-vision-point .dot{width:7px; height:7px; border-radius:50%; background:var(--brass); flex:0 0 auto; margin-top:8px;}
+
   .overview-two-col-layout{
     display:grid;
     grid-template-columns:1.05fr 0.95fr;
@@ -824,6 +804,24 @@
   }
   .gov-slider-track::-webkit-scrollbar{display:none;}
 
+  /* Current Board: Chairman + Vice Chairman row, Directors in a wrapping grid */
+  .gov-leadership-row{
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:24px;
+    padding:6px 2px 22px;
+    margin-bottom:20px;
+    border-bottom:1px solid rgba(255,255,255,.12);
+  }
+  .gov-directors-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:18px;
+    padding:6px 2px 14px;
+  }
+  .gov-directors-grid .gov-profile-card{width:100%;}
+
   /* Profile Card: Made comfortably larger (270px width x 325px height) */
   .gov-profile-card{
     flex:0 0 270px;
@@ -1105,9 +1103,40 @@
   }
 
   /* =========================================================
-     SECTION 4: WORKING COMMITTEES
-     Row-Based Cards with Alternating Left-Right Layout & Rich Blue Photoboxes
+     SECTION 4: WORKING COMMITTEES — CTA band
      ========================================================= */
+  .section-committees-cta{background:var(--paper); padding:64px 0;}
+  .committees-cta-card{
+    display:flex; align-items:center; justify-content:space-between; gap:32px;
+    background:var(--ink); color:#FFFFFF; border-radius:14px;
+    padding:44px 48px; position:relative; overflow:hidden;
+  }
+  .committees-cta-card::before{
+    content:''; position:absolute; inset:0;
+    background:radial-gradient(circle at 88% 15%, rgba(198,149,47,.22), transparent 55%);
+    pointer-events:none;
+  }
+  .committees-cta-icon{
+    flex:0 0 auto; width:64px; height:64px; border-radius:50%;
+    background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2);
+    display:flex; align-items:center; justify-content:center; color:#E7C889;
+  }
+  .committees-cta-body{flex:1; min-width:0; position:relative;}
+  .committees-cta-body .section-kicker{font-size:12px; font-family:var(--font-mono); color:#C9A15C; text-transform:uppercase; letter-spacing:.06em; font-weight:600; margin-bottom:8px;}
+  .committees-cta-body h2{font-family:var(--font-display); font-weight:600; font-size:28px; margin-bottom:10px; color:#FFFFFF;}
+  .committees-cta-body p{font-size:14.5px; color:#C3CEE0; max-width:560px; line-height:1.6;}
+  .committees-cta-btn{
+    flex:0 0 auto; position:relative; display:inline-flex; align-items:center; gap:10px;
+    background:var(--brass); color:var(--ink); font-weight:700; font-size:14px;
+    padding:14px 24px; border-radius:6px; white-space:nowrap;
+    box-shadow:0 10px 26px -10px rgba(198,149,47,.5);
+    transition:background .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  .committees-cta-btn:hover{background:#E7C889; transform:translateY(-2px); box-shadow:0 14px 30px -10px rgba(198,149,47,.6);}
+  @media (max-width:768px){
+    .committees-cta-card{flex-direction:column; align-items:flex-start; text-align:left; padding:32px 28px;}
+    .committees-cta-btn{width:100%; justify-content:center;}
+  }
   .section-committees{background:var(--paper);}
   .committees-row-stack{display:flex; flex-direction:column; gap:28px;}
   .committee-row-card{
@@ -1555,94 +1584,51 @@
     transform:translateX(2px);
   }
 
-  /* Footer */
-  footer{background:var(--ink); color:#D9DCE4; padding:64px 0 34px; border-top:1px solid #1C3353;}
-  .footer-grid{display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px; margin-bottom:44px;}
-  .footer-brand .logo-img{filter:brightness(0) invert(1); height:42px; margin-bottom:14px;}
-  .footer-brand p{font-size:13px; color:#A4B0C6; line-height:1.65; max-width:320px;}
-  .footer-col h5{font-size:12px; font-family:var(--font-mono); color:#C9A15C; text-transform:uppercase; letter-spacing:.05em; margin-bottom:16px;}
-  .footer-col a{display:block; font-size:13.5px; color:#D2DAEA; margin-bottom:10px; transition:color .15s;}
-  .footer-col a:hover{color:#FFFFFF;}
-  .footer-bottom{border-top:1px solid #1F3657; padding-top:24px; display:flex; justify-content:space-between; font-size:12px; color:#8E9CAE;}
-
   /* Responsive Adjustments */
   @media (max-width: 960px){
-    nav.primary{display:none;}
     .overview-two-col-layout{grid-template-columns:1fr; gap:28px;}
     .vision-split-layout{grid-template-columns:1fr; gap:28px;}
+    .simple-two-col{grid-template-columns:1fr; gap:28px;}
+    .simple-two-col .simple-media{order:-1;}
     .interface-dual-grid{grid-template-columns:1fr; gap:28px;}
     .charter-grid{grid-template-columns:1fr;}
     .board-leadership-pair{grid-template-columns:1fr;}
     .board-members-grid{grid-template-columns:repeat(2, 1fr);}
+    .gov-directors-grid{grid-template-columns:repeat(2, 1fr);}
     .committee-row-card,
     .committee-row-card.row-reverse{grid-template-columns:1fr;}
     .committee-row-card.row-reverse .committee-thumb-box{order:1;}
     .committee-row-card.row-reverse .committee-content-box{order:2;}
     .committee-thumb-box{min-height:220px;}
-    .footer-grid{grid-template-columns:1fr 1fr; gap:30px;}
   }
   @media (max-width: 640px){
     .board-members-grid{grid-template-columns:1fr;}
     .archive-panel.active{grid-template-columns:1fr;}
-    .footer-grid{grid-template-columns:1fr;}
     .timeline-track-rail{left:16px;}
     .timeline-block{padding-left:48px;}
     .timeline-node{left:5px;}
     .timeline-card{padding:22px 20px;}
     .gov-profile-card{flex:0 0 240px; width:240px; height:300px;}
+    .gov-directors-grid{grid-template-columns:1fr;}
     .about-hero h1{font-size:36px;}
   }
+
+  /* Newsletter strip (matches home page) */
+  .newsletter{background:var(--ink); color:var(--paper); border-top:1px solid #26315233;}
+  .newsletter .wrap{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; padding:44px 40px;}
+  .newsletter h3{font-family:var(--font-display); font-size:22px; font-weight:500;}
+  .newsletter p{font-size:13.5px; color:#98A0B4; margin-top:6px;}
+  .newsletter-form{display:flex; gap:10px;}
+  .newsletter-form input{background:transparent; border:1px solid #3A4560; color:var(--paper); font-size:14px; padding:12px 16px; width:250px; border-radius:3px; transition:border-color .2s ease, box-shadow .2s ease;}
+  .newsletter-form input::placeholder{color:#6E7891;}
+  .newsletter-form input:focus{outline:none; border-color:var(--brass); box-shadow:0 0 0 3px rgba(198,149,47,.18);}
+  .newsletter-form button{background:var(--brass); color:var(--ink); font-weight:600; font-size:13.5px; padding:12px 22px; border-radius:3px; border:none; cursor:pointer; transition:transform .2s ease, background .2s ease, box-shadow .2s ease;}
+  .newsletter-form button:hover{transform:translateY(-2px); box-shadow:0 12px 26px -12px rgba(198,149,47,.6);}
 </style>
 </head>
 <body>
 
-  <!-- Top Utility Bar -->
-  <div class="utility">
-    <div class="wrap">
-      <div class="utility-links">
-        <!-- <a href="https://www.apmiindia.org/apmi/login.htm" target="_blank" rel="noopener">Member Login</a> -->
-        <a href="https://www.apmiindia.org/apmi/DistributorLogin.htm" target="_blank" rel="noopener">Distributor Login</a>
-        <a href="https://www.apmiindia.org/apmi/Registration.htm?action=registration" target="_blank" rel="noopener">Member Registration</a>
-        <a href="https://www.apmiindia.org/apmi/DistributorOnBoarding.htm?action=nismconsentregister" target="_blank" rel="noopener">Distributor Registration</a>
-      </div>
-      <div class="utility-tag">SEBI recognised supervisory body — Reg. under IPMS Regulations, 2020</div>
-    </div>
-  </div>
-
-  <!-- Header -->
-  <header id="site-header">
-    <div class="wrap header-row">
-      <a class="logo" href="/design1">
-        <img class="logo-img" src="/src/assets/images/apmi-logo.png" alt="APMI - Association of Portfolio Managers in India">
-      </a>
-      <nav class="primary">
-        <a href="/about" class="active">About Us</a>
-        <a href="/design1#regulatory">Regulatory &amp; Circulars</a>
-        <a href="/design1#membership">Membership</a>
-        <a href="/design1#compliance">Compliance &amp; NISM</a>
-        <div class="nav-dropdown">
-          <a href="/design1#reports">Reports &amp; Insights <svg class="caret" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <div class="dropdown-menu">
-            <div class="dropdown-menu-inner">
-              <a href="https://insights.apmiindia.org/dashboard" target="_blank" rel="noopener">APMI Insights</a>
-              <a href="https://www.apmiindia.org/apmi/welcomeiaperformance.htm?action=PMSmenu" target="_blank" rel="noopener">IA Performance Report</a>
-              <a href="https://www.apmiindia.org/apmi/IATurnoverReportUtility.htm?action=loadIATurnoverPage" target="_blank" rel="noopener">IA Turnover Report</a>
-              <a href="https://www.apmiindia.org/apmi/IACompare.htm?action=iacomaprepage" target="_blank" rel="noopener">IA Comparison Report</a>
-              <a href="https://www.apmiindia.org/apmi/WSIAConsolidateReport.htm?action=showReportMenu" target="_blank" rel="noopener">Consolidated IA Performance Report</a>
-              <a href="https://www.apmiindia.org/apmi/pmsdistributordetailsweb.htm" target="_blank" rel="noopener">APRN Holder Details</a>
-            </div>
-          </div>
-        </div>
-        <a href="/design1#events">Events</a>
-      </nav>
-      <div class="header-actions">
-        <div class="icon-btn" title="Search">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </div>
-        <a class="btn-primary" href="https://www.apmiindia.org/apmi/login.htm" target="_blank" rel="noopener">Member login</a>
-      </div>
-    </div>
-  </header>
+  <script src="/src/partials/header.js" data-active="about"></script>
 
   <!-- Sticky In-Page Navigation Bar (Hidden/Commented)
   <div class="anchor-bar">
@@ -1706,71 +1692,35 @@
        ========================================================= -->
   <section class="section-apmi-overview" id="overview">
     <div class="wrap">
-      <div class="section-head">
-        <div class="section-kicker">Apex Industry Body</div>
-        <h2 class="section-title">APMI Overview</h2>
-        <p class="section-sub">
-          The institutional foundation and statutory origin of the Association of Portfolio Managers in India.
-        </p>
-      </div>
-
-      <div class="overview-two-col-layout">
-        <!-- Left: Text Narrative & Key Statutory Facts -->
-        <div class="overview-narrative-card">
-          <div>
-            <div class="focus-meta-line">Apex Institutional Profile</div>
-            <h3 class="overview-heading">
-              Fostering Uniformity, Best Practices &amp; Fiduciary Confidence
-            </h3>
-            <p>
-              Constituted under the regulatory guidance of <strong>SEBI</strong> and incorporated on <strong>31st December 2021</strong> as a Section 8 non-profit entity, the <strong>Association of Portfolio Managers in India (APMI)</strong> is the apex industry body representing SEBI-registered Portfolio Managers nationwide.
-            </p>
-            <p>
-              Emerging from the 2019 SEBI Working Committee recommendations, APMI acts as the unified industry voice—promoting high ethical standards, standardized reporting, and research-backed best practices to bolster investor confidence.
+      <div class="simple-two-col">
+        <div class="simple-block">
+          <div class="section-head">
+            <div class="section-kicker">Apex Industry Body</div>
+            <h2 class="section-title">APMI Overview</h2>
+            <p class="section-sub">
+              The institutional foundation and statutory origin of the Association of Portfolio Managers in India.
             </p>
           </div>
-
-          <!-- Bottom Stat Strip aligned with card bottom -->
-          <div class="overview-stats-strip">
-            <div class="overview-stat-cell">
+          <p class="simple-lead">
+            Constituted under the regulatory guidance of <strong>SEBI</strong> and incorporated on <strong>31st December 2021</strong> as a Section 8 non-profit entity, <strong>APMI</strong> is the apex industry body representing SEBI-registered Portfolio Managers nationwide — promoting high ethical standards, standardized reporting, and research-backed best practices to bolster investor confidence.
+          </p>
+          <div class="simple-stat-row">
+            <div class="simple-stat">
               <span class="stat-num">390+</span>
               <span class="stat-lbl">SEBI Registered PMs</span>
             </div>
-            <div class="overview-stat-cell">
+            <div class="simple-stat">
               <span class="stat-num">Sec 8</span>
               <span class="stat-lbl">Non-Profit Entity</span>
             </div>
-            <div class="overview-stat-cell">
+            <div class="simple-stat">
               <span class="stat-num">2020</span>
               <span class="stat-lbl">SEBI PM Regs Basis</span>
             </div>
           </div>
         </div>
-
-        <!-- Right: Modern Showcase Image Card with Shimmer & Zoom -->
-        <div class="overview-media-card">
-          <div class="media-img-wrap">
-            <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80" alt="APMI Corporate Glass Architecture" loading="lazy">
-            <div class="media-overlay"></div>
-            <div class="media-badge-tag">Section 8 &bull; Dec 31, 2021</div>
-            <div class="media-img-caption">
-              <h4>Apex Institutional Body</h4>
-              <p>SEBI Recognized PMS Industry Association &bull; Mumbai, India</p>
-            </div>
-          </div>
-          <div class="media-card-body">
-            <div>
-              <p>
-                Representing over 390 registered Portfolio Managers across India, APMI collaborates with SEBI, custodians, and depositories to standardize client onboarding, fee illustration benchmarks, and reporting protocols.
-              </p>
-            </div>
-            <div class="media-pills-row">
-              <span class="media-pill">Section 8 Entity</span>
-              <span class="media-pill">SEBI PM Regs 2020</span>
-              <span class="media-pill">390+ Regulated PMs</span>
-              <span class="media-pill">AMFI Analogue</span>
-            </div>
-          </div>
+        <div class="simple-media">
+          <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80" alt="APMI Corporate Glass Architecture" loading="lazy">
         </div>
       </div>
     </div>
@@ -1856,67 +1806,31 @@
        ========================================================= -->
   <section class="section-vision" id="vision">
     <div class="wrap">
-      <div class="section-head">
-        <div class="section-kicker">Strategic Horizon</div>
-        <h2 class="section-title">Our Vision</h2>
-        <p class="section-sub">
-          Championing orderly conduct, transparent market access, and fiduciary stewardship for India's capital markets.
-        </p>
-      </div>
-
-      <div class="vision-split-layout">
-        <!-- Left: Image Showcase with Hover Zoom -->
-        <div class="vision-media-card">
-          <div class="media-img-wrap">
-            <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=1200&q=80" alt="Capital Markets Investment Stewardship" loading="lazy">
-            <div class="media-overlay"></div>
-            <div class="media-badge-tag">Fiduciary Mandate</div>
-            <div class="media-img-caption">
-              <h4>Transparent Capital Access</h4>
-              <p>Stewardship for Affluent Investors across India</p>
-            </div>
-          </div>
-          <div class="media-card-body">
-            <p>
-              By aligning portfolio managers under a common code of conduct and standard reporting, APMI ensures that India's growing wealth is stewarded with absolute transparency, integrity, and regulatory fidelity.
+      <div class="simple-two-col">
+        <div class="simple-block">
+          <div class="section-head">
+            <div class="section-kicker">Strategic Horizon</div>
+            <h2 class="section-title">Our Vision</h2>
+            <p class="section-sub">
+              Championing orderly conduct, transparent market access, and fiduciary stewardship for India's capital markets.
             </p>
-            <div class="media-pills-row">
-              <span class="media-pill">Fiduciary Trust</span>
-              <span class="media-pill">Transparent Access</span>
-              <span class="media-pill">Unified Voice</span>
+          </div>
+          <p class="simple-lead">
+            APMI's formation is a testimony to the rising prominence of SEBI-regulated portfolio managers as a preferred, transparent route for affluent investors to access capital markets.
+          </p>
+          <div class="simple-vision-points">
+            <div class="simple-vision-point">
+              <span class="dot"></span>
+              <span>A common interface to regulators, government agencies, and industry stakeholders for orderly conduct.</span>
+            </div>
+            <div class="simple-vision-point">
+              <span class="dot"></span>
+              <span>Protecting and promoting the interests of both the industry and its investors.</span>
             </div>
           </div>
         </div>
-
-        <!-- Right: Vision Card with Highlighted Strategic Statements -->
-        <div class="vision-content-card">
-          <h3>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-            Institutional Vision Statement
-          </h3>
-          <div class="vision-kicker-lead">Strategic Core &bull; Mandate for Orderly Growth</div>
-
-          <div class="vision-pillars-list">
-            <div class="vision-pillar-item">
-              <div class="vision-pillar-icon">01</div>
-              <div>
-                <h4>Testimony to Affluent Investor Confidence</h4>
-                <p>
-                  Formation of APMI is a manifestation and testimony to the rising prominence of SEBI-regulated portfolio managers as a preferred service provider for affluent investors to access capital markets transparently.
-                </p>
-              </div>
-            </div>
-
-            <div class="vision-pillar-item">
-              <div class="vision-pillar-icon">02</div>
-              <div>
-                <h4>Unified Interface &amp; Orderly Conduct</h4>
-                <p>
-                  APMI is the dedicated face of the PMS Industry providing a common interface to regulators, government agencies, industry participants, intermediaries, investors, and stakeholders for orderly conduct, protecting and promoting industry and investor interests.
-                </p>
-              </div>
-            </div>
-          </div>
+        <div class="simple-media">
+          <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=1200&q=80" alt="Capital Markets Investment Stewardship" loading="lazy">
         </div>
       </div>
     </div>
@@ -2047,7 +1961,7 @@
             Elected stewardship representing registered Portfolio Managers across SEBI consultation, fiduciary benchmark standards, and institutional milestones.
           </p>
         </div>
-        <div class="gov-external-actions">
+        <!-- <div class="gov-external-actions">
           <a href="https://www.apmiindia.org/storagebox/images/Important/Board_of_Directors-Previous_Years.pdf" target="_blank" rel="noopener noreferrer" class="btn-gov-ext-action btn-gov-highlight" title="Opens certified statutory board record PDF in new tab">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
             <span>Certified PDF ↗</span>
@@ -2056,7 +1970,7 @@
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             <span>Official APMI Portal ↗</span>
           </a>
-        </div>
+        </div> -->
       </div>
 
       <!-- COMPARTMENT 1: CURRENT BOARD OF DIRECTORS SLIDER -->
@@ -2067,19 +1981,12 @@
             <span class="gov-badge-tenure">Active Council &bull; FY 2024–27</span>
           </div>
           <div class="gov-bar-controls">
-            <span class="slider-counter-text" id="board-counter-text">12 Governing Members</span>
-            <button type="button" class="slider-arrow-btn" onclick="slideGovTrack('board-track', -1)" aria-label="Slide Previous">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
-            </button>
-            <button type="button" class="slider-arrow-btn" onclick="slideGovTrack('board-track', 1)" aria-label="Slide Next">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
-            </button>
+            <span class="slider-counter-text">12 Governing Members</span>
           </div>
         </div>
 
-        <div class="gov-slider-viewport">
-          <div class="gov-slider-track" id="board-track">
-            
+        <div class="gov-leadership-row">
+
             <!-- 1. Chairman -->
             <div class="gov-profile-card gov-card-chairman" tabindex="0">
               <span class="gov-card-top-tag tag-gold">Chairman</span>
@@ -2113,6 +2020,10 @@
                 <div class="drawer-meta-pill"><span class="dot"></span> Elected Under Slab II &bull; FY 2024–27</div>
               </div>
             </div>
+
+        </div>
+
+        <div class="gov-directors-grid">
 
             <!-- 3. Director - Amit Jeswani -->
             <div class="gov-profile-card" tabindex="0">
@@ -2304,7 +2215,6 @@
               </div>
             </div>
 
-          </div>
         </div>
       </div>
 
@@ -2349,29 +2259,29 @@
                 <span class="drawer-role-badge">Past Chairman</span>
                 <div class="drawer-name">Mr. Biharilal Deora</div>
                 <div class="drawer-firm">Abakkus Asset Manager Private Limited</div>
-                <div class="drawer-meta-pill"><span class="dot"></span> Term 3 Council &bull; FY 2024–26</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Chairman &bull; FY 2024–26</div>
               </div>
             </div>
 
             <!-- HISTORIC 2: Sushant Bhansali (Past Vice Chairman) -->
-            <div class="gov-profile-card gov-card-historical" data-tenure="fy2426" tabindex="0">
+            <div class="gov-profile-card gov-card-historical" data-tenure="fy2426 fy2223 fy2324" tabindex="0">
               <span class="gov-card-top-tag tag-gold">Past Vice Chairman</span>
               <div class="gov-card-fallback-avatar">SB</div>
               <img class="gov-card-photo" src="/images/board/sushant-bhansali.jpg" alt="Mr. Sushant Bhansali" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity='0'" />
               <div class="gov-card-static-name-strip">
-                <span class="static-role">Past Vice Chairman</span>
+                <span class="static-role">Vice Chairman (FY 24–26)</span>
                 <h4>Mr. Sushant Bhansali</h4>
               </div>
               <div class="gov-card-hover-drawer">
                 <span class="drawer-role-badge">Past Vice Chairman</span>
                 <div class="drawer-name">Mr. Sushant Bhansali</div>
                 <div class="drawer-firm">Ambit Investment Advisors Pvt Ltd.</div>
-                <div class="drawer-meta-pill"><span class="dot"></span> Term 3 Council &bull; FY 2024–26</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Director FY 2022–24 &bull; Vice Chairman FY 2024–26</div>
               </div>
             </div>
 
             <!-- HISTORIC 3: Neeraj Choksi (Founding Chairman) -->
-            <div class="gov-profile-card gov-card-historical" data-tenure="fy2223 foundation" tabindex="0">
+            <div class="gov-profile-card gov-card-historical" data-tenure="foundation fy2223 fy2324" tabindex="0">
               <span class="gov-card-top-tag tag-gold">Founding Chairman</span>
               <div class="gov-card-fallback-avatar">NC</div>
               <div class="gov-card-static-name-strip">
@@ -2382,12 +2292,12 @@
                 <span class="drawer-role-badge">Founding Chairman</span>
                 <div class="drawer-name">Mr. Neeraj Choksi</div>
                 <div class="drawer-firm">NJ Asset Management Private Limited</div>
-                <div class="drawer-meta-pill"><span class="dot"></span> Term 1 &bull; FY 2022–23 &amp; Dec 2021</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Chairman &bull; Dec 2021 – FY 2023–24</div>
               </div>
             </div>
 
             <!-- HISTORIC 4: Saurabh Mukherjea (Founding Vice Chairman) -->
-            <div class="gov-profile-card gov-card-historical" data-tenure="fy2223 foundation" tabindex="0">
+            <div class="gov-profile-card gov-card-historical" data-tenure="foundation fy2223 fy2324" tabindex="0">
               <span class="gov-card-top-tag tag-gold">Founding Vice Chair</span>
               <div class="gov-card-fallback-avatar">SM</div>
               <div class="gov-card-static-name-strip">
@@ -2398,41 +2308,41 @@
                 <span class="drawer-role-badge">Founding Vice Chairman</span>
                 <div class="drawer-name">Mr. Saurabh Mukherjea</div>
                 <div class="drawer-firm">Marcellus Investment Managers Pvt. Ltd.</div>
-                <div class="drawer-meta-pill"><span class="dot"></span> Term 1 &bull; FY 2022–23 &amp; Dec 2021</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Vice Chairman &bull; Dec 2021 – FY 2023–24</div>
               </div>
             </div>
 
-            <!-- HISTORIC 5: Vikas Vijaykumar Khemani (Term 2 Chairman) -->
-            <div class="gov-profile-card gov-card-historical" data-tenure="fy2324 foundation" tabindex="0">
-              <span class="gov-card-top-tag">Chairman (FY 23–24)</span>
+            <!-- HISTORIC 5: Vikas Vijaykumar Khemani (Director, FY 25–26) -->
+            <div class="gov-profile-card gov-card-historical" data-tenure="fy2426" tabindex="0">
+              <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">VK</div>
-              <img class="gov-card-photo" src="/images/board/vikas-khemani.jpg" alt="Mr. Vikas Khemani" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity='0'" />
+              <img class="gov-card-photo" src="/images/board/vikas-khemani.jpg" alt="Mr. Vikas Vijaykumar Khemani" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity='0'" />
               <div class="gov-card-static-name-strip">
-                <span class="static-role">Chairman FY 23–24</span>
-                <h4>Mr. Vikas Khemani</h4>
+                <span class="static-role">Director FY 25–26</span>
+                <h4>Mr. Vikas Vijaykumar Khemani</h4>
               </div>
               <div class="gov-card-hover-drawer">
-                <span class="drawer-role-badge">Chairman Term 2</span>
+                <span class="drawer-role-badge">Director</span>
                 <div class="drawer-name">Mr. Vikas Vijaykumar Khemani</div>
-                <div class="drawer-firm">Carnelian Asset Advisors Pvt. Ltd.</div>
-                <div class="drawer-meta-pill"><span class="dot"></span> Reconstituted Board FY 2023–24</div>
+                <div class="drawer-firm">Carnelian Asset Management &amp; Advisors Pvt. Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2025–26</div>
               </div>
             </div>
 
-            <!-- HISTORIC 6: Sandeep Jethwani (Term 2 Vice Chairman) -->
-            <div class="gov-profile-card gov-card-historical" data-tenure="fy2324 foundation" tabindex="0">
-              <span class="gov-card-top-tag">Vice Chair (FY 23–24)</span>
+            <!-- HISTORIC 6: Sandeep Jethwani (Director, FY 24–26) -->
+            <div class="gov-profile-card gov-card-historical" data-tenure="fy2426" tabindex="0">
+              <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">SJ</div>
               <img class="gov-card-photo" src="/images/board/sandeep-jethwani.jpg" alt="Mr. Sandeep Jethwani" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity='0'" />
               <div class="gov-card-static-name-strip">
-                <span class="static-role">Vice Chairman FY 23–24</span>
+                <span class="static-role">Director FY 24–26</span>
                 <h4>Mr. Sandeep Jethwani</h4>
               </div>
               <div class="gov-card-hover-drawer">
-                <span class="drawer-role-badge">Vice Chairman Term 2</span>
+                <span class="drawer-role-badge">Director</span>
                 <div class="drawer-name">Mr. Sandeep Jethwani</div>
                 <div class="drawer-firm">Dezerv Investments Pvt. Ltd.</div>
-                <div class="drawer-meta-pill"><span class="dot"></span> Reconstituted Board FY 2023–24</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2024–26</div>
               </div>
             </div>
 
@@ -2452,24 +2362,24 @@
               </div>
             </div>
 
-            <!-- HISTORIC 8: Amisha Niraj Vohra (Founding Director) -->
-            <div class="gov-profile-card gov-card-historical" data-tenure="fy2223 foundation" tabindex="0">
+            <!-- HISTORIC 8: Amisha Niraj Vohra -->
+            <div class="gov-profile-card gov-card-historical" data-tenure="fy2223 fy2324 fy2426" tabindex="0">
               <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">AV</div>
               <div class="gov-card-static-name-strip">
-                <span class="static-role">Director FY 22–23</span>
+                <span class="static-role">Director FY 22–25</span>
                 <h4>Ms. Amisha Niraj Vohra</h4>
               </div>
               <div class="gov-card-hover-drawer">
                 <span class="drawer-role-badge">Director</span>
                 <div class="drawer-name">Ms. Amisha Niraj Vohra</div>
                 <div class="drawer-firm">Prabhudas Lilladher Advisory Services</div>
-                <div class="drawer-meta-pill"><span class="dot"></span> Incorporator &bull; Term 1</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2022–25</div>
               </div>
             </div>
 
-            <!-- HISTORIC 9: Sunil Rohokale (Past Director) -->
-            <div class="gov-profile-card gov-card-historical" data-tenure="fy2426 fy2223" tabindex="0">
+            <!-- HISTORIC 9: Sunil Rohokale -->
+            <div class="gov-profile-card gov-card-historical" data-tenure="fy2426" tabindex="0">
               <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">SR</div>
               <div class="gov-card-static-name-strip">
@@ -2480,23 +2390,23 @@
                 <span class="drawer-role-badge">Director</span>
                 <div class="drawer-name">Mr. Sunil Rohokale</div>
                 <div class="drawer-firm">ASK Asset &amp; Wealth Management Group</div>
-                <div class="drawer-meta-pill"><span class="dot"></span> Directorship Council</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Directorship Council &bull; FY 2024–26</div>
               </div>
             </div>
 
             <!-- HISTORIC 10: Hiren Haresh Ved -->
-            <div class="gov-profile-card gov-card-historical" data-tenure="fy2223" tabindex="0">
+            <div class="gov-profile-card gov-card-historical" data-tenure="fy2223 fy2324 fy2426" tabindex="0">
               <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">HV</div>
               <div class="gov-card-static-name-strip">
-                <span class="static-role">Director FY 22–23</span>
+                <span class="static-role">Director FY 22–25</span>
                 <h4>Mr. Hiren Haresh Ved</h4>
               </div>
               <div class="gov-card-hover-drawer">
                 <span class="drawer-role-badge">Director</span>
                 <div class="drawer-name">Mr. Hiren Haresh Ved</div>
                 <div class="drawer-firm">Alchemy Capital Management Pvt. Ltd.</div>
-                <div class="drawer-meta-pill"><span class="dot"></span> Term 1 Operational Council</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2022–25</div>
               </div>
             </div>
 
@@ -2517,50 +2427,178 @@
             </div>
 
             <!-- HISTORIC 12: Deepak Shenoy -->
-            <div class="gov-profile-card gov-card-historical" data-tenure="fy2426 fy2223 foundation" tabindex="0">
+            <div class="gov-profile-card gov-card-historical" data-tenure="fy2324 fy2426" tabindex="0">
               <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">DS</div>
               <div class="gov-card-static-name-strip">
-                <span class="static-role">Director FY 24–26</span>
+                <span class="static-role">Director FY 23–26</span>
                 <h4>Mr. Deepak Shenoy</h4>
               </div>
               <div class="gov-card-hover-drawer">
                 <span class="drawer-role-badge">Director</span>
                 <div class="drawer-name">Mr. Deepak Shenoy</div>
                 <div class="drawer-firm">Capitalmind Financial Services Pvt. Ltd.</div>
-                <div class="drawer-meta-pill"><span class="dot"></span> Incorporator &bull; Multi-Term Director</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Multi-Term Director &bull; FY 2023–26</div>
               </div>
             </div>
 
             <!-- HISTORIC 13: Ayush Mittal -->
-            <div class="gov-profile-card gov-card-historical" data-tenure="fy2426 fy2223 foundation" tabindex="0">
+            <div class="gov-profile-card gov-card-historical" data-tenure="fy2324 fy2426" tabindex="0">
               <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">AM</div>
               <div class="gov-card-static-name-strip">
-                <span class="static-role">Director FY 24–26</span>
+                <span class="static-role">Director FY 23–26</span>
                 <h4>Mr. Ayush Mittal</h4>
               </div>
               <div class="gov-card-hover-drawer">
                 <span class="drawer-role-badge">Director</span>
                 <div class="drawer-name">Mr. Ayush Mittal</div>
                 <div class="drawer-firm">Mittals Capital Advisors Pvt. Ltd.</div>
-                <div class="drawer-meta-pill"><span class="dot"></span> Incorporator &bull; Term 3 Director</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Multi-Term Director &bull; FY 2023–26</div>
               </div>
             </div>
 
             <!-- HISTORIC 14: Manish Bhandari -->
-            <div class="gov-profile-card gov-card-historical" data-tenure="fy2426 foundation" tabindex="0">
+            <div class="gov-profile-card gov-card-historical" data-tenure="fy2324 fy2426" tabindex="0">
               <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">MB</div>
               <div class="gov-card-static-name-strip">
-                <span class="static-role">Director FY 24–26</span>
+                <span class="static-role">Director FY 23–26</span>
                 <h4>Mr. Manish Bhandari</h4>
               </div>
               <div class="gov-card-hover-drawer">
                 <span class="drawer-role-badge">Director</span>
                 <div class="drawer-name">Mr. Manish Bhandari</div>
                 <div class="drawer-firm">Vallum Capital Advisors Pvt. Ltd.</div>
-                <div class="drawer-meta-pill"><span class="dot"></span> Incorporator &bull; Term 3 Director</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Multi-Term Director &bull; FY 2023–26</div>
+              </div>
+            </div>
+
+            <!-- HISTORIC 15: Hemant Desai -->
+            <div class="gov-profile-card gov-card-historical" data-tenure="fy2223 fy2324" tabindex="0">
+              <span class="gov-card-top-tag">Past Director</span>
+              <div class="gov-card-fallback-avatar">HD</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 22–24</span>
+                <h4>Mr. Hemant Desai</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Hemant Desai</div>
+                <div class="drawer-firm">Firm details not available</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2022–24</div>
+              </div>
+            </div>
+
+            <!-- HISTORIC 16: Sameer Shah -->
+            <div class="gov-profile-card gov-card-historical" data-tenure="fy2223" tabindex="0">
+              <span class="gov-card-top-tag">Past Director</span>
+              <div class="gov-card-fallback-avatar">SS</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 22–23</span>
+                <h4>Mr. Sameer Shah</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Sameer Shah</div>
+                <div class="drawer-firm">Firm details not available</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Operational Board FY 2022–23</div>
+              </div>
+            </div>
+
+            <!-- HISTORIC 17: Shivashish Gupta -->
+            <div class="gov-profile-card gov-card-historical" data-tenure="fy2223" tabindex="0">
+              <span class="gov-card-top-tag">Past Director</span>
+              <div class="gov-card-fallback-avatar">SG</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 22–23</span>
+                <h4>Mr. Shivashish Gupta</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Shivashish Gupta</div>
+                <div class="drawer-firm">Firm details not available</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Operational Board FY 2022–23</div>
+              </div>
+            </div>
+
+            <!-- HISTORIC 18: Sonal Minhas -->
+            <div class="gov-profile-card gov-card-historical" data-tenure="fy2223 fy2324 fy2426" tabindex="0">
+              <span class="gov-card-top-tag">Past Director</span>
+              <div class="gov-card-fallback-avatar">SM</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 22–25</span>
+                <h4>Mr. Sonal Minhas</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Sonal Minhas</div>
+                <div class="drawer-firm">Firm details not available</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2022–25</div>
+              </div>
+            </div>
+
+            <!-- HISTORIC 19: Bhavin Shah -->
+            <div class="gov-profile-card gov-card-historical" data-tenure="fy2324 fy2426" tabindex="0">
+              <span class="gov-card-top-tag">Past Director</span>
+              <div class="gov-card-fallback-avatar">BS</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 23–26</span>
+                <h4>Mr. Bhavin Shah</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Bhavin Shah</div>
+                <div class="drawer-firm">Sameeksha Capital Pvt Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Multi-Term Director &bull; FY 2023–26</div>
+              </div>
+            </div>
+
+            <!-- HISTORIC 20: Vivek Vasudevan -->
+            <div class="gov-profile-card gov-card-historical" data-tenure="fy2426" tabindex="0">
+              <span class="gov-card-top-tag">Past Director</span>
+              <div class="gov-card-fallback-avatar">VV</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 24–26</span>
+                <h4>Mr. Vivek Vasudevan</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Vivek Vasudevan</div>
+                <div class="drawer-firm">Agreya Capital Advisors LLP</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2024–26</div>
+              </div>
+            </div>
+
+            <!-- HISTORIC 21: Jatin Khemani -->
+            <div class="gov-profile-card gov-card-historical" data-tenure="fy2426" tabindex="0">
+              <span class="gov-card-top-tag">Past Director</span>
+              <div class="gov-card-fallback-avatar">JK</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 25–26</span>
+                <h4>Mr. Jatin Khemani</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Jatin Khemani</div>
+                <div class="drawer-firm">Stalwart Investment Advisors LLP</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2025–26</div>
+              </div>
+            </div>
+
+            <!-- HISTORIC 22: Rajiv Vijay Shastri -->
+            <div class="gov-profile-card gov-card-historical" data-tenure="fy2426" tabindex="0">
+              <span class="gov-card-top-tag">Past Director</span>
+              <div class="gov-card-fallback-avatar">RS</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 25–26</span>
+                <h4>Mr. Rajiv Vijay Shastri</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Rajiv Vijay Shastri</div>
+                <div class="drawer-firm">GoldStandard Wealth Private Limited</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2025–26</div>
               </div>
             </div>
 
@@ -2568,7 +2606,7 @@
         </div>
 
         <!-- Statutory Notice Footer Bar with New Tab Button -->
-        <div class="gov-statutory-strip">
+        <!-- <div class="gov-statutory-strip">
           <div class="gov-statutory-text">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             <span><strong>Statutory Governance Record:</strong> All historical directorship appointments and retirements are certified under Section 8 of the Companies Act, 2013 and filed with SEBI.</span>
@@ -2578,7 +2616,7 @@
               <span>Certified PDF (New Tab) ↗</span>
             </a>
           </div>
-        </div>
+        </div> -->
 
       </div>
 
@@ -2586,127 +2624,23 @@
   </section>
 
   <!-- =========================================================
-     SECTION 4: WORKING COMMITTEES
-     Row-Based Cards: Thumbnail Placeholder on one side, Structured Text on other
+     SECTION 4: WORKING COMMITTEES — CTA
      ========================================================= -->
-  <section class="section-committees" id="committees">
+  <section class="section-committees-cta" id="committees">
     <div class="wrap">
-      <div class="section-head">
-        <div class="section-kicker">Technical Expertise</div>
-        <h2 class="section-title">Working Committees</h2>
-        <p class="section-sub">
-          Specialized taskforces drawing from member expertise to formulate compliance frameworks, standard operating procedures, and technological initiatives.
-        </p>
-      </div>
-
-      <div class="committees-row-stack">
-        <!-- Committee 1: Operations & Compliance Committee (OPCO) [Image on Left] -->
-        <div class="committee-row-card">
-          <div class="committee-thumb-box">
-            <img class="committee-thumb-img" src="/images/committees/opco.jpg" alt="Operations & Compliance Committee" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity='0'" />
-            <div class="committee-thumb-overlay"></div>
-            <div class="committee-thumb-inner">
-              <span class="committee-badge-tag">COMMITTEE 01</span>
-              <div class="committee-thumb-center">
-                <div class="committee-thumb-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
-                </div>
-                <span class="committee-thumb-scope-badge">Operational Integrity &bull; Custody SOPs</span>
-              </div>
-              <div class="committee-term"><span class="dot"></span> Tenure: 2025 – 2027 Mandate</div>
-            </div>
-          </div>
-          <div class="committee-content-box">
-            <div class="committee-content-top">
-              <h3>Operations &amp; Compliance Committee (OPCO)</h3>
-              <p class="committee-summary-text">
-                Mandated to evaluate regulatory circulars, establish uniform compliance checklists, streamline client onboarding frameworks, and coordinate custodian settlements. Draws active participation from principal officers and compliance heads across member firms.
-              </p>
-              <div class="committee-members-preview">
-                <span class="member-pill"><strong>Mr. Ankit Parikh</strong> (Carnelian Asset)</span>
-                <span class="member-pill"><strong>Mr. Nipun Doshi</strong> (Abakkus Asset)</span>
-                <span class="member-pill"><strong>Mr. Rohit Beri</strong> (Ambit Investment)</span>
-                <span class="member-pill"><strong>Mr. Venkata Gopala Krishna Reddy</strong> (FYERS AMC)</span>
-              </div>
-            </div>
-            <button class="btn-view-committee" onclick="openCommitteeModal('opco')">
-              <span>View Committee Details</span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </button>
-          </div>
+      <div class="committees-cta-card">
+        <div class="committees-cta-icon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
         </div>
-
-        <!-- Committee 2: Technology, Digitalization & Benchmarking Committee [Image on Right] -->
-        <div class="committee-row-card row-reverse">
-          <div class="committee-thumb-box">
-            <img class="committee-thumb-img" src="/images/committees/tech.jpg" alt="Technology, Digitalization & Benchmarking Committee" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity='0'" />
-            <div class="committee-thumb-overlay"></div>
-            <div class="committee-thumb-inner">
-              <span class="committee-badge-tag">COMMITTEE 02</span>
-              <div class="committee-thumb-center">
-                <div class="committee-thumb-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                </div>
-                <span class="committee-thumb-scope-badge">Performance Benchmarking &bull; Digital APIs</span>
-              </div>
-              <div class="committee-term"><span class="dot"></span> Tenure: 2025 – 2027 Mandate</div>
-            </div>
-          </div>
-          <div class="committee-content-box">
-            <div class="committee-content-top">
-              <h3>Technology, Digitalization &amp; Benchmarking Committee</h3>
-              <p class="committee-summary-text">
-                Formulated to spearhead 100% digital client onboarding frameworks in coordination with SEBI, establish uniform performance fee calculation models, create illustration standards, and supervise industry data repository feeds for performance benchmarking.
-              </p>
-              <div class="committee-members-preview">
-                <span class="member-pill"><strong>Benchmarking Protocols</strong></span>
-                <span class="member-pill"><strong>Digital Onboarding Architecture</strong></span>
-                <span class="member-pill"><strong>Data Repository Standards</strong></span>
-                <span class="member-pill"><strong>API &amp; Custodian Integration</strong></span>
-              </div>
-            </div>
-            <button class="btn-view-committee" onclick="openCommitteeModal('tech')">
-              <span>View Committee Details</span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </button>
-          </div>
+        <div class="committees-cta-body">
+          <div class="section-kicker">Technical Expertise</div>
+          <h2>Working Committees</h2>
+          <p>Specialized taskforces — spanning Operations &amp; Compliance, Technology, Digitalization &amp; Benchmarking, and Legal &amp; Regulatory Affairs — drawing from member expertise to formulate compliance frameworks and industry standards.</p>
         </div>
-
-        <!-- Committee 3: Legal, Regulatory Affairs & Ease of Doing Business Committee [Image on Left] -->
-        <div class="committee-row-card">
-          <div class="committee-thumb-box">
-            <img class="committee-thumb-img" src="/images/committees/legal.jpg" alt="Legal, Regulatory Affairs & Ease of Doing Business Committee" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity='0'" />
-            <div class="committee-thumb-overlay"></div>
-            <div class="committee-thumb-inner">
-              <span class="committee-badge-tag">COMMITTEE 03</span>
-              <div class="committee-thumb-center">
-                <div class="committee-thumb-icon">
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-                </div>
-                <span class="committee-thumb-scope-badge">SEBI Interface &bull; Ease of Doing Business</span>
-              </div>
-              <div class="committee-term"><span class="dot"></span> Tenure: 2025 – 2027 Mandate</div>
-            </div>
-          </div>
-          <div class="committee-content-box">
-            <div class="committee-content-top">
-              <h3>Legal, Regulatory Affairs &amp; Ease of Doing Business Committee</h3>
-              <p class="committee-summary-text">
-                Interfaces directly with SEBI, Ministry of Finance, and statutory bodies to submit industry representations, draft code of conduct standards, resolve regulatory ambiguities, and execute initiatives under the national Ease of Doing Business framework.
-              </p>
-              <div class="committee-members-preview">
-                <span class="member-pill"><strong>SEBI Consultation Representations</strong></span>
-                <span class="member-pill"><strong>Ease of Doing Business Submissions</strong></span>
-                <span class="member-pill"><strong>Code of Conduct Guidance</strong></span>
-                <span class="member-pill"><strong>Dispute Mediation SOPs</strong></span>
-              </div>
-            </div>
-            <button class="btn-view-committee" onclick="openCommitteeModal('legal')">
-              <span>View Committee Details</span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-            </button>
-          </div>
-        </div>
+        <a class="committees-cta-btn" href="/src/assets/pdf/Members of APMI Working Committees_1.pdf" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>Download Committee Members (PDF)</span>
+        </a>
       </div>
     </div>
   </section>
@@ -2762,17 +2696,9 @@
                 <strong>Formation &amp; Operationalization of Working Committees:</strong> Operationalization of APMI's 3 working committees from June 2022 to spearhead specialized industry initiatives.
               </li>
             </ul>
-            <button class="btn-timeline-detail" onclick="toggleTimelineDetail('detail-2022', this)">
+            <a class="btn-timeline-detail" href="/src/assets/pdf/Years/Evolution_APMI_2022.pdf" target="_blank" rel="noopener">
               <span>[View In Detail]</span>
-            </button>
-            <div class="timeline-expanded-details" id="detail-2022">
-              <p>
-                <strong>Post-COVID Transition Mandate:</strong> In response to evolving capital market conditions, APMI issued its historic First Guidance circular on 28th May 2022, establishing high operational security by ending remote-working concessions for mission-critical investment, risk, dealing, and settlement personnel.
-              </p>
-              <p>
-                <strong>Tripartite Technical Committees:</strong> The formal chartering of APMI's three foundational working committees in June 2022 laid the groundwork for systematic regulatory dialogue, industry benchmarking, and direct liaison with SEBI.
-              </p>
-            </div>
+            </a>
           </div>
         </div>
 
@@ -2799,20 +2725,9 @@
                 <strong>Second Reconstitution of APMI Board (30th June 2023):</strong> Second reconstitution of APMI Board &amp; Working Committees successfully completed on 30th June 2023.
               </li>
             </ul>
-            <button class="btn-timeline-detail" onclick="toggleTimelineDetail('detail-2023', this)">
+            <a class="btn-timeline-detail" href="/src/assets/pdf/Years/Evolution_APMI_2023.pdf" target="_blank" rel="noopener">
               <span>[View In Detail]</span>
-            </button>
-            <div class="timeline-expanded-details" id="detail-2023">
-              <p>
-                <strong>Demat Account Safeguards:</strong> Under APMI's collaborative framework with depositories (NSDL &amp; CDSL), systematic tagging and flagging protocols were enacted across all PMS client demat accounts to prevent unauthorized pledges and protect investor assets.
-              </p>
-              <p>
-                <strong>Uniform Redemption Liquidity:</strong> Standardized T+ timelines for investor payouts eliminated client confusion during redemption cycles and established parity between large institutional managers and boutique PMS practices.
-              </p>
-              <p>
-                <strong>Governance Continuity:</strong> The scheduled reconstitution on 30th June 2023 expanded representation across diverse AUM slabs, ensuring democratic participation across India's portfolio management fraternity.
-              </p>
-            </div>
+            </a>
           </div>
         </div>
 
@@ -2839,17 +2754,9 @@
                 <strong>Standard Procedure &amp; Fee Illustrations:</strong> As mandated by the regulator, APMI has specified a standard procedure for on-boarding of clients through digital mode in consultation with SEBI. This also covers aspects related to calculation of performance fee &amp; creating illustrations for the same.
               </li>
             </ul>
-            <button class="btn-timeline-detail" onclick="toggleTimelineDetail('detail-2024', this)">
+            <a class="btn-timeline-detail" href="/src/assets/pdf/Years/Evolution_APMI_2024.pdf" target="_blank" rel="noopener">
               <span>[View In Detail]</span>
-            </button>
-            <div class="timeline-expanded-details" id="detail-2024">
-              <p>
-                <strong>Paperless Scalability:</strong> The migration from complex multi-page physical documentation to 100% digital e-sign and Aadhaar-based verification reduced onboarding turnaround times from 7 days to under 24 hours.
-              </p>
-              <p>
-                <strong>Mathematical Transparency in Performance Fees:</strong> APMI published standard mathematical illustration templates detailing hurdle rates, high-water mark resets, and gross-versus-net fee calculations, eliminating ambiguity for high-net-worth investors.
-              </p>
-            </div>
+            </a>
           </div>
         </div>
 
@@ -2879,63 +2786,32 @@
                 <strong>Ease of Doing Business:</strong> Completion &amp; Execution of various submissions under the Ease of Doing Business framework to eliminate redundant compliance friction.
               </li>
             </ul>
-            <button class="btn-timeline-detail" onclick="toggleTimelineDetail('detail-future', this)">
+            <a class="btn-timeline-detail" href="/src/assets/pdf/Years/Evolution_APMI_GoingForward.pdf" target="_blank" rel="noopener">
               <span>[View In Detail]</span>
-            </button>
-            <div class="timeline-expanded-details" id="detail-future">
-              <p>
-                <strong>Capital Markets Maturation:</strong> APMI's forward-looking agenda seeks to elevate the industry from ₹34.8 Lakh Crores toward ₹50 Lakh Crores AUM by expanding access, deepening distributor education via the APRN framework, and establishing India's PMS sector as an institutional gold standard globally.
-              </p>
-            </div>
+            </a>
           </div>
         </div>
       </div>
     </div>
   </section>
 
+  <div class="newsletter">
+    <div class="wrap">
+      <div>
+        <h3>Stay ahead of every circular.</h3>
+        <p>A monthly digest of SEBI and APMI communications, sent straight to your inbox.</p>
+      </div>
+      <div class="newsletter-form">
+        <input type="email" placeholder="name@company.com">
+        <button>Subscribe</button>
+      </div>
+    </div>
+  </div>
+
   <!-- =========================================================
        FOOTER
        ========================================================= -->
-  <footer>
-    <div class="wrap">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <img class="logo-img" src="/src/assets/images/apmi-logo.png" alt="APMI">
-          <p>
-            Association of Portfolio Managers in India (APMI) is a Section 8 non-profit supervisory body recognized by the Securities and Exchange Board of India (SEBI).
-          </p>
-        </div>
-
-        <div class="footer-col">
-          <h5>About APMI</h5>
-          <a href="#overview">Overview &amp; Background</a>
-          <a href="#overview">Our Vision</a>
-          <a href="#charter">Charter Mandate</a>
-          <a href="#timeline">Evolution Timeline</a>
-        </div>
-
-        <div class="footer-col">
-          <h5>Governance</h5>
-          <a href="#board">Current Board of Directors</a>
-          <a href="#board" onclick="toggleArchive(); return false;">Archived Previous Boards</a>
-          <a href="#committees">Working Committees</a>
-          <a href="https://www.apmiindia.org/apmi/boardMembers.htm" target="_blank" rel="noopener">Official Board Register &rarr;</a>
-        </div>
-
-        <div class="footer-col">
-          <h5>Quick Navigation</h5>
-          <a href="/">APMI Home Page</a>
-          <a href="#hero">Back to Top</a>
-          <a href="https://www.apmiindia.org/apmi/boardMembers.htm" target="_blank" rel="noopener">Member Portal</a>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <div>&copy; 2026 Association of Portfolio Managers in India (APMI). All rights reserved.</div>
-        <div>Incorporated under Section 8 of the Companies Act, 2013 | SEBI Recognised Body</div>
-      </div>
-    </div>
-  </footer>
+  <script src="/src/partials/footer.js"></script>
 
   <!-- =========================================================
        PAGE JAVASCRIPT
@@ -3020,18 +2896,6 @@
       const targetPanel = document.getElementById('prev-panel-' + tabKey);
       if (targetPanel) {
         targetPanel.classList.add('active');
-      }
-    }
-
-    // Toggle Timeline Detail Expanders
-    function toggleTimelineDetail(detailId, btn) {
-      const detailEl = document.getElementById(detailId);
-      if (detailEl.classList.contains('active')) {
-        detailEl.classList.remove('active');
-        btn.querySelector('span').textContent = '[View In Detail]';
-      } else {
-        detailEl.classList.add('active');
-        btn.querySelector('span').textContent = '[Collapse Details]';
       }
     }
 

@@ -1,0 +1,70 @@
+/* =========================================================
+   SHARED SITE HEADER + FOOTER — used by design1.html & about.html
+   Markup lives in src/partials/header.js and src/partials/footer.js.
+   Edit here (and there) to change the header/footer everywhere.
+   ========================================================= */
+
+/* ---------- utility bar ---------- */
+.utility{background:var(--ink); color:#D9DCE4; font-size:13px; border-bottom:1px solid rgba(255,255,255,0.08);}
+.utility-row{display:flex; justify-content:flex-end; align-items:center; gap:16px; padding:8px 40px;}
+.utility-links{display:flex; align-items:center; gap:10px;}
+.utility-btn{padding:6px 14px; border-radius:20px; border:1px solid rgba(255,255,255,.3); color:#D9DCE4; font-size:11.5px; font-weight:600; letter-spacing:.01em; white-space:nowrap; transition:all .18s ease;}
+.utility-btn:hover{border-color:#fff; background:rgba(255,255,255,.08); color:#fff;}
+.utility-btn-accent{background:var(--brass); border-color:var(--brass); color:var(--ink);}
+.utility-btn-accent:hover{background:#C08A3A; border-color:#C08A3A; color:var(--ink);}
+.lang-toggle{display:flex; gap:2px; background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); border-radius:20px; padding:2px;}
+.lang-btn{background:transparent; border:none; color:#D9DCE4; font-size:11px; font-weight:600; padding:5px 11px; border-radius:16px; cursor:pointer; font-family:inherit; transition:all .18s ease;}
+.lang-btn:hover{color:#fff;}
+.lang-btn.active{background:var(--paper-raised); color:var(--ink);}
+
+/* ---------- header ---------- */
+header{background:var(--paper-raised); border-bottom:1px solid var(--rule); position:sticky; top:0; z-index:70; transition:box-shadow .35s ease;}
+header.scrolled{box-shadow:0 1px 0 rgba(15,42,77,.06), 0 16px 40px -20px rgba(15,42,77,.32);}
+.header-row{display:flex; align-items:center; justify-content:space-between; height:84px; transition:height .35s ease;}
+header.scrolled .header-row{height:64px;}
+.logo{display:flex; align-items:baseline; gap:10px;}
+.logo-img{height:40px; width:auto; display:block; transition:height .35s ease;}
+header.scrolled .logo-img{height:32px;}
+nav.primary{display:flex; gap:34px;}
+nav.primary a{font-size:14.5px; color:var(--ink); position:relative; padding:6px 0; transition:color .2s ease;}
+nav.primary a:hover{color:var(--brass-deep);}
+nav.primary a.active{color:var(--brass-deep); font-weight:500;}
+nav.primary a::after{
+  content:''; position:absolute; left:0; right:0; bottom:0; height:2px;
+  background:var(--brass-deep); border-radius:2px;
+  transform:scaleX(0); transform-origin:right center;
+  transition:transform .32s cubic-bezier(.16,.84,.44,1);
+}
+nav.primary a:hover::after, nav.primary a.active::after{transform:scaleX(1); transform-origin:left center;}
+.nav-dropdown{position:relative;}
+.nav-dropdown > a{display:inline-flex; align-items:center; gap:4px;}
+.nav-dropdown .caret{display:inline-block; transition:transform .18s ease;}
+.nav-dropdown:hover .caret{transform:rotate(180deg);}
+.dropdown-menu{position:absolute; top:100%; left:-18px; padding-top:16px; opacity:0; visibility:hidden; transform:translateY(4px); transition:opacity .18s ease, transform .18s ease, visibility .18s;}
+.dropdown-menu-inner{min-width:280px; background:var(--paper-raised); border:1px solid var(--rule); box-shadow:0 16px 40px -20px rgba(15,42,77,.32); border-radius:3px; padding:8px 0;}
+.nav-dropdown:hover .dropdown-menu{opacity:1; visibility:visible; transform:translateY(0);}
+nav.primary .dropdown-menu a{position:static; display:block; padding:10px 20px; font-size:13.5px; color:var(--ink); white-space:nowrap;}
+nav.primary .dropdown-menu a::after{content:none;}
+nav.primary .dropdown-menu a:hover{color:var(--brand-deep); background:var(--brand-tint);}
+.header-actions{display:flex; align-items:center; gap:18px;}
+.btn-primary{background:var(--ink); color:var(--white); font-size:13.5px; padding:10px 20px; border-radius:3px; font-weight:500; transition:transform .2s ease, background .2s ease, box-shadow .2s ease;}
+.btn-primary:hover{background:var(--brass-deep); transform:translateY(-2px); box-shadow:0 12px 26px -12px rgba(198,149,47,.6);}
+
+/* ---------- footer ---------- */
+footer{background:var(--paper-raised); border-top:1px solid var(--rule); padding-top:60px;}
+.footer-grid{display:grid; grid-template-columns:1.4fr repeat(4,1fr); gap:40px; padding-bottom:50px;}
+.footer-brand .logo-img{margin-bottom:14px;}
+.footer-brand p{font-size:13px; color:var(--ink-soft); margin-top:16px; max-width:230px; line-height:1.6;}
+.footer-col h5{font-size:12.5px; font-family:var(--font-mono); color:var(--brass-deep); margin-bottom:16px;}
+.footer-col a{display:block; font-size:13.5px; color:var(--ink-soft); margin-bottom:11px;}
+.footer-col a:hover{color:var(--ink);}
+.footer-bottom{border-top:1px solid var(--rule); padding:22px 0; display:flex; justify-content:space-between; font-size:12.5px; color:var(--ink-soft);}
+.footer-bottom a{margin-left:20px; color:var(--ink-soft);}
+
+@media (max-width:960px){
+  nav.primary{display:none;}
+  .footer-grid{grid-template-columns:1fr 1fr; gap:30px;}
+}
+@media (max-width:640px){
+  .footer-grid{grid-template-columns:1fr;}
+}

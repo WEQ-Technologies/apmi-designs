@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" type="image/png" href="/src/assets/images/apmi-fav-icon.png">
+<link rel="stylesheet" href="/src/partials/layout.css">
 <title>APMI — Redesign Mockup</title>
 <!-- Typeface system: Times New Roman (display) + Helvetica (content) — system fonts, no web-font load -->
 
@@ -35,41 +36,8 @@
     -webkit-font-smoothing:antialiased;
   }
   a{color:inherit; text-decoration:none;}
-  .wrap{max-width:1180px; margin:0 auto; padding:0 40px;}
+  .wrap{max-width:1180px; margin:0 auto;}
   img{display:block; max-width:100%;}
-
-  /* ---------- utility bar ---------- */
-  .utility{background:var(--ink); color:#D9DCE4; font-size:13px;}
-  .utility .wrap{display:flex; justify-content:space-between; align-items:center; height:38px;}
-  .utility-links{display:flex; gap:18px;}
-  .utility-links a{opacity:.82; font-size:12.5px; white-space:nowrap; transition:opacity .15s;}
-  .utility-links a:hover{opacity:1;}
-  .utility-tag{font-family:var(--font-mono); font-size:11px; letter-spacing:.02em; opacity:.65;}
-
-  /* ---------- header ---------- */
-  header{background:var(--paper-raised); border-bottom:1px solid var(--rule);}
-  .header-row{display:flex; align-items:center; justify-content:space-between; height:84px;}
-  .logo{display:flex; align-items:baseline; gap:10px;}
-  .logo-mark{font-family:var(--font-display); font-weight:600; font-size:28px; letter-spacing:-.01em; color:var(--ink);}
-  .logo-img{height:40px; width:auto; display:block;}
-  .logo-sub{font-size:11px; color:var(--ink-soft); max-width:150px; line-height:1.25; border-left:1px solid var(--rule-strong); padding-left:10px;}
-  nav.primary{display:flex; gap:34px;}
-  nav.primary a{font-size:14.5px; color:var(--ink); position:relative; padding:6px 0;}
-  nav.primary a:hover{color:var(--brass-deep);}
-  .nav-dropdown{position:relative;}
-  .nav-dropdown > a{display:inline-flex; align-items:center; gap:4px;}
-  .nav-dropdown .caret{display:inline-block; transition:transform .18s ease;}
-  .nav-dropdown:hover .caret{transform:rotate(180deg);}
-  .dropdown-menu{position:absolute; top:100%; left:-18px; padding-top:16px; opacity:0; visibility:hidden; transform:translateY(4px); transition:opacity .18s ease, transform .18s ease, visibility .18s;}
-  .dropdown-menu-inner{min-width:280px; background:var(--paper-raised); border:1px solid var(--rule); box-shadow:0 16px 40px -20px rgba(15,42,77,.32); border-radius:3px; padding:8px 0;}
-  .nav-dropdown:hover .dropdown-menu{opacity:1; visibility:visible; transform:translateY(0);}
-  nav.primary .dropdown-menu a{position:static; display:block; padding:10px 20px; font-size:13.5px; color:var(--ink); white-space:nowrap;}
-  nav.primary .dropdown-menu a::after{content:none;}
-  nav.primary .dropdown-menu a:hover{color:var(--brand-deep); background:var(--brand-tint);}
-  .header-actions{display:flex; align-items:center; gap:18px;}
-  .icon-btn{width:34px; height:34px; display:flex; align-items:center; justify-content:center; border:1px solid var(--rule-strong); border-radius:3px; cursor:pointer; color:var(--ink);}
-  .btn-primary{background:var(--ink); color:var(--white); font-size:13.5px; padding:10px 20px; border-radius:3px; font-weight:500;}
-  .btn-primary:hover{background:var(--brass-deep);}
 
   /* ---------- hero ---------- */
   .hero{background:var(--ink); color:var(--paper); position:relative; overflow:hidden;}
@@ -198,24 +166,11 @@
   .newsletter-form input::placeholder{color:#6E7891;}
   .newsletter-form button{background:var(--brass); color:var(--ink); font-weight:600; font-size:13.5px; padding:12px 22px; border-radius:3px;}
 
-  /* ---------- footer ---------- */
-  footer{background:var(--paper-raised); border-top:1px solid var(--rule); padding-top:60px;}
-  .footer-grid{display:grid; grid-template-columns:1.4fr repeat(4,1fr); gap:40px; padding-bottom:50px;}
-  .footer-brand .logo-mark{font-size:24px;}
-  .footer-brand p{font-size:13px; color:var(--ink-soft); margin-top:16px; max-width:230px; line-height:1.6;}
-  .footer-col h5{font-size:12.5px; font-family:var(--font-mono); color:var(--brass-deep); margin-bottom:16px;}
-  .footer-col a{display:block; font-size:13.5px; color:var(--ink-soft); margin-bottom:11px;}
-  .footer-col a:hover{color:var(--ink);}
-  .footer-bottom{border-top:1px solid var(--rule); padding:22px 0; display:flex; justify-content:space-between; font-size:12.5px; color:var(--ink-soft);}
-  .footer-bottom a{margin-left:20px; color:var(--ink-soft);}
-
   @media (max-width:980px){
     .hero .wrap, .membership .wrap{grid-template-columns:1fr;}
     .mandate-grid, .news-grid{grid-template-columns:repeat(2,1fr);}
     .statband .wrap{grid-template-columns:repeat(2,1fr);}
-    .footer-grid{grid-template-columns:repeat(2,1fr);}
     .report-card{flex-basis:calc((100% - 28px)/2);}
-    nav.primary{display:none;}
   }
   @media (max-width:640px){
     .report-card{flex-basis:88%;}
@@ -225,34 +180,16 @@
      POLISH LAYER — motion, depth, imagery
      ============================================================ */
   html{scroll-behavior:smooth;}
-  #regulatory{scroll-margin-top:90px;}
-
-  /* --- sticky header that reacts to scroll --- */
-  header{position:sticky; top:0; z-index:60; transition:box-shadow .35s ease;}
-  header.scrolled{box-shadow:0 1px 0 rgba(15,42,77,.06), 0 16px 40px -20px rgba(15,42,77,.32);}
-  .header-row{transition:height .35s ease;}
-  header.scrolled .header-row{height:64px;}
-  .logo-img{transition:height .35s ease;}
-  header.scrolled .logo-img{height:32px;}
-
-  /* --- animated nav underline --- */
-  nav.primary a::after{
-    content:''; position:absolute; left:0; right:0; bottom:0; height:2px;
-    background:var(--brass-deep); border-radius:2px;
-    transform:scaleX(0); transform-origin:right center;
-    transition:transform .32s cubic-bezier(.16,.84,.44,1);
-  }
-  nav.primary a:hover::after{transform:scaleX(1); transform-origin:left center;}
+  #regulatory,#reports,#membership,#events{scroll-margin-top:90px;}
 
   /* --- button micro-interactions --- */
-  .btn-primary,.btn-hero-primary,.btn-hero-ghost,.membership-btn,.newsletter-form button,.icon-btn{
+  .btn-hero-primary,.btn-hero-ghost,.membership-btn,.newsletter-form button{
     transition:transform .2s ease, background .2s ease, box-shadow .2s ease, border-color .2s ease, color .2s ease;
   }
-  .btn-primary:hover,.btn-hero-primary:hover,.membership-btn:hover,.newsletter-form button:hover{
+  .btn-hero-primary:hover,.membership-btn:hover,.newsletter-form button:hover{
     transform:translateY(-2px); box-shadow:0 12px 26px -12px rgba(198,149,47,.6);
   }
   .btn-hero-ghost:hover{transform:translateY(-2px); background:rgba(255,255,255,.04);}
-  .icon-btn:hover{background:var(--ink); color:#fff; border-color:var(--ink);}
 
   /* --- section links & inline arrows --- */
   .section-link,.event-link,.report-cta,.news-cta{transition:color .2s ease, letter-spacing .2s ease;}
@@ -411,51 +348,7 @@
 </head>
 <body>
 
-  <div class="utility">
-    <div class="wrap">
-      <div class="utility-links">
-        <!-- <a href="https://www.apmiindia.org/apmi/login.htm" target="_blank" rel="noopener">Member Login</a> -->
-        <a href="https://www.apmiindia.org/apmi/DistributorLogin.htm" target="_blank" rel="noopener">Distributor Login</a>
-        <a href="https://www.apmiindia.org/apmi/Registration.htm?action=registration" target="_blank" rel="noopener">Member Registration</a>
-        <a href="https://www.apmiindia.org/apmi/DistributorOnBoarding.htm?action=nismconsentregister" target="_blank" rel="noopener">Distributor Registration</a>
-      </div>
-      <div class="utility-tag">SEBI recognised supervisory body — Reg. under IPMS Regulations, 2020</div>
-    </div>
-  </div>
-
-  <header>
-    <div class="wrap header-row">
-      <a class="logo" href="/design1">
-        <img class="logo-img" src="/src/assets/images/apmi-logo.png" alt="APMI - Association of Portfolio Managers in India">
-      </a>
-      <nav class="primary">
-        <a href="/about">About Us</a>
-        <a href="#">Regulatory &amp; Circulars</a>
-        <a href="#">Membership</a>
-        <a href="#">Compliance &amp; NISM</a>
-        <div class="nav-dropdown">
-          <a href="#">Reports &amp; Insights <svg class="caret" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <div class="dropdown-menu">
-            <div class="dropdown-menu-inner">
-              <a href="https://insights.apmiindia.org/dashboard" target="_blank" rel="noopener">APMI Insights</a>
-              <a href="https://www.apmiindia.org/apmi/welcomeiaperformance.htm?action=PMSmenu" target="_blank" rel="noopener">IA Performance Report</a>
-              <a href="https://www.apmiindia.org/apmi/IATurnoverReportUtility.htm?action=loadIATurnoverPage" target="_blank" rel="noopener">IA Turnover Report</a>
-              <a href="https://www.apmiindia.org/apmi/IACompare.htm?action=iacomaprepage" target="_blank" rel="noopener">IA Comparison Report</a>
-              <a href="https://www.apmiindia.org/apmi/WSIAConsolidateReport.htm?action=showReportMenu" target="_blank" rel="noopener">Consolidated IA Performance Report</a>
-              <a href="https://www.apmiindia.org/apmi/pmsdistributordetailsweb.htm" target="_blank" rel="noopener">APRN Holder Details</a>
-            </div>
-          </div>
-        </div>
-        <a href="#">Events</a>
-      </nav>
-      <div class="header-actions">
-        <div class="icon-btn" title="Search">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </div>
-        <a class="btn-primary" target="_blank" href="https://www.apmiindia.org/apmi/login.htm">Member login</a>
-      </div>
-    </div>
-  </header>
+  <script src="/src/partials/header.js" data-active="design1"></script>
 
   <section class="hero" style="padding-top:0; padding-bottom:0;">
     <div class="hero-bg">
@@ -463,7 +356,7 @@
     </div>
     <div class="wrap">
       <div data-reveal>
-        <div class="hero-eyebrow">Est. 2022 — recognised by SEBI</div>
+        <!-- <div class="hero-eyebrow">Est. 2022 — recognised by SEBI</div> -->
         <h1>The <span class="accent">collective voice</span> of India's portfolio management industry.</h1>
         <p>APMI represents SEBI-registered portfolio managers and distributors, shaping industry standards, driving compliance, and protecting investor interests across India's growing PMS ecosystem.</p>
         <div class="hero-ctas">
@@ -822,7 +715,7 @@
     </div>
   </section>
 
-  <section style="padding-top:0;">
+  <section id="reports" style="padding-top:0;">
     <div class="wrap">
       <div class="section-head" data-reveal>
         <div>
@@ -905,7 +798,7 @@
     </div>
   </section>
 
-  <section class="membership">
+  <section id="membership" class="membership">
     <div class="wrap">
       <div data-reveal>
         <div class="membership-kicker">Membership</div>
@@ -935,7 +828,7 @@
     </div>
   </section>
 
-  <section>
+  <section id="events">
     <div class="wrap">
       <div class="section-head" data-reveal>
         <div>
@@ -1015,52 +908,7 @@
     </div>
   </div>
 
-  <footer>
-    <div class="wrap">
-      <div class="footer-grid" data-reveal data-stagger>
-        <div class="footer-brand">
-          <img class="logo-img" src="/src/assets/images/apmi-logo.png" alt="APMI - Association of Portfolio Managers in India">
-          <p>Association of Portfolio Managers in India — the SEBI-recognised supervisory body for the portfolio management industry.</p>
-        </div>
-        <div class="footer-col">
-          <h5>About</h5>
-          <a href="/about">About APMI</a>
-          <a href="/about#charter">Charter</a>
-          <a href="/about#board">Board of directors</a>
-          <a href="/about#committees">Working committees</a>
-          <a href="/about#documents">Annual reports</a>
-        </div>
-        <div class="footer-col">
-          <h5>Regulatory</h5>
-          <a href="#">SEBI circulars</a>
-          <a href="#">APMI circulars</a>
-          <a href="#">Consultation papers</a>
-          <a href="#">Compliance Sutra</a>
-        </div>
-        <div class="footer-col">
-          <h5>Membership</h5>
-          <a href="#">Become a member</a>
-          <a href="#">Fee structure</a>
-          <a href="#">Distributor registration</a>
-          <a href="#">Member dashboard</a>
-        </div>
-        <div class="footer-col">
-          <h5>Contact</h5>
-          <a href="#">Get in touch</a>
-          <a href="#">Portal help</a>
-          <a href="#">Grievance redressal</a>
-          <a href="#">LinkedIn</a>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <div>© 2026 APMI. All rights reserved.</div>
-        <div>
-          <a href="/src/assets/pdf/Terms-and-conditions/Privacy_policy_apmi.pdf" target="_blank" rel="noopener">Privacy notice</a>
-          <a href="/src/assets/pdf/Terms-and-conditions/Terms_of_use_apmi.pdf" target="_blank" rel="noopener">Terms of use</a>
-        </div>
-      </div>
-    </div>
-  </footer>
+  <script src="/src/partials/footer.js"></script>
 
 <script>
 (function(){
