@@ -11,7 +11,7 @@
         '<div class="footer-grid" data-reveal data-stagger>' +
           '<div class="footer-brand">' +
             '<img class="logo-img" src="/src/assets/images/apmi-logo.png" alt="APMI - Association of Portfolio Managers in India">' +
-            '<p>Association of Portfolio Managers in India — the SEBI-recognised supervisory body for the portfolio management industry.</p>' +
+            '<p>Association of Portfolio Managers in India — the SEBI-registered supervisory body for the portfolio management industry.</p>' +
           '</div>' +
           '<div class="footer-col">' +
             '<h5>About</h5>' +

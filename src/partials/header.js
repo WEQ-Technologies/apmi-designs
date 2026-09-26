@@ -22,10 +22,7 @@
           '<a class="utility-btn" href="https://www.apmiindia.org/apmi/DistributorLogin.htm" target="_blank" rel="noopener">Distributor Login</a>' +
           '<a class="utility-btn utility-btn-accent" href="https://www.apmiindia.org/apmi/Registration.htm?action=registration" target="_blank" rel="noopener">Member Registration</a>' +
           '<a class="utility-btn utility-btn-accent" href="https://www.apmiindia.org/apmi/DistributorOnBoarding.htm?action=nismconsentregister" target="_blank" rel="noopener">Distributor Registration</a>' +
-        '</div>' +
-        '<div class="lang-toggle" role="group" aria-label="Language">' +
-          '<button type="button" class="lang-btn active" data-lang="en">EN</button>' +
-          '<button type="button" class="lang-btn" data-lang="hi">HIN</button>' +
+          '<a class="utility-btn utility-btn-accent" href="https://www.apmiindia.org/apmi/login.htm" target="_blank" rel="noopener">Member login</a>' +
         '</div>' +
       '</div>' +
     '</div>' +
@@ -55,7 +52,10 @@
           '<a href="' + prefix + '#events">Events</a>' +
         '</nav>' +
         '<div class="header-actions">' +
-          '<a class="btn-primary" href="https://www.apmiindia.org/apmi/login.htm" target="_blank" rel="noopener">Member login</a>' +
+          '<div class="lang-toggle" role="group" aria-label="Language">' +
+            '<button type="button" class="lang-btn active" data-lang="en">EN</button>' +
+            '<button type="button" class="lang-btn" data-lang="hi">HIN</button>' +
+          '</div>' +
         '</div>' +
       '</div>' +
     '</header>';
