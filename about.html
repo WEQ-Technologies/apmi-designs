@@ -793,7 +793,7 @@
     overflow:hidden;
   }
   .gov-slider-track{
-    display:flex;
+    display:none;
     gap:18px;
     overflow-x:auto;
     scroll-behavior:smooth;
@@ -802,6 +802,7 @@
     padding:6px 2px 14px;
     scroll-snap-type:x mandatory;
   }
+  .gov-slider-track.active{display:flex;}
   .gov-slider-track::-webkit-scrollbar{display:none;}
 
   /* Current Board: Chairman + Vice Chairman row, Directors in a wrapping grid */
@@ -2207,31 +2208,30 @@
             <h3>APMI Board (Previous Years)</h3>
             <!-- Filter Pills for Previous Tenures -->
             <div class="prev-filter-tabs">
-              <button type="button" class="prev-filter-pill active" onclick="filterHistoricalSlider('all', this)">All Tenures</button>
-              <button type="button" class="prev-filter-pill" onclick="filterHistoricalSlider('foundation', this)">Dec 2021 Foundation</button>
-              <button type="button" class="prev-filter-pill" onclick="filterHistoricalSlider('fy2223', this)">FY 22–23</button>
-              <button type="button" class="prev-filter-pill" onclick="filterHistoricalSlider('fy2324', this)">FY 23–24</button>
-              <button type="button" class="prev-filter-pill" onclick="filterHistoricalSlider('fy2425', this)">FY 24–25</button>
-              <button type="button" class="prev-filter-pill" onclick="filterHistoricalSlider('fy2526', this)">FY 25–26</button>
+              <button type="button" class="prev-filter-pill active" onclick="switchPrevBoardPanel('all', this)">All Tenures</button>
+              <button type="button" class="prev-filter-pill" onclick="switchPrevBoardPanel('foundation', this)">Dec 2021 Foundation</button>
+              <button type="button" class="prev-filter-pill" onclick="switchPrevBoardPanel('fy2223', this)">FY 22–23</button>
+              <button type="button" class="prev-filter-pill" onclick="switchPrevBoardPanel('fy2324', this)">FY 23–24</button>
+              <button type="button" class="prev-filter-pill" onclick="switchPrevBoardPanel('fy2425', this)">FY 24–25</button>
+              <button type="button" class="prev-filter-pill" onclick="switchPrevBoardPanel('fy2526', this)">FY 25–26</button>
             </div>
           </div>
           <div class="gov-bar-controls">
-            <span class="slider-counter-text" id="prev-counter-text">Archive Council</span>
-            <button type="button" class="slider-arrow-btn" onclick="slideGovTrack('prev-board-track', -1)" aria-label="Slide Previous">
+            <span class="slider-counter-text" id="prev-counter-text">22 Governing Members</span>
+            <button type="button" class="slider-arrow-btn" onclick="slidePrevBoardTrack(-1)" aria-label="Slide Previous">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="15 18 9 12 15 6"/></svg>
             </button>
-            <button type="button" class="slider-arrow-btn" onclick="slideGovTrack('prev-board-track', 1)" aria-label="Slide Next">
+            <button type="button" class="slider-arrow-btn" onclick="slidePrevBoardTrack(1)" aria-label="Slide Next">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="9 18 15 12 9 6"/></svg>
             </button>
           </div>
         </div>
 
         <div class="gov-slider-viewport">
-          <div class="gov-slider-track" id="prev-board-track">
-            
+          <div class="gov-slider-track active" data-panel="all" id="prev-board-track">
+
             <!-- HISTORIC 1: Biharilal Deora (Past Chairman) -->
             <div class="gov-profile-card gov-card-historical" data-tenure="fy2223 fy2324 fy2425 fy2526" tabindex="0">
-              <span class="gov-card-top-tag tag-gold">Past Chairman</span>
               <div class="gov-card-fallback-avatar">BD</div>
               <img class="gov-card-photo" src="/images/board/biharilal-deora.jpg" alt="Mr. Biharilal Deora" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity='0'" />
               <div class="gov-card-static-name-strip">
@@ -2248,7 +2248,6 @@
 
             <!-- HISTORIC 2: Sushant Bhansali (Past Vice Chairman) -->
             <div class="gov-profile-card gov-card-historical" data-tenure="fy2223 fy2324 fy2425 fy2526" tabindex="0">
-              <span class="gov-card-top-tag tag-gold">Past Vice Chairman</span>
               <div class="gov-card-fallback-avatar">SB</div>
               <img class="gov-card-photo" src="/images/board/sushant-bhansali.jpg" alt="Mr. Sushant Bhansali" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity='0'" />
               <div class="gov-card-static-name-strip">
@@ -2265,7 +2264,6 @@
 
             <!-- HISTORIC 3: Neeraj Choksi (Founding Chairman) -->
             <div class="gov-profile-card gov-card-historical" data-tenure="foundation fy2223 fy2324" tabindex="0">
-              <span class="gov-card-top-tag tag-gold">Founding Chairman</span>
               <div class="gov-card-fallback-avatar">NC</div>
               <div class="gov-card-static-name-strip">
                 <span class="static-role">Founding Chairman</span>
@@ -2281,7 +2279,6 @@
 
             <!-- HISTORIC 4: Saurabh Mukherjea (Founding Vice Chairman) -->
             <div class="gov-profile-card gov-card-historical" data-tenure="foundation fy2223 fy2324" tabindex="0">
-              <span class="gov-card-top-tag tag-gold">Founding Vice Chair</span>
               <div class="gov-card-fallback-avatar">SM</div>
               <div class="gov-card-static-name-strip">
                 <span class="static-role">Founding Vice Chairman</span>
@@ -2297,7 +2294,6 @@
 
             <!-- HISTORIC 5: Vikas Vijaykumar Khemani (Director, FY 25–26) -->
             <div class="gov-profile-card gov-card-historical" data-tenure="fy2526" tabindex="0">
-              <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">VK</div>
               <img class="gov-card-photo" src="/images/board/vikas-khemani.jpg" alt="Mr. Vikas Vijaykumar Khemani" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity='0'" />
               <div class="gov-card-static-name-strip">
@@ -2314,7 +2310,6 @@
 
             <!-- HISTORIC 6: Sandeep Jethwani (Director, FY 24–26) -->
             <div class="gov-profile-card gov-card-historical" data-tenure="fy2425 fy2526" tabindex="0">
-              <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">SJ</div>
               <img class="gov-card-photo" src="/images/board/sandeep-jethwani.jpg" alt="Mr. Sandeep Jethwani" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity='0'" />
               <div class="gov-card-static-name-strip">
@@ -2331,7 +2326,6 @@
 
             <!-- HISTORIC 7: Radhika Gupta (Founding Director) -->
             <div class="gov-profile-card gov-card-historical" data-tenure="fy2223" tabindex="0">
-              <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">RG</div>
               <div class="gov-card-static-name-strip">
                 <span class="static-role">Director FY 22–23</span>
@@ -2347,7 +2341,6 @@
 
             <!-- HISTORIC 8: Amisha Niraj Vohra -->
             <div class="gov-profile-card gov-card-historical" data-tenure="fy2223 fy2324 fy2425" tabindex="0">
-              <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">AV</div>
               <div class="gov-card-static-name-strip">
                 <span class="static-role">Director FY 22–25</span>
@@ -2363,7 +2356,6 @@
 
             <!-- HISTORIC 9: Sunil Rohokale -->
             <div class="gov-profile-card gov-card-historical" data-tenure="fy2425 fy2526" tabindex="0">
-              <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">SR</div>
               <div class="gov-card-static-name-strip">
                 <span class="static-role">Director FY 24–26</span>
@@ -2379,7 +2371,6 @@
 
             <!-- HISTORIC 10: Hiren Haresh Ved -->
             <div class="gov-profile-card gov-card-historical" data-tenure="fy2223 fy2324 fy2425" tabindex="0">
-              <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">HV</div>
               <div class="gov-card-static-name-strip">
                 <span class="static-role">Director FY 22–25</span>
@@ -2395,7 +2386,6 @@
 
             <!-- HISTORIC 11: Aashish Somaiya (Founding Director) -->
             <div class="gov-profile-card gov-card-historical" data-tenure="foundation" tabindex="0">
-              <span class="gov-card-top-tag">Founding Member</span>
               <div class="gov-card-fallback-avatar">AS</div>
               <div class="gov-card-static-name-strip">
                 <span class="static-role">Incorporation 2021</span>
@@ -2411,7 +2401,6 @@
 
             <!-- HISTORIC 12: Deepak Shenoy -->
             <div class="gov-profile-card gov-card-historical" data-tenure="fy2324 fy2425 fy2526" tabindex="0">
-              <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">DS</div>
               <div class="gov-card-static-name-strip">
                 <span class="static-role">Director FY 23–26</span>
@@ -2427,7 +2416,6 @@
 
             <!-- HISTORIC 13: Ayush Mittal -->
             <div class="gov-profile-card gov-card-historical" data-tenure="fy2324 fy2425 fy2526" tabindex="0">
-              <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">AM</div>
               <div class="gov-card-static-name-strip">
                 <span class="static-role">Director FY 23–26</span>
@@ -2443,7 +2431,6 @@
 
             <!-- HISTORIC 14: Manish Bhandari -->
             <div class="gov-profile-card gov-card-historical" data-tenure="fy2324 fy2425 fy2526" tabindex="0">
-              <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">MB</div>
               <div class="gov-card-static-name-strip">
                 <span class="static-role">Director FY 23–26</span>
@@ -2459,7 +2446,6 @@
 
             <!-- HISTORIC 15: Hemant Desai -->
             <div class="gov-profile-card gov-card-historical" data-tenure="fy2223 fy2324" tabindex="0">
-              <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">HD</div>
               <div class="gov-card-static-name-strip">
                 <span class="static-role">Director FY 22–24</span>
@@ -2475,7 +2461,6 @@
 
             <!-- HISTORIC 16: Sameer Shah -->
             <div class="gov-profile-card gov-card-historical" data-tenure="fy2223" tabindex="0">
-              <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">SS</div>
               <div class="gov-card-static-name-strip">
                 <span class="static-role">Director FY 22–23</span>
@@ -2491,7 +2476,6 @@
 
             <!-- HISTORIC 17: Shivashish Gupta -->
             <div class="gov-profile-card gov-card-historical" data-tenure="fy2223" tabindex="0">
-              <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">SG</div>
               <div class="gov-card-static-name-strip">
                 <span class="static-role">Director FY 22–23</span>
@@ -2507,7 +2491,6 @@
 
             <!-- HISTORIC 18: Sonal Minhas -->
             <div class="gov-profile-card gov-card-historical" data-tenure="fy2223 fy2324 fy2425" tabindex="0">
-              <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">SM</div>
               <div class="gov-card-static-name-strip">
                 <span class="static-role">Director FY 22–25</span>
@@ -2523,7 +2506,6 @@
 
             <!-- HISTORIC 19: Bhavin Shah -->
             <div class="gov-profile-card gov-card-historical" data-tenure="fy2324 fy2425 fy2526" tabindex="0">
-              <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">BS</div>
               <div class="gov-card-static-name-strip">
                 <span class="static-role">Director FY 23–26</span>
@@ -2539,7 +2521,6 @@
 
             <!-- HISTORIC 20: Vivek Vasudevan -->
             <div class="gov-profile-card gov-card-historical" data-tenure="fy2223 fy2425 fy2526" tabindex="0">
-              <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">VV</div>
               <div class="gov-card-static-name-strip">
                 <span class="static-role">Director FY 22–26</span>
@@ -2555,7 +2536,6 @@
 
             <!-- HISTORIC 21: Jatin Khemani -->
             <div class="gov-profile-card gov-card-historical" data-tenure="fy2526" tabindex="0">
-              <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">JK</div>
               <div class="gov-card-static-name-strip">
                 <span class="static-role">Director FY 25–26</span>
@@ -2571,7 +2551,6 @@
 
             <!-- HISTORIC 22: Rajiv Vijay Shastri -->
             <div class="gov-profile-card gov-card-historical" data-tenure="fy2526" tabindex="0">
-              <span class="gov-card-top-tag">Past Director</span>
               <div class="gov-card-fallback-avatar">RS</div>
               <div class="gov-card-static-name-strip">
                 <span class="static-role">Director FY 25–26</span>
@@ -2586,6 +2565,701 @@
             </div>
 
           </div>
+
+          <!-- PANEL: Dec 2021 Foundation -->
+          <div class="gov-slider-track" data-panel="foundation">
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">NC</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Founding Chairman</span>
+                <h4>Mr. Neeraj Choksi</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Founding Chairman</span>
+                <div class="drawer-name">Mr. Neeraj Choksi</div>
+                <div class="drawer-firm">NJ Asset Management Private Limited</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Chairman &bull; Dec 2021 – FY 2023–24</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">SM</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Founding Vice Chairman</span>
+                <h4>Mr. Saurabh Mukherjea</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Founding Vice Chairman</span>
+                <div class="drawer-name">Mr. Saurabh Mukherjea</div>
+                <div class="drawer-firm">Marcellus Investment Managers Pvt. Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Vice Chairman &bull; Dec 2021 – FY 2023–24</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">AS</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Incorporation 2021</span>
+                <h4>Mr. Aashish Somaiya</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Founding Director</span>
+                <div class="drawer-name">Mr. Aashish Somaiya</div>
+                <div class="drawer-firm">WhiteOak Capital Management</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Dec 31, 2021 Incorporation</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PANEL: FY 22-23 -->
+          <div class="gov-slider-track" data-panel="fy2223">
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">NC</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Founding Chairman</span>
+                <h4>Mr. Neeraj Choksi</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Founding Chairman</span>
+                <div class="drawer-name">Mr. Neeraj Choksi</div>
+                <div class="drawer-firm">NJ Asset Management Private Limited</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Chairman &bull; Dec 2021 – FY 2023–24</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">SM</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Founding Vice Chairman</span>
+                <h4>Mr. Saurabh Mukherjea</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Founding Vice Chairman</span>
+                <div class="drawer-name">Mr. Saurabh Mukherjea</div>
+                <div class="drawer-firm">Marcellus Investment Managers Pvt. Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Vice Chairman &bull; Dec 2021 – FY 2023–24</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">AV</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 22–25</span>
+                <h4>Ms. Amisha Niraj Vohra</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Ms. Amisha Niraj Vohra</div>
+                <div class="drawer-firm">Prabhudas Lilladher Advisory Services</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2022–25</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">BD</div>
+              <img class="gov-card-photo" src="/images/board/biharilal-deora.jpg" alt="Mr. Biharilal Deora" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity='0'" />
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Chairman (FY 24–26)</span>
+                <h4>Mr. Biharilal Deora</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Past Chairman</span>
+                <div class="drawer-name">Mr. Biharilal Deora</div>
+                <div class="drawer-firm">Abakkus Asset Manager Private Limited</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Director FY 2022–24 &bull; Chairman FY 2024–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">HD</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 22–24</span>
+                <h4>Mr. Hemant Desai</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Hemant Desai</div>
+                <div class="drawer-firm">Firm details not available</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2022–24</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">HV</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 22–25</span>
+                <h4>Mr. Hiren Haresh Ved</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Hiren Haresh Ved</div>
+                <div class="drawer-firm">Alchemy Capital Management Pvt. Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2022–25</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">RG</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 22–23</span>
+                <h4>Ms. Radhika Gupta</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Ms. Radhika Gupta</div>
+                <div class="drawer-firm">Edelweiss Asset Management Limited</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Operational Board FY 2022–23</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">SS</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 22–23</span>
+                <h4>Mr. Sameer Shah</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Sameer Shah</div>
+                <div class="drawer-firm">Firm details not available</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Operational Board FY 2022–23</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">SG</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 22–23</span>
+                <h4>Mr. Shivashish Gupta</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Shivashish Gupta</div>
+                <div class="drawer-firm">Firm details not available</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Operational Board FY 2022–23</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">SM</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 22–25</span>
+                <h4>Mr. Sonal Minhas</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Sonal Minhas</div>
+                <div class="drawer-firm">Firm details not available</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2022–25</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">SB</div>
+              <img class="gov-card-photo" src="/images/board/sushant-bhansali.jpg" alt="Mr. Sushant Bhansali" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity='0'" />
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Vice Chairman (FY 24–26)</span>
+                <h4>Mr. Sushant Bhansali</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Past Vice Chairman</span>
+                <div class="drawer-name">Mr. Sushant Bhansali</div>
+                <div class="drawer-firm">Ambit Investment Advisors Pvt Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Director FY 2022–24 &bull; Vice Chairman FY 2024–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">VV</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 22–26</span>
+                <h4>Mr. Vivek Vasudevan</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Vivek Vasudevan</div>
+                <div class="drawer-firm">Agreya Capital Advisors LLP</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2022–23, FY 2024–26</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PANEL: FY 23-24 -->
+          <div class="gov-slider-track" data-panel="fy2324">
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">NC</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Founding Chairman</span>
+                <h4>Mr. Neeraj Choksi</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Founding Chairman</span>
+                <div class="drawer-name">Mr. Neeraj Choksi</div>
+                <div class="drawer-firm">NJ Asset Management Private Limited</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Chairman &bull; Dec 2021 – FY 2023–24</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">SM</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Founding Vice Chairman</span>
+                <h4>Mr. Saurabh Mukherjea</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Founding Vice Chairman</span>
+                <div class="drawer-name">Mr. Saurabh Mukherjea</div>
+                <div class="drawer-firm">Marcellus Investment Managers Pvt. Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Vice Chairman &bull; Dec 2021 – FY 2023–24</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">AV</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 22–25</span>
+                <h4>Ms. Amisha Niraj Vohra</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Ms. Amisha Niraj Vohra</div>
+                <div class="drawer-firm">Prabhudas Lilladher Advisory Services</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2022–25</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">AM</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 23–26</span>
+                <h4>Mr. Ayush Mittal</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Ayush Mittal</div>
+                <div class="drawer-firm">Mittals Capital Advisors Pvt. Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Multi-Term Director &bull; FY 2023–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">BS</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 23–26</span>
+                <h4>Mr. Bhavin Shah</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Bhavin Shah</div>
+                <div class="drawer-firm">Sameeksha Capital Pvt Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Multi-Term Director &bull; FY 2023–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">BD</div>
+              <img class="gov-card-photo" src="/images/board/biharilal-deora.jpg" alt="Mr. Biharilal Deora" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity='0'" />
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Chairman (FY 24–26)</span>
+                <h4>Mr. Biharilal Deora</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Past Chairman</span>
+                <div class="drawer-name">Mr. Biharilal Deora</div>
+                <div class="drawer-firm">Abakkus Asset Manager Private Limited</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Director FY 2022–24 &bull; Chairman FY 2024–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">DS</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 23–26</span>
+                <h4>Mr. Deepak Shenoy</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Deepak Shenoy</div>
+                <div class="drawer-firm">Capitalmind Financial Services Pvt. Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Multi-Term Director &bull; FY 2023–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">HD</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 22–24</span>
+                <h4>Mr. Hemant Desai</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Hemant Desai</div>
+                <div class="drawer-firm">Firm details not available</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2022–24</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">HV</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 22–25</span>
+                <h4>Mr. Hiren Haresh Ved</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Hiren Haresh Ved</div>
+                <div class="drawer-firm">Alchemy Capital Management Pvt. Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2022–25</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">MB</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 23–26</span>
+                <h4>Mr. Manish Bhandari</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Manish Bhandari</div>
+                <div class="drawer-firm">Vallum Capital Advisors Pvt. Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Multi-Term Director &bull; FY 2023–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">SM</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 22–25</span>
+                <h4>Mr. Sonal Minhas</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Sonal Minhas</div>
+                <div class="drawer-firm">Firm details not available</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2022–25</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">SB</div>
+              <img class="gov-card-photo" src="/images/board/sushant-bhansali.jpg" alt="Mr. Sushant Bhansali" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity='0'" />
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Vice Chairman (FY 24–26)</span>
+                <h4>Mr. Sushant Bhansali</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Past Vice Chairman</span>
+                <div class="drawer-name">Mr. Sushant Bhansali</div>
+                <div class="drawer-firm">Ambit Investment Advisors Pvt Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Director FY 2022–24 &bull; Vice Chairman FY 2024–26</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PANEL: FY 24-25 -->
+          <div class="gov-slider-track" data-panel="fy2425">
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">BD</div>
+              <img class="gov-card-photo" src="/images/board/biharilal-deora.jpg" alt="Mr. Biharilal Deora" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity='0'" />
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Chairman (FY 24–26)</span>
+                <h4>Mr. Biharilal Deora</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Past Chairman</span>
+                <div class="drawer-name">Mr. Biharilal Deora</div>
+                <div class="drawer-firm">Abakkus Asset Manager Private Limited</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Director FY 2022–24 &bull; Chairman FY 2024–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">SB</div>
+              <img class="gov-card-photo" src="/images/board/sushant-bhansali.jpg" alt="Mr. Sushant Bhansali" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity='0'" />
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Vice Chairman (FY 24–26)</span>
+                <h4>Mr. Sushant Bhansali</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Past Vice Chairman</span>
+                <div class="drawer-name">Mr. Sushant Bhansali</div>
+                <div class="drawer-firm">Ambit Investment Advisors Pvt Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Director FY 2022–24 &bull; Vice Chairman FY 2024–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">AV</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 22–25</span>
+                <h4>Ms. Amisha Niraj Vohra</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Ms. Amisha Niraj Vohra</div>
+                <div class="drawer-firm">Prabhudas Lilladher Advisory Services</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2022–25</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">AM</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 23–26</span>
+                <h4>Mr. Ayush Mittal</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Ayush Mittal</div>
+                <div class="drawer-firm">Mittals Capital Advisors Pvt. Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Multi-Term Director &bull; FY 2023–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">BS</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 23–26</span>
+                <h4>Mr. Bhavin Shah</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Bhavin Shah</div>
+                <div class="drawer-firm">Sameeksha Capital Pvt Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Multi-Term Director &bull; FY 2023–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">DS</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 23–26</span>
+                <h4>Mr. Deepak Shenoy</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Deepak Shenoy</div>
+                <div class="drawer-firm">Capitalmind Financial Services Pvt. Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Multi-Term Director &bull; FY 2023–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">HV</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 22–25</span>
+                <h4>Mr. Hiren Haresh Ved</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Hiren Haresh Ved</div>
+                <div class="drawer-firm">Alchemy Capital Management Pvt. Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2022–25</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">MB</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 23–26</span>
+                <h4>Mr. Manish Bhandari</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Manish Bhandari</div>
+                <div class="drawer-firm">Vallum Capital Advisors Pvt. Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Multi-Term Director &bull; FY 2023–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">SJ</div>
+              <img class="gov-card-photo" src="/images/board/sandeep-jethwani.jpg" alt="Mr. Sandeep Jethwani" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity='0'" />
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 24–26</span>
+                <h4>Mr. Sandeep Jethwani</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Sandeep Jethwani</div>
+                <div class="drawer-firm">Dezerv Investments Pvt. Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2024–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">SM</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 22–25</span>
+                <h4>Mr. Sonal Minhas</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Sonal Minhas</div>
+                <div class="drawer-firm">Firm details not available</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2022–25</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">SR</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 24–26</span>
+                <h4>Mr. Sunil Rohokale</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Sunil Rohokale</div>
+                <div class="drawer-firm">ASK Asset &amp; Wealth Management Group</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Directorship Council &bull; FY 2024–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">VV</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 22–26</span>
+                <h4>Mr. Vivek Vasudevan</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Vivek Vasudevan</div>
+                <div class="drawer-firm">Agreya Capital Advisors LLP</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2022–23, FY 2024–26</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- PANEL: FY 25-26 -->
+          <div class="gov-slider-track" data-panel="fy2526">
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">BD</div>
+              <img class="gov-card-photo" src="/images/board/biharilal-deora.jpg" alt="Mr. Biharilal Deora" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity='0'" />
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Chairman (FY 24–26)</span>
+                <h4>Mr. Biharilal Deora</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Past Chairman</span>
+                <div class="drawer-name">Mr. Biharilal Deora</div>
+                <div class="drawer-firm">Abakkus Asset Manager Private Limited</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Director FY 2022–24 &bull; Chairman FY 2024–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">SB</div>
+              <img class="gov-card-photo" src="/images/board/sushant-bhansali.jpg" alt="Mr. Sushant Bhansali" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity='0'" />
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Vice Chairman (FY 24–26)</span>
+                <h4>Mr. Sushant Bhansali</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Past Vice Chairman</span>
+                <div class="drawer-name">Mr. Sushant Bhansali</div>
+                <div class="drawer-firm">Ambit Investment Advisors Pvt Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Director FY 2022–24 &bull; Vice Chairman FY 2024–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">AM</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 23–26</span>
+                <h4>Mr. Ayush Mittal</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Ayush Mittal</div>
+                <div class="drawer-firm">Mittals Capital Advisors Pvt. Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Multi-Term Director &bull; FY 2023–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">BS</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 23–26</span>
+                <h4>Mr. Bhavin Shah</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Bhavin Shah</div>
+                <div class="drawer-firm">Sameeksha Capital Pvt Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Multi-Term Director &bull; FY 2023–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">DS</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 23–26</span>
+                <h4>Mr. Deepak Shenoy</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Deepak Shenoy</div>
+                <div class="drawer-firm">Capitalmind Financial Services Pvt. Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Multi-Term Director &bull; FY 2023–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">JK</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 25–26</span>
+                <h4>Mr. Jatin Khemani</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Jatin Khemani</div>
+                <div class="drawer-firm">Stalwart Investment Advisors LLP</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2025–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">MB</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 23–26</span>
+                <h4>Mr. Manish Bhandari</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Manish Bhandari</div>
+                <div class="drawer-firm">Vallum Capital Advisors Pvt. Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Multi-Term Director &bull; FY 2023–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">RS</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 25–26</span>
+                <h4>Mr. Rajiv Vijay Shastri</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Rajiv Vijay Shastri</div>
+                <div class="drawer-firm">GoldStandard Wealth Private Limited</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2025–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">SJ</div>
+              <img class="gov-card-photo" src="/images/board/sandeep-jethwani.jpg" alt="Mr. Sandeep Jethwani" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity='0'" />
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 24–26</span>
+                <h4>Mr. Sandeep Jethwani</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Sandeep Jethwani</div>
+                <div class="drawer-firm">Dezerv Investments Pvt. Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2024–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">SR</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 24–26</span>
+                <h4>Mr. Sunil Rohokale</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Sunil Rohokale</div>
+                <div class="drawer-firm">ASK Asset &amp; Wealth Management Group</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Directorship Council &bull; FY 2024–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">VK</div>
+              <img class="gov-card-photo" src="/images/board/vikas-khemani.jpg" alt="Mr. Vikas Vijaykumar Khemani" loading="lazy" referrerpolicy="no-referrer" onerror="this.style.opacity='0'" />
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 25–26</span>
+                <h4>Mr. Vikas Vijaykumar Khemani</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Vikas Vijaykumar Khemani</div>
+                <div class="drawer-firm">Carnelian Asset Management &amp; Advisors Pvt. Ltd.</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2025–26</div>
+              </div>
+            </div>
+            <div class="gov-profile-card gov-card-historical" tabindex="0">
+              <div class="gov-card-fallback-avatar">VV</div>
+              <div class="gov-card-static-name-strip">
+                <span class="static-role">Director FY 22–26</span>
+                <h4>Mr. Vivek Vasudevan</h4>
+              </div>
+              <div class="gov-card-hover-drawer">
+                <span class="drawer-role-badge">Director</span>
+                <div class="drawer-name">Mr. Vivek Vasudevan</div>
+                <div class="drawer-firm">Agreya Capital Advisors LLP</div>
+                <div class="drawer-meta-pill"><span class="dot"></span> Governing Council &bull; FY 2022–23, FY 2024–26</div>
+              </div>
+            </div>
+          </div>
+
         </div>
 
         <!-- Statutory Notice Footer Bar with New Tab Button -->
@@ -2833,41 +3507,39 @@
     }
 
     // Governance Unified Sliders Navigation
-    function slideGovTrack(trackId, direction) {
-      const track = document.getElementById(trackId);
+    // Scroll the currently active Previous Years panel
+    function slidePrevBoardTrack(direction) {
+      const track = document.querySelector('#previous-board .gov-slider-track.active');
       if (!track) return;
       const scrollAmount = 300; // Comfortable scroll step matching card width + gap
       track.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
     }
 
-    // Historical Board Filter Tabs for Slider Cards
-    function filterHistoricalSlider(filterKey, btnEl) {
+    // Historical Board Tabs — each tab is its own pre-ordered panel
+    function switchPrevBoardPanel(panelKey, btnEl) {
       // Update active filter pill
       const pills = document.querySelectorAll('.prev-filter-pill');
       pills.forEach(p => p.classList.remove('active'));
       if (btnEl) btnEl.classList.add('active');
 
-      const cards = document.querySelectorAll('#prev-board-track .gov-profile-card');
-      let visibleCount = 0;
-      cards.forEach(card => {
-        const tenure = card.getAttribute('data-tenure') || '';
-        if (filterKey === 'all' || tenure.includes(filterKey)) {
-          card.style.display = 'flex';
-          visibleCount++;
-        } else {
-          card.style.display = 'none';
-        }
+      // Show only the matching panel
+      const panels = document.querySelectorAll('#previous-board .gov-slider-track');
+      let activePanel = null;
+      panels.forEach(panel => {
+        const isMatch = panel.getAttribute('data-panel') === panelKey;
+        panel.classList.toggle('active', isMatch);
+        if (isMatch) activePanel = panel;
       });
 
       const counter = document.getElementById('prev-counter-text');
-      if (counter) {
-        counter.textContent = `${visibleCount} Records Shown`;
+      if (counter && activePanel) {
+        const count = activePanel.querySelectorAll('.gov-profile-card').length;
+        counter.textContent = `${count} Governing Members`;
       }
 
       // Reset scroll position to beginning
-      const track = document.getElementById('prev-board-track');
-      if (track) {
-        track.scrollTo({ left: 0, behavior: 'smooth' });
+      if (activePanel) {
+        activePanel.scrollTo({ left: 0, behavior: 'smooth' });
       }
     }
 
