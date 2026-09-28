@@ -185,7 +185,7 @@
     .ticker-label{flex-basis:120px; padding-right:16px;}
     .ticker-item{padding:16px 22px;}
 
-    .statband .wrap{grid-template-columns:repeat(2,1fr);}
+    .statband .wrap{grid-template-columns:repeat(2,1fr); padding:0 28px;}
     .stat-cell{padding:28px 22px;}
 
     .mandate-grid, .news-grid{grid-template-columns:repeat(2,1fr);}
@@ -217,10 +217,12 @@
     .hero-ctas a{text-align:center;}
     .hero-stat-num{font-size:25px;}
 
-    .statband .wrap{grid-template-columns:1fr;}
-    .stat-cell{border-right:none; border-bottom:1px solid var(--rule);}
-    .stat-cell:last-child{border-bottom:none;}
-    .stat-num{font-size:30px;}
+    .statband .wrap{grid-template-columns:repeat(2,1fr); padding:0 20px;}
+    .stat-cell{padding:22px 16px;}
+    .stat-cell:nth-child(2n){border-right:none;}
+    .stat-cell:nth-child(1),.stat-cell:nth-child(2){border-bottom:1px solid var(--rule);}
+    .stat-num{font-size:25px;}
+    .stat-label{font-size:12px;}
 
     .mandate-grid{grid-template-columns:1fr;}
     .mandate-card{padding:24px 22px;}
@@ -263,8 +265,10 @@
     .hero-panel-label{font-size:11px;}
     .hero-stat-num{font-size:22px;}
 
-    .stat-num{font-size:25px;}
-    .stat-label{font-size:12px;}
+    .statband .wrap{padding:0 16px;}
+    .stat-cell{padding:18px 14px;}
+    .stat-num{font-size:22px;}
+    .stat-label{font-size:11.5px;}
 
     .mandate-card{padding:20px 18px;}
     .mandate-card h3{font-size:17px;}
