@@ -35,8 +35,9 @@
     -webkit-font-smoothing:antialiased;
   }
   a{color:inherit; text-decoration:none;}
-  .wrap{max-width:1180px; margin:0 auto;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 40px;}
   img{display:block; max-width:100%;}
+  .utility-row{padding:8px 40px;} /* restore shared header.js utility-bar padding (loaded after layout.css) */
 
   .btn-header-cta{background:var(--ink); color:var(--white); font-size:13.5px; padding:10px 18px; border-radius:3px; font-weight:500;}
   .btn-header-cta:hover{background:var(--brass-deep);}
@@ -1586,7 +1587,11 @@
   }
 
   /* Responsive Adjustments */
-  @media (max-width: 960px){
+  @media (max-width: 980px){
+    .wrap{padding:0 28px;}
+    .utility-row{padding:8px 22px; flex-wrap:wrap; justify-content:center; row-gap:8px;}
+    .utility-links{flex-wrap:wrap; justify-content:center; row-gap:8px;}
+    section{padding:60px 0;}
     .overview-two-col-layout{grid-template-columns:1fr; gap:28px;}
     .vision-split-layout{grid-template-columns:1fr; gap:28px;}
     .simple-two-col{grid-template-columns:1fr; gap:28px;}
@@ -1601,17 +1606,124 @@
     .committee-row-card.row-reverse .committee-thumb-box{order:1;}
     .committee-row-card.row-reverse .committee-content-box{order:2;}
     .committee-thumb-box{min-height:220px;}
+
+    .about-hero{padding:64px 0 56px;}
+    .about-hero h1{font-size:38px;}
+    .hero-subhead{font-size:15.5px;}
+
+    .section-title{font-size:29px;}
+    .gov-unified-header .section-title{font-size:27px;}
+
+    .timeline-year{font-size:24px;}
   }
   @media (max-width: 640px){
+    .wrap{padding:0 20px;}
+    .utility-row{padding:8px 18px;}
+    .utility-btn{padding:6px 12px; font-size:11px;}
+    .header-actions{gap:10px;}
+    section{padding:44px 0;}
+    .section-head{margin-bottom:30px; padding-bottom:18px;}
+
     .board-members-grid{grid-template-columns:1fr;}
     .archive-panel.active{grid-template-columns:1fr;}
     .timeline-track-rail{left:16px;}
-    .timeline-block{padding-left:48px;}
+    .timeline-block{padding-left:48px; margin-bottom:40px;}
     .timeline-node{left:5px;}
     .timeline-card{padding:22px 20px;}
     .gov-profile-card{flex:0 0 240px; width:240px; height:300px;}
     .gov-directors-grid{grid-template-columns:1fr;}
-    .about-hero h1{font-size:36px;}
+    .about-hero h1{font-size:30px;}
+
+    .about-hero{padding:52px 0 44px;}
+    .hero-eyebrow{font-size:12px; padding:5px 12px;}
+    .hero-subhead{font-size:14.5px; margin-bottom:26px;}
+    .hero-meta-badges{gap:10px;}
+    .hero-badge{padding:8px 14px; font-size:12px;}
+
+    .section-title{font-size:24px;}
+    .section-sub{font-size:14px;}
+    .simple-lead{font-size:15.5px;}
+    .simple-stat-row{gap:26px; margin-top:24px; padding-top:20px;}
+    .simple-stat .stat-num{font-size:25px;}
+    .simple-vision-points{gap:12px; margin-top:20px; padding-top:18px;}
+
+    .charter-card{padding:26px 24px;}
+    .charter-card h3{font-size:17px;}
+
+    .gov-unified-header{margin-bottom:20px;}
+    .gov-unified-header .section-title{font-size:22px;}
+    .gov-bar-title-group h3{font-size:19px;}
+    .gov-leadership-row{gap:16px;}
+    .prev-filter-pill{font-size:11px; padding:5px 11px;}
+    .slider-counter-text{font-size:11px;}
+
+    .committees-cta-card{padding:26px 22px;}
+    .committees-cta-body h2{font-size:23px;}
+    .committees-cta-icon{width:52px; height:52px;}
+
+    .timeline-year{font-size:22px;}
+    .timeline-phase-tag{font-size:11px; padding:3px 10px;}
+    .timeline-summary-list li{font-size:14px;}
+    .btn-timeline-detail{font-size:12px; padding:7px 14px;}
+
+    .newsletter .wrap{flex-direction:column; align-items:stretch; text-align:center; gap:14px; padding:30px 20px;}
+    .newsletter-form{flex-direction:column;}
+    .newsletter-form input{width:100%;}
+  }
+  @media (max-width:480px){
+    .about-hero h1{font-size:25px;}
+    .hero-subhead{font-size:14px;}
+    .hero-badge{font-size:11.5px; padding:7px 12px;}
+
+    .section-title{font-size:21px;}
+    .section-kicker{font-size:11px;}
+    .simple-stat-row{flex-wrap:wrap; gap:20px;}
+
+    .gov-profile-card{flex:0 0 210px; width:210px; height:270px;}
+    .gov-leadership-row{gap:14px;}
+    .prev-filter-tabs{gap:6px;}
+    .prev-filter-pill{font-size:10.5px; padding:5px 10px;}
+
+    .committees-cta-icon{width:44px; height:44px;}
+    .committees-cta-body h2{font-size:20px;}
+    .committees-cta-body p{font-size:13.5px;}
+    .committees-cta-btn{font-size:13px; padding:12px 18px;}
+
+    .timeline-container{padding:20px 0 40px;}
+    .timeline-block{padding-left:40px; margin-bottom:32px;}
+    .timeline-card{padding:20px 16px;}
+    .timeline-card-header{margin-bottom:14px; padding-bottom:10px;}
+    .timeline-year{font-size:19px;}
+  }
+  @media (max-width:380px){
+    .wrap{padding:0 16px;}
+    .utility-row{padding:8px 14px;}
+    .utility-btn{padding:5px 10px; font-size:10.5px;}
+    .logo-img{height:32px;}
+    section{padding:36px 0;}
+
+    .about-hero h1{font-size:22px;}
+    .hero-eyebrow{font-size:11px;}
+    .hero-badge{font-size:11px; padding:6px 10px;}
+
+    .section-title{font-size:19px;}
+    .simple-lead{font-size:14.5px;}
+    .simple-stat .stat-num{font-size:21px;}
+    .simple-stat .stat-lbl{font-size:11px;}
+
+    .charter-card{padding:20px 18px;}
+    .charter-num-badge{font-size:11px;}
+
+    .gov-profile-card{flex:0 0 185px; width:185px; height:240px;}
+    .gov-card-static-name-strip h4{font-size:14px;}
+    .gov-bar-title-group h3{font-size:17px;}
+
+    .committees-cta-card{padding:22px 18px;}
+    .committees-cta-body h2{font-size:18px;}
+
+    .timeline-year{font-size:17px;}
+    .timeline-phase-tag{font-size:10px;}
+    .timeline-summary-list li{font-size:13.5px;}
   }
 
   /* Newsletter strip (matches home page) */
