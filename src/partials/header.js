@@ -19,10 +19,10 @@
     '<div class="utility">' +
       '<div class="wrap utility-row">' +
         '<div class="utility-links">' +
-          '<a class="utility-btn" href="https://www.apmiindia.org/apmi/DistributorLogin.htm" target="_blank" rel="noopener">Distributor Login</a>' +
+          '<a class="utility-btn utility-btn-accent" href="https://www.apmiindia.org/apmi/login.htm" target="_blank" rel="noopener">Member login</a>' +
+          '<a class="utility-btn utility-btn-accent" href="https://www.apmiindia.org/apmi/DistributorLogin.htm" target="_blank" rel="noopener">Distributor Login</a>' +
           '<a class="utility-btn utility-btn-accent" href="https://www.apmiindia.org/apmi/Registration.htm?action=registration" target="_blank" rel="noopener">Member Registration</a>' +
           '<a class="utility-btn utility-btn-accent" href="https://www.apmiindia.org/apmi/DistributorOnBoarding.htm?action=nismconsentregister" target="_blank" rel="noopener">Distributor Registration</a>' +
-          '<a class="utility-btn utility-btn-accent" href="https://www.apmiindia.org/apmi/login.htm" target="_blank" rel="noopener">Member login</a>' +
         '</div>' +
       '</div>' +
     '</div>' +
