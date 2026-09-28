@@ -14,7 +14,6 @@
   var isHome = active === 'design1';
   var prefix = isHome ? '' : '/design1';
   var aboutActive = active === 'about' ? ' class="active"' : '';
-  var contactActive = active === 'contact' ? ' class="active"' : '';
 
   var html =
     '<div class="utility">' +
@@ -51,7 +50,6 @@
             '</div>' +
           '</div>' +
           '<a href="' + prefix + '#events">Events</a>' +
-          '<a href="/contact"' + contactActive + '>Contact Us</a>' +
         '</nav>' +
         '<div class="header-actions">' +
           '<div class="lang-toggle" role="group" aria-label="Language">' +

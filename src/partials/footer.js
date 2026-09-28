@@ -37,7 +37,7 @@
           '</div>' +
           '<div class="footer-col">' +
             '<h5>Contact</h5>' +
-            '<a href="/contact">Get in touch</a>' +
+            '<a href="/contact">Contact Us</a>' +
             '<a href="#">Portal help</a>' +
             '<a href="#">Grievance redressal</a>' +
             '<a href="#">LinkedIn</a>' +
