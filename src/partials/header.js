@@ -1,18 +1,18 @@
 /* =========================================================
-   SHARED SITE HEADER — used by design1.html & about.html
+   SHARED SITE HEADER — used by index.html & about.html
    Edit this file (and layout.css) to change the header everywhere.
 
    Usage:
-   <script src="/src/partials/header.js" data-active="design1"></script>
-   data-active: "design1" (home page) or "about" — controls which
+   <script src="/src/partials/header.js" data-active="home"></script>
+   data-active: "home" (home page) or "about" — controls which
    nav link gets the "active" state and whether in-page section
-   links point to "#section" (on design1 itself) or "/design1#section".
+   links point to "#section" (on the home page itself) or "/#section".
    ========================================================= */
 (function(){
   var thisScript = document.currentScript;
-  var active = (thisScript && thisScript.getAttribute('data-active')) || 'design1';
-  var isHome = active === 'design1';
-  var prefix = isHome ? '' : '/design1';
+  var active = (thisScript && thisScript.getAttribute('data-active')) || 'home';
+  var isHome = active === 'home';
+  var prefix = isHome ? '' : '/';
   var aboutActive = active === 'about' ? ' class="active"' : '';
 
   var html =
@@ -28,7 +28,7 @@
     '</div>' +
     '<header id="site-header">' +
       '<div class="wrap header-row">' +
-        '<a class="logo" href="/design1">' +
+        '<a class="logo" href="/">' +
           '<img class="logo-img" src="/src/assets/images/apmi-logo.png" alt="APMI - Association of Portfolio Managers in India">' +
         '</a>' +
         '<nav class="primary">' +
