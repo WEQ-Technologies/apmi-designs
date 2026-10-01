@@ -1,5 +1,5 @@
 /* =========================================================
-   SHARED SITE FOOTER — used by design1.html & about.html
+   SHARED SITE FOOTER — used by index.html & about.html
    Edit this file (and layout.css) to change the footer everywhere.
 
    Usage: <script src="/src/partials/footer.js"></script>
