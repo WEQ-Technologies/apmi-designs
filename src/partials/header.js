@@ -35,7 +35,23 @@
         '<nav class="primary">' +
           '<a href="/about"' + aboutActive + '>About Us</a>' +
           '<a href="' + prefix + '#regulatory">Regulatory &amp; Circulars</a>' +
-          '<a href="/membership"' + membershipActive + '>Membership</a>' +
+          '<div class="nav-dropdown">' +
+            '<a href="/membership"' + membershipActive + '>Membership <svg class="caret" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>' +
+            '<div class="dropdown-menu">' +
+              '<div class="dropdown-menu-inner">' +
+                '<a href="/src/assets/pdf/Membership/APMI_Membership_Benefits_Note_2026_27.pdf" target="_blank" rel="noopener">APMI Membership Benefits Note (2026-27)</a>' +
+                '<a href="/src/assets/pdf/Membership/APMI_Membership_Benefits_Note_2025_26.pdf" target="_blank" rel="noopener">APMI Membership Benefits Note (2025-26)</a>' +
+                '<a href="/src/assets/pdf/Membership/APMI Membership Note for FY 24-25.pdf" target="_blank" rel="noopener">APMI Membership Benefits Note (2024-25)</a>' +
+                '<a href="/src/assets/pdf/Membership/APMI_Membership_FY_2026_27.pdf" target="_blank" rel="noopener">APMI Membership FY 26-27</a>' +
+                '<a href="/src/assets/pdf/Membership/APMI_Membership_Note_FY_2025_26.pdf" target="_blank" rel="noopener">APMI Membership FY 25-26</a>' +
+                '<a href="/src/assets/pdf/Membership/APMI Membership FY 2024-2025.pdf" target="_blank" rel="noopener">APMI Membership FY 24-25</a>' +
+                '<a href="https://www.apmiindia.org/apmi/membershipDetail.htm?action=apmi_membership23_24" target="_blank" rel="noopener">APMI Membership FY 23-24</a>' +
+                '<a href="https://www.apmiindia.org/apmi/membershipDetail.htm?action=apmi_membership22_23" target="_blank" rel="noopener">APMI Membership FY 22-23</a>' +
+                '<a href="/src/assets/pdf/Membership/APMI-Refund Policy.pdf" target="_blank" rel="noopener">APMI Refund Policy</a>' +
+                '<a href="/src/assets/pdf/Membership/APMI Bank Account Details.pdf" target="_blank" rel="noopener">APMI Bank Account Details</a>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
           '<a href="#">Compliance &amp; NISM</a>' +
           '<div class="nav-dropdown">' +
             '<a href="' + prefix + '#reports">Reports &amp; Insights <svg class="caret" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>' +
@@ -77,14 +93,16 @@
   /* ---- mobile hamburger menu ---- */
   var menuToggle = document.querySelector('.menu-toggle');
   var navPrimary = document.querySelector('nav.primary');
-  var navDropdown = document.querySelector('.nav-dropdown');
-  var navDropdownToggle = navDropdown && navDropdown.querySelector(':scope > a');
+  var navDropdowns = document.querySelectorAll('.nav-dropdown');
+  var navDropdownToggles = Array.prototype.map.call(navDropdowns, function(dd){
+    return dd.querySelector(':scope > a');
+  });
   var siteHeader = document.getElementById('site-header');
 
   function closeMobileMenu(){
     if(navPrimary) navPrimary.classList.remove('mobile-open');
     if(menuToggle){ menuToggle.classList.remove('active'); menuToggle.setAttribute('aria-expanded', 'false'); }
-    if(navDropdown) navDropdown.classList.remove('dropdown-open');
+    navDropdowns.forEach(function(dd){ dd.classList.remove('dropdown-open'); });
     if(siteHeader) siteHeader.classList.remove('menu-open');
   }
 
@@ -94,22 +112,24 @@
       menuToggle.classList.toggle('active', open);
       menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       if(siteHeader) siteHeader.classList.toggle('menu-open', open);
-      if(!open && navDropdown) navDropdown.classList.remove('dropdown-open');
+      if(!open) navDropdowns.forEach(function(dd){ dd.classList.remove('dropdown-open'); });
     });
   }
 
-  if(navDropdownToggle && navDropdown){
-    navDropdownToggle.addEventListener('click', function(e){
+  navDropdowns.forEach(function(dd){
+    var toggle = dd.querySelector(':scope > a');
+    if(!toggle) return;
+    toggle.addEventListener('click', function(e){
       if(window.innerWidth <= 980){
         e.preventDefault();
-        navDropdown.classList.toggle('dropdown-open');
+        dd.classList.toggle('dropdown-open');
       }
     });
-  }
+  });
 
   if(navPrimary){
     navPrimary.querySelectorAll('a').forEach(function(a){
-      if(a === navDropdownToggle) return;
+      if(navDropdownToggles.indexOf(a) !== -1) return;
       a.addEventListener('click', closeMobileMenu);
     });
   }
