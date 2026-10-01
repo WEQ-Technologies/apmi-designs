@@ -30,7 +30,7 @@
           '</div>' +
           '<div class="footer-col">' +
             '<h5>Membership</h5>' +
-            '<a href="#">Become a member</a>' +
+            '<a href="/membership">Membership benefits &amp; documents</a>' +
             '<a href="#">Fee structure</a>' +
             '<a href="#">Distributor registration</a>' +
             '<a href="#">Member dashboard</a>' +

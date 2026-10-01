@@ -11,6 +11,10 @@
     {
       "source": "/contact",
       "destination": "/contact.html"
+    },
+    {
+      "source": "/membership",
+      "destination": "/membership.html"
     }
   ]
 }

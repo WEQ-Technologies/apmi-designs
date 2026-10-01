@@ -14,6 +14,7 @@
   var isHome = active === 'home';
   var prefix = isHome ? '' : '/';
   var aboutActive = active === 'about' ? ' class="active"' : '';
+  var membershipActive = active === 'membership' ? ' class="active"' : '';
 
   var html =
     '<div class="utility">' +
@@ -34,7 +35,7 @@
         '<nav class="primary">' +
           '<a href="/about"' + aboutActive + '>About Us</a>' +
           '<a href="' + prefix + '#regulatory">Regulatory &amp; Circulars</a>' +
-          '<a href="' + prefix + '#membership">Membership</a>' +
+          '<a href="/membership"' + membershipActive + '>Membership</a>' +
           '<a href="#">Compliance &amp; NISM</a>' +
           '<div class="nav-dropdown">' +
             '<a href="' + prefix + '#reports">Reports &amp; Insights <svg class="caret" width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>' +
